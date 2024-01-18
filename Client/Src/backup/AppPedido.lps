@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="AppPedido.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="17" Y="13"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umainfrm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainFrm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uMainFrm"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="19"/>
+        <CursorPos X="7"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\udm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="uDM"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="16">
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="36" Column="3" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="41" Column="3" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="40" Column="3" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="14" Column="27" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="16" Column="19" TopLine="16"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="17" Column="19" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="18" Column="19" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="19" Column="19" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="20" Column="19" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="40" Column="20" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="30" Column="4" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="29" Column="3" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="30" Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Column="14"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="30" Column="4" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Column="7" TopLine="21"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

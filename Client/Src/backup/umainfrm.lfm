@@ -1,0 +1,59 @@
+object MainFrm: TMainFrm
+  Left = 407
+  Height = 479
+  Top = 175
+  Width = 645
+  Caption = 'Principal'
+  ClientHeight = 479
+  ClientWidth = 645
+  OnResize = FormResize
+  Position = poScreenCenter
+  LCLVersion = '3.0.0.3'
+  object pnlTop: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 645
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 0
+  end
+  object mmJson: TMemo
+    Left = 0
+    Height = 166
+    Top = 50
+    Width = 645
+    Align = alTop
+    TabOrder = 1
+  end
+  object dbgMemTbl: TDBGrid
+    Left = 0
+    Height = 127
+    Top = 352
+    Width = 645
+    Align = alBottom
+    Color = clWindow
+    Columns = <>
+    DataSource = dsMemTbl
+    TabOrder = 2
+  end
+  object dbgQuery: TDBGrid
+    Left = 0
+    Height = 136
+    Top = 216
+    Width = 645
+    Align = alClient
+    Color = clWindow
+    Columns = <>
+    DataSource = dsQuery
+    TabOrder = 3
+  end
+  object dsQuery: TDataSource
+    Left = 288
+    Top = 264
+  end
+  object dsMemTbl: TDataSource
+    Left = 552
+    Top = 416
+  end
+end
