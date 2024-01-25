@@ -9,8 +9,8 @@
         <Filename Value="AppPedido.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="17" Y="13"/>
-        <UsageCount Value="21"/>
+        <CursorPos X="29" Y="13"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,10 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="19"/>
         <CursorPos X="7"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -34,13 +33,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="uDM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="2"/>
+        <CursorPos X="31" Y="15"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="16">
+    <JumpHistory HistoryIndex="18">
       <Position>
         <Filename Value="umainfrm.pas"/>
       </Position>
@@ -105,8 +107,15 @@
         <Caret Line="30" Column="4" TopLine="17"/>
       </Position>
       <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Column="7" TopLine="21"/>
+        <Filename Value="..\..\Common\udm.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\Common\udm.pas"/>
+        <Caret Line="15" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="..\..\Common\udm.pas"/>
+        <Caret Line="14" Column="27"/>
       </Position>
     </JumpHistory>
     <RunParams>

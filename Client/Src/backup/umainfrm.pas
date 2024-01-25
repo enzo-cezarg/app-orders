@@ -13,6 +13,8 @@ type
   { TMainFrm }
 
   TMainFrm = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
     dsQuery: TDataSource;
     dsMemTbl: TDataSource;
     dbgMemTbl: TDBGrid;

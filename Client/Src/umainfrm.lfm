@@ -1,11 +1,11 @@
 object MainFrm: TMainFrm
-  Left = 366
-  Height = 479
-  Top = 158
-  Width = 645
+  Left = 332
+  Height = 492
+  Top = 113
+  Width = 663
   Caption = 'Principal'
-  ClientHeight = 479
-  ClientWidth = 645
+  ClientHeight = 0
+  ClientWidth = 0
   OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
@@ -13,11 +13,11 @@ object MainFrm: TMainFrm
     Left = 0
     Height = 50
     Top = 0
-    Width = 645
+    Width = 663
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 645
+    ClientWidth = 663
     TabOrder = 0
     object Button1: TButton
       Left = 16
@@ -32,15 +32,15 @@ object MainFrm: TMainFrm
     Left = 0
     Height = 166
     Top = 50
-    Width = 645
+    Width = 663
     Align = alTop
     TabOrder = 1
   end
   object dbgMemTbl: TDBGrid
     Left = 0
     Height = 127
-    Top = 352
-    Width = 645
+    Top = 365
+    Width = 663
     Align = alBottom
     Color = clWindow
     Columns = <>
@@ -49,9 +49,9 @@ object MainFrm: TMainFrm
   end
   object dbgQuery: TDBGrid
     Left = 0
-    Height = 136
+    Height = 149
     Top = 216
-    Width = 645
+    Width = 663
     Align = alClient
     Color = clWindow
     Columns = <>
@@ -67,11 +67,11 @@ object MainFrm: TMainFrm
     TabOrder = 4
   end
   object dsQuery: TDataSource
-    Left = 288
-    Top = 264
+    Left = 432
+    Top = 296
   end
   object dsMemTbl: TDataSource
-    Left = 552
-    Top = 416
+    Left = 368
+    Top = 376
   end
 end

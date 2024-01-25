@@ -1,7 +1,7 @@
 object MainFrm: TMainFrm
-  Left = 407
+  Left = 366
   Height = 479
-  Top = 175
+  Top = 158
   Width = 645
   Caption = 'Principal'
   ClientHeight = 479
@@ -16,7 +16,17 @@ object MainFrm: TMainFrm
     Width = 645
     Align = alTop
     BevelOuter = bvNone
+    ClientHeight = 50
+    ClientWidth = 645
     TabOrder = 0
+    object Button1: TButton
+      Left = 16
+      Height = 33
+      Top = 8
+      Width = 100
+      Caption = 'Open/Close Qr'
+      TabOrder = 0
+    end
   end
   object mmJson: TMemo
     Left = 0
@@ -47,6 +57,14 @@ object MainFrm: TMainFrm
     Columns = <>
     DataSource = dsQuery
     TabOrder = 3
+  end
+  object Button2: TButton
+    Left = 128
+    Height = 33
+    Top = 8
+    Width = 100
+    Caption = 'Open/Close Mtb'
+    TabOrder = 4
   end
   object dsQuery: TDataSource
     Left = 288
