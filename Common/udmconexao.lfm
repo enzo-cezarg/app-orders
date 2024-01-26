@@ -1,8 +1,9 @@
 object DM: TDM
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 466
-  HorizontalOffset = 237
-  VerticalOffset = 113
+  HorizontalOffset = 771
+  VerticalOffset = 178
   Width = 510
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -13,6 +14,8 @@ object DM: TDM
       'AutoEncodeStrings=True'
       'controls_cp=CP_UTF8'
     )
+    Connected = True
+    BeforeConnect = ZConnectionBeforeConnect
     HostName = 'localhost'
     Port = 3050
     Database = 'C:\Users\User\Desktop\Repositórios\AppPedidos\Database\APPORDERS.FDB'

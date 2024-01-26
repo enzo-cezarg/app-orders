@@ -52,12 +52,11 @@
         <UnitName Value="uMainFrm"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\Common\udm.pas"/>
+        <Filename Value="..\..\Common\udmconexao.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="uDM"/>
       </Unit>
     </Units>
   </ProjectOptions>

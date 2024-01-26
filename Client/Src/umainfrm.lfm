@@ -4,8 +4,9 @@ object MainFrm: TMainFrm
   Top = 113
   Width = 663
   Caption = 'Principal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 492
+  ClientWidth = 663
+  OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
@@ -26,6 +27,7 @@ object MainFrm: TMainFrm
       Width = 100
       Caption = 'Open/Close Qr'
       TabOrder = 0
+      OnClick = Button1Click
     end
   end
   object mmJson: TMemo
@@ -67,11 +69,22 @@ object MainFrm: TMainFrm
     TabOrder = 4
   end
   object dsQuery: TDataSource
-    Left = 432
-    Top = 296
+    DataSet = ZQuery
+    Left = 344
+    Top = 288
   end
   object dsMemTbl: TDataSource
     Left = 368
     Top = 376
+  end
+  object ZQuery: TZQuery
+    Connection = DM.ZConnection
+    SQL.Strings = (
+      'SELECT * FROM PESSOA'
+      'ORDER BY ID;'
+    )
+    Params = <>
+    Left = 416
+    Top = 288
   end
 end

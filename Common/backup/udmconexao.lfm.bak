@@ -8,13 +8,13 @@ object DM: TDM
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
-    ClientCodepage = 'ISO8859_1'
     Properties.Strings = (
-      'codepage=ISO8859_1'
+      'codepage='
       'AutoEncodeStrings=True'
       'controls_cp=CP_UTF8'
     )
     Connected = True
+    BeforeConnect = ZConnectionBeforeConnect
     HostName = 'localhost'
     Port = 3050
     Database = 'C:\Users\User\Desktop\Repositórios\AppPedidos\Database\APPORDERS.FDB'
