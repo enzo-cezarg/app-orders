@@ -1,11 +1,11 @@
 object MainFrm: TMainFrm
-  Left = 332
+  Left = 228
   Height = 492
-  Top = 113
+  Top = 124
   Width = 663
   Caption = 'Principal'
-  ClientHeight = 492
-  ClientWidth = 663
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
@@ -28,6 +28,24 @@ object MainFrm: TMainFrm
       Caption = 'Open/Close Qr'
       TabOrder = 0
       OnClick = Button1Click
+    end
+    object Button3: TButton
+      Left = 272
+      Height = 33
+      Top = 8
+      Width = 96
+      Caption = 'Binario'
+      TabOrder = 1
+      OnClick = Button3Click
+    end
+    object Button4: TButton
+      Left = 392
+      Height = 33
+      Top = 8
+      Width = 96
+      Caption = 'Rx Binario'
+      TabOrder = 2
+      OnClick = Button4Click
     end
   end
   object mmJson: TMemo
@@ -67,6 +85,7 @@ object MainFrm: TMainFrm
     Width = 100
     Caption = 'Open/Close Mtb'
     TabOrder = 4
+    OnClick = Button2Click
   end
   object dsQuery: TDataSource
     DataSet = ZQuery
@@ -74,8 +93,9 @@ object MainFrm: TMainFrm
     Top = 288
   end
   object dsMemTbl: TDataSource
+    DataSet = BufDataset
     Left = 368
-    Top = 376
+    Top = 400
   end
   object ZQuery: TZQuery
     Connection = DM.ZConnection
@@ -86,5 +106,16 @@ object MainFrm: TMainFrm
     Params = <>
     Left = 416
     Top = 288
+  end
+  object BufDataset: TBufDataset
+    FieldDefs = <>
+    Left = 456
+    Top = 432
+  end
+  object RxMemoryData: TRxMemoryData
+    FieldDefs = <>
+    PacketRecords = 0
+    Left = 456
+    Top = 376
   end
 end
