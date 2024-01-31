@@ -70,7 +70,6 @@ end;
 
 procedure TMainFrm.Button2Click(Sender: TObject);
 begin
-  // BufDataSet.Active := not BufDataSet.Active;
   dsMemTbl.DataSet.Active := not dsMemTbl.DataSet.Active;
 end;
 
@@ -83,15 +82,12 @@ begin
   if BufDataSet.Active then
      BufDataSet.Close;
 
-  // BufDataSet.CopyFromDataset( ZQuery );
-
   lStream := TMemoryStream.Create;
   lBuf := TBufDataSet.Create(nil);
   try
+    lBuf.CopyFromDataset( ZQuery );
     lBuf.SaveToStream( lStream, dfBinary );
-
     lStream.Position := 0;
-
     BufDataSet.LoadFromStream( lStream, dfBinary );
   finally
     FreeAndNil(lStream);

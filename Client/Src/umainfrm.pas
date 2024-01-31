@@ -78,19 +78,17 @@ var
    lStream: TMemoryStream;
    lBuf: TBufDataSet;
 begin
+  dsMemTbl.DataSet := BufDataSet;
 
   if BufDataSet.Active then
      BufDataSet.Close;
 
-  // BufDataSet.CopyFromDataset( ZQuery );
-
   lStream := TMemoryStream.Create;
   lBuf := TBufDataSet.Create(nil);
   try
+    lBuf.CopyFromDataset( ZQuery );
     lBuf.SaveToStream( lStream, dfBinary );
-
     lStream.Position := 0;
-
     BufDataSet.LoadFromStream( lStream, dfBinary );
   finally
     FreeAndNil(lStream);
