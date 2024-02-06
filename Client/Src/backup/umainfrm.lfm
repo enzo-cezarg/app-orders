@@ -4,8 +4,8 @@ object MainFrm: TMainFrm
   Top = 124
   Width = 663
   Caption = 'Principal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 492
+  ClientWidth = 663
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter

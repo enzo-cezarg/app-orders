@@ -1,7 +1,11 @@
 program horse01;
 
+{$IF DEFINED(FPC)}
+  {$MODE DELPHI}{$H+}
+{$ENDIF}
+
 uses
-  Horse, SysUtils;
+  Horse, SysUtils, BaseRouter;
 
 procedure OnListen(aListen: THorse);
 begin
@@ -9,6 +13,8 @@ begin
 end;
 
 begin
+
+
   THorse.Listen(9095, OnListen);
 end.
 

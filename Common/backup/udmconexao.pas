@@ -22,6 +22,7 @@ type
     procedure SetTpConexao(AValue: TTpConexao);
 
   public
+    function GetPessoa(aID: Integer): string;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
 

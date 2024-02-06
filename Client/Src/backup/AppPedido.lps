@@ -8,10 +8,9 @@
       <Unit>
         <Filename Value="AppPedido.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="29" Y="13"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="12" Y="8"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.pas"/>
@@ -20,13 +19,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="79"/>
-        <CursorPos X="27" Y="90"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="98"/>
+        <CursorPos X="22" Y="113"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.pas"/>
@@ -34,137 +31,42 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="24"/>
-        <CursorPos X="58" Y="55"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="35" Y="36"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="35"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="78"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\udmconexao.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="AppPedido.lpi"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umainfrm.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="41" Column="3" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="40" Column="3" TopLine="18"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="14" Column="27" TopLine="5"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="16" Column="19" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="17" Column="19" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="18" Column="19" TopLine="6"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="19" Column="19" TopLine="6"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="20" Column="19" TopLine="6"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="40" Column="20" TopLine="19"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="30" Column="4" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="29" Column="3" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="30" Column="11"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Column="14"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="30" Column="4" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="27" Column="3" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="56" Column="38" TopLine="33"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Common\udmconexao.pas"/>
-        <Caret Column="16"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Common\udmconexao.pas"/>
-        <Caret Line="14" Column="16"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="61" Column="38" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="62" Column="38" TopLine="38"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="64" Column="38" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="79" Column="40" TopLine="57"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="91" Column="49" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="98" Column="4" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="81" Column="12" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="82" Column="6" TopLine="76"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="83" Column="6" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="85" Column="6" TopLine="79"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="119" Column="41" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="umainfrm.pas"/>
-        <Caret Line="124" Column="27" TopLine="103"/>
-      </Position>
-    </JumpHistory>
+    <General>
+      <ActiveWindowIndexAtStart Value="-1"/>
+    </General>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

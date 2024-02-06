@@ -8,13 +8,30 @@
       <Unit>
         <Filename Value="horse01.lpr"/>
         <IsPartOfProject Value="True"/>
+        <CursorPos Y="18"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
+        <EditorIndex Value="2"/>
+        <CursorPos Y="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="baserouter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BaseRouter"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="14" Y="3"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="37" Y="26"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="4">
       <Position>
         <Filename Value="horse01.lpr"/>
         <Caret Line="12" Column="33"/>
@@ -22,6 +39,18 @@
       <Position>
         <Filename Value="horse01.lpr"/>
         <Caret Line="8" Column="36"/>
+      </Position>
+      <Position>
+        <Filename Value="horse01.lpr"/>
+        <Caret Line="15" Column="5"/>
+      </Position>
+      <Position>
+        <Filename Value="horse01.lpr"/>
+        <Caret Line="16" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="baserouter.pas"/>
+        <Caret Line="26" Column="32" TopLine="10"/>
       </Position>
     </JumpHistory>
     <RunParams>

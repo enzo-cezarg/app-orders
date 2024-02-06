@@ -29,6 +29,11 @@
         <Filename Value="horse01.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="baserouter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BaseRouter"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -42,6 +47,11 @@
       <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\"/>
       <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
+      </SyntaxOptions>
+    </Parsing>
   </CompilerOptions>
   <Debugging>
     <Exceptions>

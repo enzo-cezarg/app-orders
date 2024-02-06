@@ -78,6 +78,7 @@ var
    lStream: TMemoryStream;
    lBuf: TBufDataSet;
 begin
+  dsMemTbl.DataSet := BufDataSet;
 
   if BufDataSet.Active then
      BufDataSet.Close;
