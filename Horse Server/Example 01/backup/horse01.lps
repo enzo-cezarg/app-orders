@@ -8,7 +8,6 @@
       <Unit>
         <Filename Value="horse01.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos Y="18"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
@@ -24,9 +23,10 @@
         <Filename Value="baserouter.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BaseRouter"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="10"/>
-        <CursorPos X="32" Y="26"/>
+        <CursorPos X="37" Y="26"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>

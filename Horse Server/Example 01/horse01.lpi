@@ -24,6 +24,14 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="indylaz"/>
+      </Item>
+      <Item>
+        <PackageName Value="LazUtils"/>
+      </Item>
+    </RequiredPackages>
     <Units>
       <Unit>
         <Filename Value="horse01.lpr"/>
@@ -33,6 +41,10 @@
         <Filename Value="baserouter.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BaseRouter"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\viacep.router.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -44,7 +56,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\"/>
+      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
       <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
