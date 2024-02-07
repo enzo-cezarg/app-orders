@@ -1,10 +1,13 @@
 program horse01;
 
-{$IF DEFINED(FPC)}
-  {$MODE DELPHI}{$H+}
-{$ENDIF}
+{$if defined(fpc)}
+  {$mode delphi}{$h+}
+{$endif}
 
 uses
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  cthreads,
+  {$ENDIF}{$ENDIF}
   Horse, SysUtils, BaseRouter, viacep.router;
 
 procedure OnListen(aListen: THorse);
