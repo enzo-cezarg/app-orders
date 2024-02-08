@@ -7,10 +7,13 @@
 	- indylaz;
 	- LazUtils;
 	
-	*REQUIRED LIBRARIES:
+	* REQUIRED LIBRARIES:
 	- Horse;
 	- j4dl;
 	- rr4dl;
+	
+	* REQUIRED MIDDLEWARES:
+	- Horse.BasicAuthentication;
 	
 	// Alexandre Magno's YouTube channel: https://www.youtube.com/@Alexandre_amds
 	// Make sure to check his content about using Lazarus with Horse.
