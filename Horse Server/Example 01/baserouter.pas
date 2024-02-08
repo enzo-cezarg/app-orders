@@ -29,6 +29,7 @@ end;
 class procedure TBase.Router;
 begin
   THorse.Get('/', OnStatus);
+  // Define o que será enviado através da rota no endereço "/"
 end;
 
 end.

@@ -28,14 +28,16 @@ begin
   if not aReq.Params.TryGetValue('cep', lCep) then
     lCep := '00000000';
 
-  lRes := TRequest.New.BaseURL(Format('viacep.com.br/ws/%s/json/', [lCep]))
+  lRes := TRequest.New.BaseURL(Format('http://viacep.com.br/ws/%s/json/', [lCep]))
   .ContentType('application/json')
   .Get;
+  // Pega os dados da API e armazena na variável lRes
 
   if (lRes.StatusCode = 200) then
     aRes.ContentType('application/json').Send( lRes.Content )
   else
     aRes.ContentType('application/json').Status( lRes.StatusCode ).Send( 'Error!' );
+  // Envia o conteúdo do json como response, ou envia um erro caso não tenha dados
 end;
 
 class procedure TViaCep.Router;

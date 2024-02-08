@@ -23,10 +23,10 @@ implementation
 procedure OnStatus(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
 begin
   aRes.ContentType('text/html')
-  .Send('<h2>Hora atual: </h2>');
+  .Send('<h2>Servidor Horse Ativo...</h2>');
 end;
 
-class procedure TBase.Router;
+class procedure TBase.Router; // Define o que será enviado através da rota no endereço "/"
 begin
   THorse.Get('/', OnStatus);
 end;
