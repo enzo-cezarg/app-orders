@@ -6,6 +6,7 @@
 	* REQUIRED PACKAGES:
 	- indylaz;
 	- LazUtils;
+	- zcomponent;
 	
 	* REQUIRED LIBRARIES:
 	- Horse;
