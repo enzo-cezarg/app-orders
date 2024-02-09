@@ -8,10 +8,9 @@
       <Unit>
         <Filename Value="AppPedido.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="12" Y="8"/>
         <UsageCount Value="36"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.pas"/>
@@ -20,10 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos X="22" Y="113"/>
         <UsageCount Value="36"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.pas"/>
@@ -31,12 +30,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="6"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
         <CursorPos X="9" Y="24"/>
         <UsageCount Value="36"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
@@ -63,7 +60,17 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\Horse.BasicAuthentication.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="-1"/>
+    </General>
     <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>

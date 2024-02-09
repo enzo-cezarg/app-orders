@@ -25,7 +25,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
+            <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
             <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -59,6 +59,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="zcomponent"/>
+      </Item>
+      <Item>
         <PackageName Value="indylaz"/>
       </Item>
       <Item>
@@ -79,6 +82,25 @@
         <Filename Value="..\..\Common\viacep.router.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\udmconexao.lfm"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\udmconexao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\pessoa.service.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\pessoa.router.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -89,7 +111,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\"/>
+      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\dc4dl\src\;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
       <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

@@ -8,9 +8,10 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Horse, Horse.BasicAuthentication, SysUtils, BaseRouter, viacep.router;
+  Horse, Horse.BasicAuthentication, SysUtils, BaseRouter,
+  viacep.router, pessoa.router;
 
-function OnAuth(const aUser, aPass: string): Boolean
+function OnAuth(const aUser, aPass: string): Boolean;
 begin
   Result := aUser.Equals('admin') and aPass.Equals('admin');
 end;

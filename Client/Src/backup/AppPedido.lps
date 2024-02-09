@@ -8,9 +8,10 @@
       <Unit>
         <Filename Value="AppPedido.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <CursorPos X="12" Y="8"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.pas"/>
@@ -19,11 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="98"/>
+        <TopLine Value="101"/>
         <CursorPos X="22" Y="113"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.pas"/>
@@ -32,10 +32,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="35" Y="36"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="35"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="9" Y="24"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
@@ -63,9 +64,6 @@
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="-1"/>
-    </General>
     <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
