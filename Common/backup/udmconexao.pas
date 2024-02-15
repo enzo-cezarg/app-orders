@@ -24,7 +24,7 @@ type
     procedure SetTpConexao(AValue: TTpConexao);
 
   public
-    function Pessoas: string;
+    function Pessoa(aID: Integer): string;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
 
@@ -72,7 +72,7 @@ begin
   FTpConexao := AValue;
 end;
 
-function TDM.Pessoas: string;
+function TDM.Pessoa(aID: Integer): string;
 var
   lJson: TJsonObject;
 begin
@@ -81,13 +81,20 @@ begin
     try
       ZQuery.Close;
       ZQuery.SQL.Clear;
-      ZQuery.SQL.Add('SELECT * FROM pessoa');
-      ZQuery.SQL.Add('ORDER BY id');
+      ZQuery.SQL.Add(' SELECT * FROM pessoa');
+      ZQuery.SQL.Add(' WHERE 1 = 1 ');
+      if (aID > 0) then
+      begin
+        ZQuery.SQL.Add(' AND id = :id ');
+      end;
+      ZQuery.SQL.Add(' ORDER BY id ');
       ZQuery.Open;
+      // Configura a query que buscará os dados no banco
 
       lJson.Put('success', True);
-      lJson.Put('message', Format('Total de Registros: %d', ZQuery.RecordCount));
+      lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
       lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
+      // Monta o json
     except
       on E: exception do
       begin
@@ -98,6 +105,7 @@ begin
   finally
     Result := lJson.Stringify;
     FreeAndNil(lJson);
+    // Transforma o json em uma string e libera a instância de TJsonObject
   end;
 end;
 

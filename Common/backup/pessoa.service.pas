@@ -11,22 +11,24 @@ type
 
   { TPessoa }
 
-  TPessoa = class
+  { TPessoaService }
+
+  TPessoaService = class
   public
-    class function GetPessoas: string;
+    class function GetPessoas(aID: string = '0'): string;
   end;
 
 implementation
 
 { TPessoa }
 
-class function TPessoa.GetPessoas: string;
+class function TPessoaService.GetPessoas(aID: string): string;
 var
   lDM: TDM;
 begin
   lDM := TDM.Create(nil);
   try
-    Result := lDM.Pessoas;
+    Result := lDM.Pessoa(StrToInt(aID));
   finally
     FreeAndNil(lDM);
   end;

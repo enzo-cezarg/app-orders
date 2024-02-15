@@ -31,12 +31,15 @@ begin
   // Rotas
   TBase.Router;
   TViaCep.Router;
+  TPessoa.Router;
 
   {$IFDEF HORSE_CGI} // Para servidores CGI
     THorse.Listen;
   {$ELSE} // Para servidores Console
     THorse.Listen(9095, OnListen);
   {$ENDIF}
+
+end;
 
 end.
 
