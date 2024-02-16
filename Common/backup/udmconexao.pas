@@ -22,9 +22,11 @@ type
   private
     FTpConexao: TTpConexao;
     procedure SetTpConexao(AValue: TTpConexao);
-
+    function isExist(aID: Integer): Boolean;
   public
-    function Pessoa(aID: Integer): string;
+    function GetPessoa(aID: Integer): string;
+    function SavePessoa(aID: Integer; aJson: string): string;
+    function DeletePessoa(aID: Integer): string;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
 
@@ -72,7 +74,33 @@ begin
   FTpConexao := AValue;
 end;
 
-function TDM.Pessoa(aID: Integer): string;
+function TDM.isExist(aID: Integer): Boolean;
+var
+  lQuery: TZQuery;
+begin
+  Result := False;
+
+  lQuery := TZQuery.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+    lQuery.SQL.Add(' SELECT id FROM pessoa ');
+    lQuery.SQL.Add(' WHERE id = :id ');
+    lQuery.Params[0].AsInteger := aID;
+    try
+      lQuery.Open;
+      Result := not lQuery.IsEmpty;
+    except
+      on E: exception do
+         Raise Exception.Create(E.Message);
+    end;
+
+  finally
+    lQuery.Close;
+    FreeAndNil(lQuery);
+  end;
+end;
+
+function TDM.GetPessoa(aID: Integer): string;
 var
   lJson: TJsonObject;
 begin
@@ -83,10 +111,13 @@ begin
       ZQuery.SQL.Clear;
       ZQuery.SQL.Add(' SELECT * FROM pessoa');
       ZQuery.SQL.Add(' WHERE 1 = 1 ');
+
       if (aID > 0) then
       begin
         ZQuery.SQL.Add(' AND id = :id ');
+        ZQuery.Params[0].AsInteger := aID;
       end;
+
       ZQuery.SQL.Add(' ORDER BY id ');
       ZQuery.Open;
       // Configura a query que buscará os dados no banco
@@ -107,6 +138,109 @@ begin
     FreeAndNil(lJson);
     // Transforma o json em uma string e libera a instância de TJsonObject
   end;
+end;
+
+function TDM.SavePessoa(aID: Integer; aJson: string): string;
+var
+  lQuery: TZQuery;
+  lJsonTmp,
+  lJson: TJsonObject;
+  lIsExist: Boolean;
+  lMsg: string;
+begin
+  lMsg := '';
+  lQuery := TZQuery.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+    lJson := TJsonObject.Create();
+    try
+      if lJson.IsJsonObject(aJson) then
+      begin
+        lJson.Parse(aJson);
+
+        lIsExist := IsExist(aID);
+
+        if not lIsExist then
+        begin
+          lQuery.SQL.Add(' INSERT INTO pessoa                                    ');
+          lQuery.SQL.Add(' (nome_razao, apelido_fantasia, cpf_cnpj,              ');
+          lQuery.SQL.Add(' logradouro, numero, bairro, cep, municipio, uf)       ');
+          lQuery.SQL.Add(' VALUES                                                ');
+          lQuery.SQL.Add(' (:nome_razao, :apelido_fantasia, :cpf_cnpj,           ');
+          lQuery.SQL.Add(' :logradouro, :numero, :bairro, :cep, :municipio, :uf) ');
+          lQuery.SQL.Add(' RETURNS id                                            ');
+        end
+        else
+        begin
+          lQuery.SQL.Add(' UPDATE pessoa                                                                                              ');
+          lQuery.SQL.Add(' SET nome_razao = :nome_razao, apelido_fantasia = :apelido_fantasia, cpf_cnpj = :cpf_cnpj,                  ');
+          lQuery.SQL.Add(' logradouro = :logradouro, numero = :numero, bairro = :bairro, cep = :cep, municipio = :municipio, uf = :uf)');
+          lQuery.SQL.Add(' WHERE id = :id                                                                                             ');
+
+          lQuery.ParamByName('id').AsInteger := aID;
+        end;
+
+        lQuery.ParamByName('nome_razao').AsString         := lJson.Values['nome_razao'].AsString;
+        lQuery.ParamByName('apelido_fantasia').AsString   := lJson.Values['apelido_fantasia'].AsString;
+        lQuery.ParamByName('cpf_cnpj').AsString           := lJson.Values['cpf_cnpj'].AsString;
+        lQuery.ParamByName('logradouro').AsString         := lJson.Values['logradouro'].AsString;
+        lQuery.ParamByName('numero').AsString             := lJson.Values['numero'].AsString;
+        lQuery.ParamByName('bairro').AsString             := lJson.Values['bairro'].AsString;
+        lQuery.ParamByName('cep').AsString                := lJson.Values['cep'].AsString;
+        lQuery.ParamByName('municipio').AsString          := lJson.Values['municipio'].AsString;
+        lQuery.ParamByName('uf').AsString                 := lJson.Values['uf'].AsString;
+
+        try
+          if lIsExist then
+          begin
+            lQuery.Open;
+            aID := lQuery.Fields[0].AsInteger;
+            lMsg := 'Incluído com sucesso!';
+          end
+          else
+          begin
+            lQuery.ExecSQL;
+            lMsg := 'Alterado com sucesso!';
+          end;
+
+          lJson.Put('success', true);
+          lJson.Put('message', lMsg);
+
+          lJsonTmp := TJsonObject.Create();
+          try
+            lJsonTmp.Parse( GetPessoa(aID) );
+
+            if lJsonTmp.Values['success'].AsBoolean then
+              lJson.Put('data', lJsonTmp.Values['data'].AsArray[0].AsObject );
+
+          finally
+            FreeAndNil(lJsonTemp);
+          end;
+
+        except
+          on E: exception do
+             Raise Exception.Create(E.Message);
+        end;
+      end
+      else
+      begin
+        lJson.Clear;
+        lJson.Put('success', False);
+        lJson.Put('message', 'Invalid JSON');
+      end;
+
+    finally
+      Result := lJson.Stringify;
+      FreeAndNil(lJson)
+    end;
+  finally
+    FreeAndNil(lQuery);
+  end;
+end;
+
+function TDM.DeletePessoa(aID: Integer): string;
+begin
+  //
 end;
 
 end.

@@ -31,11 +31,36 @@ begin
   .Send( TPessoaService.GetPessoas(lID) );
 end;
 
+procedure SavePessoa(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
+var
+  lID: string;
+begin
+  if not aReq.Params.TryGetValue('id', lID) then
+    lID := '0';
+
+  aRes.ContentType('application/json')
+  .Send( TPessoaService.SavePessoas( lID, aReq.Body ) );
+end;
+
+procedure DeletePessoa(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
+var
+  lID: string;
+begin
+  if not aReq.Params.TryGetValue('id', lID) then
+    lID := '0';
+
+  aRes.ContentType('application/json')
+  .Send( TPessoaService.DeletePessoas(lID) );
+end;
+
 class procedure TPessoa.Router;
 begin
   THorse.Get('/pessoa', GetPessoa)
-  // Define o que será enviado através da rota no endereço "/"
-  //.Get('/pessoa/:id', GetPessoa)
+  // Define o que será enviado através da rota no endereço "/pessoa"
+  .Get('/pessoa/:id', GetPessoa)
+  .Post('/pessoa', SavePessoa)
+  .Put('/pessoa/:id', SavePessoa)
+  //.Delete('/pessoa/:id', DeleteProduto)
   ;
 end;
 
