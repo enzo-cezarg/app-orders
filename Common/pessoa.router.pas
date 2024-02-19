@@ -60,7 +60,7 @@ begin
   .Get('/pessoa/:id', GetPessoa)
   .Post('/pessoa', SavePessoa)
   .Put('/pessoa/:id', SavePessoa)
-  .Delete('/pessoa/:id', DeleteProduto)
+  //.Delete('/pessoa/:id', DeleteProduto)
   ;
 end;
 

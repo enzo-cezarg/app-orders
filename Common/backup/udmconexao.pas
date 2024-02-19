@@ -117,6 +117,7 @@ begin
         ZQuery.SQL.Add(' AND id = :id ');
         ZQuery.Params[0].AsInteger := aID;
       end;
+      // Procura por um ID específico se for passado como parâmetro
 
       ZQuery.SQL.Add(' ORDER BY id ');
       ZQuery.Open;
@@ -136,7 +137,7 @@ begin
   finally
     Result := lJson.Stringify;
     FreeAndNil(lJson);
-    // Transforma o json em uma string e libera a instância de TJsonObject
+    // Transforma o json em uma string, retorna e libera a instância de TJsonObject
   end;
 end;
 
@@ -168,17 +169,18 @@ begin
           lQuery.SQL.Add(' VALUES                                                ');
           lQuery.SQL.Add(' (:nome_razao, :apelido_fantasia, :cpf_cnpj,           ');
           lQuery.SQL.Add(' :logradouro, :numero, :bairro, :cep, :municipio, :uf) ');
-          lQuery.SQL.Add(' RETURNS id                                            ');
+          lQuery.SQL.Add(' RETURNS id                                          ');
         end
         else
         begin
           lQuery.SQL.Add(' UPDATE pessoa                                                                                              ');
           lQuery.SQL.Add(' SET nome_razao = :nome_razao, apelido_fantasia = :apelido_fantasia, cpf_cnpj = :cpf_cnpj,                  ');
-          lQuery.SQL.Add(' logradouro = :logradouro, numero = :numero, bairro = :bairro, cep = :cep, municipio = :municipio, uf = :uf)');
+          lQuery.SQL.Add(' logradouro = :logradouro, numero = :numero, bairro = :bairro, cep = :cep, municipio = :municipio, uf = :uf');
           lQuery.SQL.Add(' WHERE id = :id                                                                                             ');
 
           lQuery.ParamByName('id').AsInteger := aID;
         end;
+
 
         lQuery.ParamByName('nome_razao').AsString         := lJson.Values['nome_razao'].AsString;
         lQuery.ParamByName('apelido_fantasia').AsString   := lJson.Values['apelido_fantasia'].AsString;
@@ -191,7 +193,7 @@ begin
         lQuery.ParamByName('uf').AsString                 := lJson.Values['uf'].AsString;
 
         try
-          if lIsExist then
+          if not lIsExist then
           begin
             lQuery.Open;
             aID := lQuery.Fields[0].AsInteger;
@@ -203,6 +205,7 @@ begin
             lMsg := 'Alterado com sucesso!';
           end;
 
+          lJson.Clear;
           lJson.Put('success', true);
           lJson.Put('message', lMsg);
 
@@ -212,9 +215,12 @@ begin
 
             if lJsonTmp.Values['success'].AsBoolean then
               lJson.Put('data', lJsonTmp.Values['data'].AsArray[0].AsObject );
+            // Cria um json temporário com os dados no novo ID, transforma em objeto
+            // e depois adiciona os dados ao json resultante para que seja retornado
+            // pela função
 
           finally
-            FreeAndNil(lJsonTemp);
+            FreeAndNil(lJsonTmp);
           end;
 
         except
