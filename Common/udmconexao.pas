@@ -245,8 +245,47 @@ begin
 end;
 
 function TDM.DeletePessoa(aID: Integer): string;
+var
+  lQuery: TZQuery;
+  lJson: TJsonObject;
 begin
-  //
+  lQuery := TZQuery.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+    lQuery.SQL.Add(' DELETE FROM pessoa ');
+    lQuery.SQL.Add(' WHERE id = :id ');
+    lQuery.Params[0].AsInteger := aID;
+
+    lJson := TJsonObject.Create();
+    try
+      try
+        if isExist(aID) then
+        begin
+          lQuery.ExecSQL;
+          lJson.Put('success', True);
+          lJson.Put('message', 'Deletado com sucesso!');
+        end
+        else
+        begin
+          lJson.Put('success', False);
+          lJson.Put('message', 'Produto inexistente!');
+        end;
+
+      except
+        on E: exception do
+        begin
+           lJson.Put('success', False);
+           lJson.Put('message', E.message);
+        end;
+      end;
+    finally
+      Result := lJson.Stringify;
+      FreeAndNil(lJson);
+    end;
+  finally
+    lQuery.Close;
+    FreeAndNil(lQuery);
+  end;
 end;
 
 end.
