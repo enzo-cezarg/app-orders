@@ -1,0 +1,10 @@
+object FrmInsertAlt: TFrmInsertAlt
+  Left = 383
+  Height = 350
+  Top = 214
+  Width = 700
+  BorderStyle = bsDialog
+  Caption = 'Inserir/Alterar Registros'
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.3'
+end

@@ -1,0 +1,9 @@
+object FrmDelete: TFrmDelete
+  Left = 255
+  Height = 350
+  Top = 119
+  Width = 700
+  BorderStyle = bsDialog
+  Caption = 'Deletar Registros'
+  LCLVersion = '3.0.0.3'
+end

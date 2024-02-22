@@ -58,6 +58,40 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\Horse Server\Example 01\baserouter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BaseRouter"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\pessoa.router.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\pessoa.service.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Common\viacep.router.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\Horse Server\Example 01\horse01.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmconsulta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmConsulta"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrminsertalt.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmInsertAlt"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uFrmInsertAlt"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -69,7 +103,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <Libraries Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;C:\Projetos\Lazarus\Componentes\horse-compression\src\;C:\Projetos\Lazarus\Componentes\horse-octet-stream\src\"/>
-      <OtherUnitFiles Value="..\..\Common"/>
+      <OtherUnitFiles Value="..\..\Common;..\..\Components\dc4dl\src;..\..\Components\j4dl\src;..\..\Components\rr4dl\src;..\..\Components\horse\src;..\..\Components\horse-basic-auth\src"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
       <SrcPath Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;C:\Projetos\Lazarus\Componentes\horse-compression\src\;C:\Projetos\Lazarus\Componentes\horse-octet-stream\src\"/>
     </SearchPaths>

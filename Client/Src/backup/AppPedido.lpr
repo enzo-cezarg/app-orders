@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, zcomponent, uMainFrm, udmconexao
-  { you can add units after this };
+  Forms, rxnew, zcomponent, uMainFrm, udmconexao, pessoa.router, pessoa.service,
+  viacep.router, ufrmconsulta, uFrmInsertAlt, uFrmDelete;
 
 {$R *.res}
 
@@ -21,6 +21,9 @@ begin
   Application.Initialize;
   Application.CreateForm(TMainFrm, MainFrm);
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(TFrmConsulta, FrmConsulta);
+  Application.CreateForm(TFrmInsertAlt, FrmInsertAlt);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
 

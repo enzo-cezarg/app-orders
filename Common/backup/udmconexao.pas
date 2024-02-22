@@ -273,8 +273,10 @@ begin
 
       except
         on E: exception do
+        begin
            lJson.Put('success', False);
            lJson.Put('message', E.message);
+        end;
       end;
     finally
       Result := lJson.Stringify;

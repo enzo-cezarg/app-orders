@@ -1,0 +1,11 @@
+object FrmConsulta: TFrmConsulta
+  Left = 334
+  Height = 350
+  Top = 167
+  Width = 700
+  BorderStyle = bsDialog
+  Caption = 'Consulta'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '3.0.0.3'
+end

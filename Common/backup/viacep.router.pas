@@ -43,6 +43,7 @@ end;
 class procedure TViaCep.Router;
 begin
   THorse.Get('/cep/:cep', OnViaCep);
+  // Retorna o objeto correspondente ao parâmetro :cep
 end;
 
 end.

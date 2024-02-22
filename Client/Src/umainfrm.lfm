@@ -1,11 +1,12 @@
 object MainFrm: TMainFrm
-  Left = 228
-  Height = 492
-  Top = 124
+  Left = 305
+  Height = 472
+  Top = 147
   Width = 663
   Caption = 'Principal'
   ClientHeight = 0
   ClientWidth = 0
+  Menu = MainMenu
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
@@ -30,7 +31,7 @@ object MainFrm: TMainFrm
       OnClick = Button1Click
     end
     object Button3: TButton
-      Left = 272
+      Left = 240
       Height = 33
       Top = 8
       Width = 96
@@ -39,7 +40,7 @@ object MainFrm: TMainFrm
       OnClick = Button3Click
     end
     object Button4: TButton
-      Left = 392
+      Left = 352
       Height = 33
       Top = 8
       Width = 96
@@ -59,7 +60,7 @@ object MainFrm: TMainFrm
   object dbgMemTbl: TDBGrid
     Left = 0
     Height = 127
-    Top = 365
+    Top = 345
     Width = 663
     Align = alBottom
     Color = clWindow
@@ -69,7 +70,7 @@ object MainFrm: TMainFrm
   end
   object dbgQuery: TDBGrid
     Left = 0
-    Height = 149
+    Height = 129
     Top = 216
     Width = 663
     Align = alClient
@@ -117,5 +118,24 @@ object MainFrm: TMainFrm
     PacketRecords = 0
     Left = 456
     Top = 376
+  end
+  object MainMenu: TMainMenu
+    Left = 616
+    Top = 8
+    object MenuItem1: TMenuItem
+      Caption = 'Cadastro'
+      object menuConsultaID: TMenuItem
+        Caption = 'Consulta por ID'
+        OnClick = menuConsultaIDClick
+      end
+      object menuInsertAlt: TMenuItem
+        Caption = 'Inserir/Alterar Registros'
+        OnClick = menuInsertAltClick
+      end
+      object menuDelete: TMenuItem
+        Caption = 'Deletar Registros'
+        OnClick = menuDeleteClick
+      end
+    end
   end
 end

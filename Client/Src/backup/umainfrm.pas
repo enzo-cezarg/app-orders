@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, BufDataset, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, StdCtrls, DBGrids, RxDBGrid, rxmemds, ZDataset;
+  ExtCtrls, StdCtrls, DBGrids, Menus, RxDBGrid, rxmemds, ZDataset, ufrmconsulta,
+  uFrmInsertAlt, uFrmDelete;
 
 type
 
@@ -22,6 +23,11 @@ type
     dsMemTbl: TDataSource;
     dbgMemTbl: TDBGrid;
     dbgQuery: TDBGrid;
+    MainMenu: TMainMenu;
+    MenuItem1: TMenuItem;
+    menuConsultaID: TMenuItem;
+    menuInsertAlt: TMenuItem;
+    menuDelete: TMenuItem;
     mmJson: TMemo;
     pnlTop: TPanel;
     RxMemoryData: TRxMemoryData;
@@ -32,6 +38,9 @@ type
     procedure Button4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure menuConsultaIDClick(Sender: TObject);
+    procedure menuInsertAltClick(Sender: TObject);
+    procedure menuDeleteClick(Sender: TObject);
   private
 
   public
@@ -53,6 +62,21 @@ procedure TMainFrm.FormResize(Sender: TObject);
 begin
   mmJson.Height    := Trunc((Self.Height - (39 + pnlTop.Height)) / 3);
   dbgMemTbl.Height := mmJson.Height;
+end;
+
+procedure TMainFrm.menuConsultaIDClick(Sender: TObject);
+begin
+  FrmConsulta.ShowModal;
+end;
+
+procedure TMainFrm.menuInsertAltClick(Sender: TObject);
+begin
+  FrmInsertAlt.ShowModal;
+end;
+
+procedure TMainFrm.menuDeleteClick(Sender: TObject);
+begin
+  //
 end;
 
 procedure TMainFrm.FormCreate(Sender: TObject);

@@ -56,11 +56,10 @@ end;
 class procedure TPessoa.Router;
 begin
   THorse.Get('/pessoa', GetPessoa)
-  // Define o que será enviado através da rota no endereço "/pessoa"
   .Get('/pessoa/:id', GetPessoa)
   .Post('/pessoa', SavePessoa)
   .Put('/pessoa/:id', SavePessoa)
-  .Delete('/pessoa/:id', DeletePessoas)
+  .Delete('/pessoa/:id', DeletePessoa)
   ;
 end;
 
