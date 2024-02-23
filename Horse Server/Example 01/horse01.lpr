@@ -26,7 +26,7 @@ end;
 
 begin
   // Middlewares
-  THorse.Use(HorseBasicAuthentication(OnAuth));
+  // THorse.Use(HorseBasicAuthentication(OnAuth));
 
   // Rotas
   TBase.Router;

@@ -39,7 +39,5 @@ begin
     THorse.Listen(9095, OnListen);
   {$ENDIF}
 
-end;
-
 end.
 
