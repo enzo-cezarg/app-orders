@@ -1,15 +1,17 @@
 object DM: TDM
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 466
-  HorizontalOffset = 771
-  VerticalOffset = 178
+  HorizontalOffset = 231
+  VerticalOffset = 110
   Width = 510
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
+    ClientCodepage = 'ISO8859_1'
     Properties.Strings = (
-      'codepage='
+      'codepage=ISO8859_1'
       'AutoEncodeStrings=True'
       'controls_cp=CP_UTF8'
     )
@@ -23,6 +25,12 @@ object DM: TDM
     Protocol = 'firebird'
     LibraryLocation = 'C:\Program Files\Firebird\Firebird_4_0\fbclient.dll'
     Left = 64
+    Top = 40
+  end
+  object ZQuery: TZQuery
+    Connection = ZConnection
+    Params = <>
+    Left = 152
     Top = 40
   end
 end

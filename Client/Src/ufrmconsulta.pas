@@ -5,8 +5,8 @@ unit ufrmconsulta;
 interface
 
 uses
-  Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs, j4dl,
-  dc4dl, rr4dl;
+  Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, j4dl, dc4dl, rr4dl;
 
 type
 
@@ -14,9 +14,25 @@ type
 
   TFrmConsulta = class(TForm)
     bdsCrudPessoas: TBufDataset;
+    btnConsultar: TButton;
+    btnClear: TButton;
+    edtNome: TEdit;
+    edtApelido: TEdit;
+    edtCpfCnpj: TEdit;
+    edtCep: TEdit;
+    edtID: TEdit;
+    lblCep: TLabel;
+    lblCpfCnpj: TLabel;
+    lblApelido: TLabel;
+    lblNome: TLabel;
+    lblID: TLabel;
+    procedure btnConsultarClick(Sender: TObject);
+    procedure btnClearClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    procedure onAppend(aID: Integer);
+    procedure onAppend(aID: string);
+    procedure datasetToView;
+    procedure viewToDataset;
   public
 
   end;
@@ -44,7 +60,23 @@ begin
   FrmConsulta.Height      := _FORM_HEIGHT;
 end;
 
-procedure TFrmConsulta.onAppend(aID: Integer);
+procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
+begin
+  FrmConsulta.onAppend(edtID.Text);
+  FrmConsulta.datasetToView;
+end;
+
+procedure TFrmConsulta.btnClearClick(Sender: TObject);
+begin
+
+  edtNome.Clear;
+  edtApelido.Clear;
+  edtCpfCnpj.Clear;
+  edtCep.Clear;
+
+end;
+
+procedure TFrmConsulta.onAppend(aID: string);
 var
   vlObjRes: IResponse;
   vlObjJson: TJSONObject;
@@ -52,9 +84,9 @@ begin
   vlObjJson := TJSONObject.Create;
   try
     try
-      vlObjRes := TRequest.New.BaseURL('pessoa/:id')
+      vlObjRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
                               .ContentType('application/json')
-                              .AddHeader('conexao', vlObjJson.Stringify)
+                              //.AddHeader('conexao', vlObjJson.Stringify)
                               .Get;
 
       if (vlObjRes.StatusCode = 200) and (Trim(vlObjRes.Content) <> '') then
@@ -66,10 +98,10 @@ begin
 
         if vlObjJson.Values['success'].AsBoolean then
         begin
-          bdsCrudEntidades.Close;
+          bdsCrudPessoas.Close;
           TConverter.New.LoadJson(vlObjJson.Values['structure'].AsArray).ToStructure(bdsCrudPessoas);
           TConverter.New.LoadJson(vlObjJson.Values['data'].AsArray).ToDataSet(bdsCrudPessoas);
-          bdsCrudEntidades.Open;
+          bdsCrudPessoas.Open;
         end
         else
           Raise exception.Create(vlObjJson.Values['message'].AsString);
@@ -84,6 +116,36 @@ begin
     FreeAndNil(vlObjJson);
   end;
 end;
+
+procedure TFrmConsulta.datasetToView;
+begin
+  try
+
+    edtID.Clear;
+    edtNome.Clear;
+    edtApelido.Clear;
+    edtCpfCnpj.Clear;
+    edtCep.Clear;
+
+    if bdsCrudPessoas.Active and (bdsCrudPessoas.RecordCount > 0) then
+    begin
+      edtID.Text            := IntToStr(bdsCrudPessoas.FieldByName('id').AsInteger);
+      edtNome.Text          := bdsCrudPessoas.FieldByName('nome_razao').AsString;
+      edtApelido.Text       := bdsCrudPessoas.FieldByName('apelido_fantasia').AsString;
+      edtCpfCnpj.Text       := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
+      edtCep.Text           := bdsCrudPessoas.FieldByName('cep').AsString;
+    end;
+  except
+    on E: exception do
+       Raise Exception.Create(E.Message);
+  end;
+end;
+
+procedure TFrmConsulta.viewToDataset;
+begin
+
+end;
+
 
 end.
 

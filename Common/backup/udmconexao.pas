@@ -125,6 +125,7 @@ begin
 
       lJson.Put('success', True);
       lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
+      JSONObj.put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
       lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
       // Monta o json
     except

@@ -1,13 +1,103 @@
 object FrmConsulta: TFrmConsulta
-  Left = 319
+  Left = 544
   Height = 350
-  Top = 163
+  Top = 81
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Consulta'
+  ClientHeight = 350
+  ClientWidth = 700
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
+  object edtID: TEdit
+    Left = 32
+    Height = 23
+    Top = 37
+    Width = 104
+    TabOrder = 0
+  end
+  object lblID: TLabel
+    Left = 32
+    Height = 15
+    Top = 16
+    Width = 11
+    Caption = 'ID'
+  end
+  object edtNome: TEdit
+    Left = 32
+    Height = 23
+    Top = 125
+    Width = 168
+    TabOrder = 1
+  end
+  object edtApelido: TEdit
+    Left = 224
+    Height = 23
+    Top = 125
+    Width = 248
+    TabOrder = 2
+  end
+  object edtCpfCnpj: TEdit
+    Left = 32
+    Height = 23
+    Top = 181
+    Width = 248
+    TabOrder = 3
+  end
+  object edtCep: TEdit
+    Left = 304
+    Height = 23
+    Top = 181
+    Width = 168
+    TabOrder = 4
+  end
+  object lblNome: TLabel
+    Left = 32
+    Height = 15
+    Top = 104
+    Width = 33
+    Caption = 'Nome'
+  end
+  object lblApelido: TLabel
+    Left = 224
+    Height = 15
+    Top = 104
+    Width = 61
+    Caption = 'Sobrenome'
+  end
+  object lblCpfCnpj: TLabel
+    Left = 32
+    Height = 15
+    Top = 160
+    Width = 53
+    Caption = 'CPF/CNPJ'
+  end
+  object lblCep: TLabel
+    Left = 304
+    Height = 15
+    Top = 160
+    Width = 21
+    Caption = 'CEP'
+  end
+  object btnConsultar: TButton
+    Left = 160
+    Height = 25
+    Top = 35
+    Width = 90
+    Caption = 'Consultar'
+    TabOrder = 5
+    OnClick = btnConsultarClick
+  end
+  object Button1: TButton
+    Left = 32
+    Height = 25
+    Top = 232
+    Width = 88
+    Caption = 'Button1'
+    TabOrder = 6
+    OnClick = Button1Click
+  end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
     Left = 648
