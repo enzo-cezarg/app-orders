@@ -7,11 +7,15 @@
 	- indylaz;
 	- LazUtils;
 	- zcomponent;
+	- rxnew;
+	- FCL;
+	- LCL;
 	
 	* REQUIRED LIBRARIES:
 	- Horse;
 	- j4dl;
 	- rr4dl;
+	- dc4dl;
 	
 	* REQUIRED MIDDLEWARES:
 	- Horse.BasicAuthentication;
