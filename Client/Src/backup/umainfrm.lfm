@@ -4,8 +4,8 @@ object MainFrm: TMainFrm
   Top = 147
   Width = 663
   Caption = 'Principal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 472
+  ClientWidth = 663
   Menu = MainMenu
   OnCreate = FormCreate
   OnResize = FormResize

@@ -15,7 +15,7 @@ type
   TFrmConsulta = class(TForm)
     bdsCrudPessoas: TBufDataset;
     btnConsultar: TButton;
-    Button1: TButton;
+    btnClear: TButton;
     edtNome: TEdit;
     edtApelido: TEdit;
     edtCpfCnpj: TEdit;
@@ -27,12 +27,11 @@ type
     lblNome: TLabel;
     lblID: TLabel;
     procedure btnConsultarClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnClearClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     procedure onAppend(aID: string);
     procedure datasetToView;
-    procedure viewToDataset;
   public
 
   end;
@@ -62,11 +61,18 @@ end;
 
 procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
 begin
-  FrmConsulta.onAppend(edtID.Text);
-  FrmConsulta.datasetToView;
+  if (Trim(edtID.Text) <> '') or (StrToInt(edtID.Text) < 1) then
+  begin
+    FrmConsulta.onAppend(edtID.Text);
+    FrmConsulta.datasetToView;
+  end
+  else
+  begin
+    edtID.Clear;
+  end;
 end;
 
-procedure TFrmConsulta.Button1Click(Sender: TObject);
+procedure TFrmConsulta.btnClearClick(Sender: TObject);
 begin
 
   edtNome.Clear;
@@ -139,11 +145,6 @@ begin
     on E: exception do
        Raise Exception.Create(E.Message);
   end;
-end;
-
-procedure TFrmConsulta.viewToDataset;
-begin
-
 end;
 
 

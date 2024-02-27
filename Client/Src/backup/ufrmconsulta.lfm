@@ -5,8 +5,8 @@ object FrmConsulta: TFrmConsulta
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Consulta'
-  ClientHeight = 350
-  ClientWidth = 700
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
@@ -89,14 +89,14 @@ object FrmConsulta: TFrmConsulta
     TabOrder = 5
     OnClick = btnConsultarClick
   end
-  object Button1: TButton
+  object btnClear: TButton
     Left = 32
     Height = 25
     Top = 232
-    Width = 88
-    Caption = 'Button1'
+    Width = 120
+    Caption = 'Limpar Registros'
     TabOrder = 6
-    OnClick = Button1Click
+    OnClick = btnClearClick
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>

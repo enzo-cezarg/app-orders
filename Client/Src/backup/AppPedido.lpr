@@ -23,7 +23,7 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFrmConsulta, FrmConsulta);
   Application.CreateForm(TFrmInsertAlt, FrmInsertAlt);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFrmDelete, FrmDelete);
   Application.Run;
 end.
 

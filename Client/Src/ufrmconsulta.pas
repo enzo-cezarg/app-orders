@@ -32,7 +32,6 @@ type
   private
     procedure onAppend(aID: string);
     procedure datasetToView;
-    procedure viewToDataset;
   public
 
   end;
@@ -62,8 +61,15 @@ end;
 
 procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
 begin
-  FrmConsulta.onAppend(edtID.Text);
-  FrmConsulta.datasetToView;
+  if (Trim(edtID.Text) <> '') then
+  begin
+    FrmConsulta.onAppend(edtID.Text);
+    FrmConsulta.datasetToView;
+  end
+  else
+  begin
+    edtID.Clear;
+  end;
 end;
 
 procedure TFrmConsulta.btnClearClick(Sender: TObject);
@@ -139,11 +145,6 @@ begin
     on E: exception do
        Raise Exception.Create(E.Message);
   end;
-end;
-
-procedure TFrmConsulta.viewToDataset;
-begin
-
 end;
 
 

@@ -85,11 +85,13 @@ begin
      Application.CreateForm(TDM, DM);
 
   ZQuery.Connection := DM.ZConnection;
+  Button3.Enabled := False;
 end;
 
 procedure TMainFrm.Button1Click(Sender: TObject);
 begin
   ZQuery.Active := not ZQuery.Active;
+  Button3.Enabled := not Button3.Enabled;
 end;
 
 procedure TMainFrm.Button2Click(Sender: TObject);
