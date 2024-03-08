@@ -42,13 +42,15 @@ type
     rInsert: TRadioButton;
     rUpdate: TRadioButton;
     procedure btnConsultaClick(Sender: TObject);
+    procedure btnSendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure rInsertChange(Sender: TObject);
   private
     procedure getStructure;
     procedure OnAppend(aID: string);
     procedure datasetToView;
-    //procedure viewToDataset;
+    procedure viewToDataset;
+    function confirmOperation: Boolean;
   public
 
   end;
@@ -110,6 +112,15 @@ begin
     on E: exception do
       Raise Exception.Create(E.Message);
   end;
+
+end;
+
+procedure TFrmInsertAlt.btnSendClick(Sender: TObject);
+begin
+  if confirmOperation then
+    FrmInsertAlt.viewToDataset
+  else
+    ShowMessage('Operação Cancelada!');
 
 end;
 
@@ -227,6 +238,58 @@ begin
     on E: exception do
        Raise Exception.Create(E.Message);
   end;
+end;
+
+procedure TFrmInsertAlt.viewToDataset;
+begin
+   if bdsCrudPessoas.Active then
+   begin
+     try
+       if rInsert.Checked then
+       begin
+         bdsCrudPessoas.Append;
+         bdsCrudPessoas.FieldByName('id').AsString := '0';
+       end
+       else if rUpdate.Checked then
+         bdsCrudPessoas.Edit;
+
+       if Trim(edtNome.Text) <> '' then
+         bdsCrudPessoas.FieldByName('nome_razao').AsString       := Trim(edtNome.Text);
+
+       if Trim(edtApelido.Text) <> '' then
+         bdsCrudPessoas.FieldByName('apelido_fantasia').AsString := Trim(edtApelido.Text);
+
+       if Trim(edtCpfCnpj.Text) <> '' then
+         bdsCrudPessoas.FieldByName('cpf_cnpj').AsString         := Trim(edtCpfCnpj.Text);
+
+       if Trim(edtLog.Text) <> '' then
+         bdsCrudPessoas.FieldByName('logradouro').AsString       := Trim(edtLog.Text);
+
+       if Trim(edtNum.Text) <> '' then
+         bdsCrudPessoas.FieldByName('numero').AsString           := Trim(edtNum.Text);
+
+       if Trim(edtBairro.Text) <> '' then
+         bdsCrudPessoas.FieldByName('bairro').AsString           := Trim(edtBairro.Text);
+
+       if Trim(edtCep.Text) <> '' then
+         bdsCrudPessoas.FieldByName('cep').AsString              := Trim(edtCep.Text);
+
+       if Trim(edtMun.Text) <> '' then
+         bdsCrudPessoas.FieldByName('municipio').AsString        := Trim(edtMun.Text);
+
+       if Trim(edtUF.Text) <> '' then
+         bdsCrudPessoas.FieldByName('uf').AsString               := Trim(edtUF.Text);
+
+     except
+       on E: Exception do
+         raise Exception.Create(E.Message);
+     end;
+   end;
+end;
+
+function TFrmInsertAlt.confirmOperation: Boolean;
+begin
+  Result := MessageDlg('Deseja confirmar?', mtConfirmation, mbYesNo, 0) = mrYes;
 end;
 
 end.

@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -23,7 +23,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="16" Y="83"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.pas"/>
@@ -31,11 +31,10 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="99"/>
+        <TopLine Value="110"/>
         <CursorPos X="30" Y="113"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -44,7 +43,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="BaseRouter"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\pessoa.router.pas"/>
@@ -52,7 +51,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="54"/>
         <CursorPos X="3" Y="58"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -61,7 +60,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="21"/>
         <CursorPos X="38" Y="72"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -70,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="24" Y="29"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\horse01.lpr"/>
@@ -78,7 +77,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="56" Y="21"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconsulta.pas"/>
@@ -89,7 +88,7 @@
         <TopLine Value="6"/>
         <CursorPos X="3" Y="67"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -100,10 +99,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uFrmInsertAlt"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="88"/>
-        <CursorPos Y="109"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="269"/>
+        <CursorPos X="59" Y="290"/>
+        <UsageCount Value="42"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -117,7 +117,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="12"/>
         <CursorPos X="22" Y="30"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
@@ -325,8 +325,23 @@
         <CursorPos Y="413"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\messagedialogs.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="162"/>
+        <CursorPos X="10" Y="175"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="3" Y="44"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="4">
+    <JumpHistory HistoryIndex="11">
       <Position>
         <Filename Value="ufrminsertalt.pas"/>
         <Caret Line="209" TopLine="200"/>
@@ -347,21 +362,38 @@
         <Filename Value="ufrminsertalt.pas"/>
         <Caret Line="109" TopLine="88"/>
       </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="51" Column="5" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="242" Column="6" TopLine="221"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="52" Column="39" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="282" Column="82" TopLine="261"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="100" Column="3" TopLine="98"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="122" Column="3" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsertalt.pas"/>
+        <Caret Line="290" Column="56" TopLine="269"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="ufrminsertalt.pas"/>
-        <Line Value="209"/>
-      </Item>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

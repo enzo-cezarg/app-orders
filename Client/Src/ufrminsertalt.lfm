@@ -1,7 +1,7 @@
 object FrmInsertAlt: TFrmInsertAlt
-  Left = 306
+  Left = 537
   Height = 350
-  Top = 144
+  Top = 210
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Inserir/Alterar Registros'
@@ -156,6 +156,7 @@ object FrmInsertAlt: TFrmInsertAlt
     Width = 176
     Caption = 'Enviar Registros'
     TabOrder = 9
+    OnClick = btnSendClick
   end
   object edtID: TEdit
     Left = 225
