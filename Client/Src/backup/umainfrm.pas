@@ -84,7 +84,7 @@ begin
   if not Assigned( DM ) then
      Application.CreateForm(TDM, DM);
 
-  ZQuery.Connection := DM.ZConnection;]
+  ZQuery.Connection := DM.ZConnection;
   Button3.Enabled := False;
 end;
 

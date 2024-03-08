@@ -25,7 +25,7 @@ var
   lID: string;
 begin
   if not aReq.Params.TryGetValue('id', lID) then
-    lID := '0';
+    lID := '-1';
 
   aRes.ContentType('application/json')
   .Send( TPessoaService.GetPessoas(lID) );
@@ -36,7 +36,7 @@ var
   lID: string;
 begin
   if not aReq.Params.TryGetValue('id', lID) then
-    lID := '0';
+    lID := '-1';
 
   aRes.ContentType('application/json')
   .Send( TPessoaService.SavePessoas( lID, aReq.Body ) );
@@ -47,16 +47,29 @@ var
   lID: string;
 begin
   if not aReq.Params.TryGetValue('id', lID) then
-    lID := '0';
+    lID := '-1';
 
   aRes.ContentType('application/json')
   .Send( TPessoaService.DeletePessoas(lID) );
+end;
+
+procedure GetPessoaStructure(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
+var
+  lID: string;
+begin
+  if not aReq.Params.TryGetValue('id', lID) then
+    lID := '-1';
+
+  aRes.ContentType('application/json')
+  .Send( TPessoaService.GetPessoaStructure );
+
 end;
 
 class procedure TPessoa.Router;
 begin
   THorse.Get('/pessoa', GetPessoa)
   .Get('/pessoa/:id', GetPessoa)
+  .Get('/pessoa/structure', GetPessoaStructure)
   .Post('/pessoa', SavePessoa)
   .Put('/pessoa/:id', SavePessoa)
   .Delete('/pessoa/:id', DeletePessoa);

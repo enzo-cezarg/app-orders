@@ -54,6 +54,9 @@ implementation
 
 procedure TFrmConsulta.FormCreate(Sender: TObject);
 begin
+
+  bdsCrudPessoas.Active := False;
+
   FrmConsulta.BorderStyle := _FORM_BORDER_STYLE;
   FrmConsulta.Width       := _FORM_WIDTH;
   FrmConsulta.Height      := _FORM_HEIGHT;
@@ -61,7 +64,7 @@ end;
 
 procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
 begin
-  if (Trim(edtID.Text) <> '') or (StrToInt(edtID.Text) < 1) then
+  if (Trim(edtID.Text) <> '') then
   begin
     FrmConsulta.onAppend(edtID.Text);
     FrmConsulta.datasetToView;

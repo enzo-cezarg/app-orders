@@ -72,6 +72,15 @@ end;
 procedure TMainFrm.menuInsertAltClick(Sender: TObject);
 begin
   FrmInsertAlt.ShowModal;
+  FrmInsertAlt.edtNome.Clear;
+  FrmInsertAlt.edtApelido.Clear;
+  FrmInsertAlt.edtCpfCnpj.Clear;
+  FrmInsertAlt.edtLog.Clear;
+  FrmInsertAlt.edtNum.Clear;
+  FrmInsertAlt.edtBairro.Clear;
+  FrmInsertAlt.edtCep.Clear;
+  FrmInsertAlt.edtMun.Clear;
+  FrmInsertAlt.edtUF.Clear;
 end;
 
 procedure TMainFrm.menuDeleteClick(Sender: TObject);

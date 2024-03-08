@@ -54,6 +54,9 @@ implementation
 
 procedure TFrmConsulta.FormCreate(Sender: TObject);
 begin
+
+  bdsCrudPessoas.Active := False;
+
   FrmConsulta.BorderStyle := _FORM_BORDER_STYLE;
   FrmConsulta.Width       := _FORM_WIDTH;
   FrmConsulta.Height      := _FORM_HEIGHT;

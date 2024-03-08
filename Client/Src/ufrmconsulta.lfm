@@ -1,7 +1,7 @@
 object FrmConsulta: TFrmConsulta
-  Left = 544
+  Left = 636
   Height = 350
-  Top = 81
+  Top = 291
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Consulta'
@@ -94,13 +94,13 @@ object FrmConsulta: TFrmConsulta
     Height = 25
     Top = 232
     Width = 120
-    Caption = 'Limpar Registros'
+    Caption = 'Limpar Campos'
     TabOrder = 6
     OnClick = btnClearClick
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
-    Left = 648
+    Left = 640
     Top = 296
   end
 end

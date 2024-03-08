@@ -16,8 +16,9 @@ type
   TPessoaService = class
   public
     class function GetPessoas(aID: string = '0'): string;
-    class function SavePessoas(aJson: string): string;
+    class function SavePessoas(aID, aJson: string): string;
     class function DeletePessoas(aID: string): string;
+    class function GetPessoaStructure: string;
   end;
 
 implementation
@@ -36,13 +37,13 @@ begin
   end;
 end;
 
-class function TPessoaService.SavePessoas(aJson: string): string;
+class function TPessoaService.SavePessoas(aID, aJson: string): string;
 var
   lDM: TDM;
 begin
   lDM := TDM.Create(nil);
   try
-    Result := lDM.SavePessoa(aJson);
+    Result := lDM.SavePessoa(StrToInt(aID), aJson);
   finally
     FreeAndNil(lDM);
   end;
@@ -60,6 +61,11 @@ begin
     FreeAndNil(lDM);
   end;
 
+end;
+
+class function TPessoaService.GetPessoaStructure: string;
+begin
+  //
 end;
 
 

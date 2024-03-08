@@ -27,6 +27,7 @@ type
     function GetPessoa(aID: Integer): string;
     function SavePessoa(aID: Integer; aJson: string): string;
     function DeletePessoa(aID: Integer): string;
+    function GetPessoaStructure: string;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
 
@@ -110,14 +111,17 @@ begin
       ZQuery.Close;
       ZQuery.SQL.Clear;
       ZQuery.SQL.Add(' SELECT * FROM pessoa');
-      ZQuery.SQL.Add(' WHERE 1 = 1 ');
 
-      if (aID > 0) then
+      if (aID > -1) then
       begin
-        ZQuery.SQL.Add(' AND id = :id ');
+        ZQuery.SQL.Add(' WHERE id = :id ');
         ZQuery.Params[0].AsInteger := aID;
-      end;
       // Procura por um ID específico se for passado como parâmetro
+      end
+      else
+      begin
+        ZQuery.SQL.Add(' WHERE id > 0 ');
+      end;
 
       ZQuery.SQL.Add(' ORDER BY id ');
       ZQuery.Open;
@@ -125,7 +129,7 @@ begin
 
       lJson.Put('success', True);
       lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
-      lJson.put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
+      lJson.Put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
       lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
       // Monta o json
     except
@@ -286,6 +290,36 @@ begin
   finally
     lQuery.Close;
     FreeAndNil(lQuery);
+  end;
+end;
+
+function TDM.GetPessoaStructure: string;
+var
+  lJson: TJsonObject;
+begin
+  lJson := TJsonObject.Create();
+  try
+    try
+
+      ZQuery.Close;
+      ZQuery.SQL.Clear;
+      ZQuery.SQL.Add(' SELECT * FROM pessoa WHERE id = 0');
+      ZQuery.Open;
+
+      lJson.Put('success', True);
+      lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
+      lJson.Put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
+      lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
+    except
+      on E: exception do
+      begin
+        lJson.Put('success', False);
+        lJson.Put('message', E.Message);
+      end;
+    end;
+  finally
+    Result := lJson.Stringify;
+    FreeAndNil(lJson);
   end;
 end;
 

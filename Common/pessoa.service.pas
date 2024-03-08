@@ -18,6 +18,7 @@ type
     class function GetPessoas(aID: string = '0'): string;
     class function SavePessoas(aID, aJson: string): string;
     class function DeletePessoas(aID: string): string;
+    class function GetPessoaStructure: string;
   end;
 
 implementation
@@ -56,6 +57,19 @@ begin
   lDM := TDM.Create(nil);
   try
     Result := lDM.DeletePessoa(StrToInt(aID));
+  finally
+    FreeAndNil(lDM);
+  end;
+
+end;
+
+class function TPessoaService.GetPessoaStructure: string;
+var
+  lDM: TDM;
+begin
+  lDM := TDM.Create(nil);
+  try
+    Result := lDM.GetPessoaStructure;
   finally
     FreeAndNil(lDM);
   end;
