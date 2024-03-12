@@ -8,7 +8,6 @@
       <Unit>
         <Filename Value="horse01.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="18"/>
         <CursorPos X="35" Y="39"/>
         <UsageCount Value="67"/>
@@ -46,8 +45,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="74"/>
-        <CursorPos X="35" Y="121"/>
+        <TopLine Value="197"/>
+        <CursorPos X="27" Y="231"/>
         <UsageCount Value="55"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -64,6 +63,7 @@
       <Unit>
         <Filename Value="..\..\Common\pessoa.router.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="29"/>
         <CursorPos X="18" Y="61"/>

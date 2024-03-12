@@ -159,6 +159,12 @@ begin
   try
     lQuery.Connection := ZConnection;
     lJson := TJsonObject.Create();
+
+    if not ZConnection.Connected then
+      ZConnection.Connected := True;
+    if not ZConnection.InTransaction then
+      ZConnection.StartTransaction;
+
     try
       if lJson.IsJsonObject(aJson) then
       begin
@@ -223,6 +229,9 @@ begin
             // Cria um json temporário com os dados no novo ID, transforma em objeto
             // e depois adiciona os dados ao json resultante para que seja retornado
             // pela função
+
+            if ZConnection.InTransaction then
+              ZConnection.Commit;
 
           finally
             FreeAndNil(lJsonTmp);

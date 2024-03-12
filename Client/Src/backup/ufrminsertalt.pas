@@ -44,12 +44,15 @@ type
     procedure btnConsultaClick(Sender: TObject);
     procedure btnSendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure rInsertChange(Sender: TObject);
+    procedure rInsertClick(Sender: TObject);
+    procedure rUpdateClick(Sender: TObject);
   private
     procedure getStructure;
     procedure OnAppend(aID: string);
     procedure datasetToView;
     procedure viewToDataset;
+    procedure applyChanges(aID: string);
+    procedure clearFields;
     function confirmOperation: Boolean;
   public
 
@@ -80,18 +83,28 @@ begin
 
 end;
 
-procedure TFrmInsertAlt.rInsertChange(Sender: TObject);
+procedure TFrmInsertAlt.rInsertClick(Sender: TObject);
 begin
-  
-  if rInsert.Checked then
+   if rInsert.Checked then
   begin
+    clearFields;
+    edtID.Clear;
     edtID.Text := '0';
+    edtID.Enabled := True;
+    FrmInsertAlt.OnAppend(edtID.Text);
+    FrmInsertAlt.datasetToView;
     edtID.Enabled := False;
   end
-  else
+end;
+
+procedure TFrmInsertAlt.rUpdateClick(Sender: TObject);
+begin
+  if rUpdate.Checked then
   begin
     edtID.Clear;
     edtID.Enabled := True;
+    FrmInsertAlt.OnAppend(edtID.Text);
+    FrmInsertAlt.datasetToView;
   end;
 end;
 
@@ -101,12 +114,12 @@ begin
   try
     if Trim(edtID.Text) <> '' then
     begin
-      FrmInsertAlt.OnAppend(edtID.Text);
-      FrmInsertAlt.datasetToView;
+      OnAppend(edtID.Text);
+      datasetToView;
     end
     else
     begin
-      FrmInsertAlt.getStructure;
+      getStructure;
     end;
   except
     on E: exception do
@@ -118,9 +131,16 @@ end;
 procedure TFrmInsertAlt.btnSendClick(Sender: TObject);
 begin
   if confirmOperation then
-    FrmInsertAlt.viewToDataset
+  begin
+    try
+        FrmInsertAlt.applyChanges(edtID.Text);
+    except
+      on E: exception do
+      Raise Exception.Create(E.Message);
+    end;
+  end
   else
-    ShowMessage('Operação Cancelada!')
+    ShowMessage('Operação Cancelada!');
 
 end;
 
@@ -211,16 +231,7 @@ procedure TFrmInsertAlt.datasetToView;
 begin
   try
 
-    edtNome.Clear;
-    edtApelido.Clear;
-    edtCpfCnpj.Clear;
-    edtLog.Clear;
-    edtNum.Clear;
-    edtBairro.Clear;
-    edtCep.Clear;
-    edtMun.Clear;
-    edtUF.Clear;
-
+    clearFields;
 
     if bdsCrudPessoas.Active and (bdsCrudPessoas.RecordCount > 0) then
     begin
@@ -244,47 +255,97 @@ procedure TFrmInsertAlt.viewToDataset;
 begin
    if bdsCrudPessoas.Active then
    begin
-     try
+
        if rInsert.Checked then
        begin
          bdsCrudPessoas.Append;
-         bdsCrudPessoas.FieldByName('id').AsString := '0';
+         bdsCrudPessoas.FieldByName('id').AsString := '-1';
        end
        else if rUpdate.Checked then
          bdsCrudPessoas.Edit;
 
-       if Trim(edtNome.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('nome_razao')) then
+        if Trim(edtNome.Text) <> '' then
          bdsCrudPessoas.FieldByName('nome_razao').AsString       := Trim(edtNome.Text);
 
-       if Trim(edtApelido.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('apelido_fantasia')) then
+        if Trim(edtApelido.Text) <> '' then
          bdsCrudPessoas.FieldByName('apelido_fantasia').AsString := Trim(edtApelido.Text);
 
-       if Trim(edtCpfCnpj.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('cpf_cnpj')) then
+        if Trim(edtCpfCnpj.Text) <> '' then
          bdsCrudPessoas.FieldByName('cpf_cnpj').AsString         := Trim(edtCpfCnpj.Text);
 
-       if Trim(edtLog.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('logradouro')) then
+        if Trim(edtLog.Text) <> '' then
          bdsCrudPessoas.FieldByName('logradouro').AsString       := Trim(edtLog.Text);
 
-       if Trim(edtNum.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('numero')) then
+        if Trim(edtNum.Text) <> '' then
          bdsCrudPessoas.FieldByName('numero').AsString           := Trim(edtNum.Text);
 
-       if Trim(edtBairro.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('bairro')) then
+        if Trim(edtBairro.Text) <> '' then
          bdsCrudPessoas.FieldByName('bairro').AsString           := Trim(edtBairro.Text);
 
-       if Trim(edtCep.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('cep')) then
+        if Trim(edtCep.Text) <> '' then
          bdsCrudPessoas.FieldByName('cep').AsString              := Trim(edtCep.Text);
 
-       if Trim(edtMun.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('municipio')) then
+        if Trim(edtMun.Text) <> '' then
          bdsCrudPessoas.FieldByName('municipio').AsString        := Trim(edtMun.Text);
 
-       if Trim(edtUF.Text) <> '' then
+       if Assigned(bdsCrudPessoas.FieldByName('uf')) then
+        if Trim(edtUF.Text) <> '' then
          bdsCrudPessoas.FieldByName('uf').AsString               := Trim(edtUF.Text);
 
-     except
-       on E: Exception do
-         raise Exception.Create(E.Message);
-     end;
    end;
+end;
+
+procedure TFrmInsertAlt.applyChanges(aID: string);
+var
+  lRes: IResponse;
+  lJson: TJSONObject;
+begin
+  lJson.Create;
+  try
+    try
+
+      viewToDataset;
+
+      lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
+
+
+      lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/:id', [aID])
+                          .ContentType('application/json')
+                          .AddBody(lJson.Stringify)
+                          .Put;
+
+    except
+      on E: exception do
+        raise exception.create(E.Message);
+    end;
+  finally
+    FreeAndNil(lJson);
+  end;
+
+
+end;
+
+procedure TFrmInsertAlt.clearFields;
+begin
+
+  edtNome.Clear;
+  edtApelido.Clear;
+  edtCpfCnpj.Clear;
+  edtLog.Clear;
+  edtNum.Clear;
+  edtBairro.Clear;
+  edtCep.Clear;
+  edtMun.Clear;
+  edtUF.Clear;
+
 end;
 
 function TFrmInsertAlt.confirmOperation: Boolean;

@@ -1,8 +1,174 @@
-object Form1: TForm1
-  Left = 255
-  Height = 240
-  Top = 119
-  Width = 320
-  Caption = 'Form1'
+object FrmDelete: TFrmDelete
+  Left = 529
+  Height = 350
+  Top = 169
+  Width = 700
+  BorderStyle = bsDialog
+  Caption = 'Deletar Registros'
+  ClientHeight = 0
+  ClientWidth = 0
   LCLVersion = '3.0.0.3'
+  object edtID: TEdit
+    Left = 48
+    Height = 23
+    Top = 40
+    Width = 80
+    TabOrder = 0
+  end
+  object edtNome: TEdit
+    Left = 48
+    Height = 23
+    Top = 120
+    Width = 168
+    TabOrder = 1
+  end
+  object edtApelido: TEdit
+    Left = 232
+    Height = 23
+    Top = 122
+    Width = 256
+    TabOrder = 2
+  end
+  object edtCpfCnpj: TEdit
+    Left = 512
+    Height = 23
+    Top = 120
+    Width = 128
+    TabOrder = 3
+  end
+  object edtLog: TEdit
+    Left = 48
+    Height = 23
+    Top = 176
+    Width = 168
+    TabOrder = 4
+  end
+  object edtNum: TEdit
+    Left = 232
+    Height = 23
+    Top = 176
+    Width = 65
+    TabOrder = 5
+  end
+  object edtBairro: TEdit
+    Left = 320
+    Height = 23
+    Top = 176
+    Width = 168
+    TabOrder = 6
+  end
+  object edtCep: TEdit
+    Left = 512
+    Height = 23
+    Top = 176
+    Width = 128
+    TabOrder = 7
+  end
+  object edtMun: TEdit
+    Left = 48
+    Height = 23
+    Top = 232
+    Width = 168
+    TabOrder = 8
+  end
+  object edtUF: TEdit
+    Left = 232
+    Height = 23
+    Top = 232
+    Width = 65
+    TabOrder = 9
+  end
+  object lblID: TLabel
+    Left = 48
+    Height = 15
+    Top = 21
+    Width = 11
+    Caption = 'ID'
+  end
+  object lblNome: TLabel
+    Left = 48
+    Height = 15
+    Top = 102
+    Width = 33
+    Caption = 'Nome'
+  end
+  object lblApelido: TLabel
+    Left = 232
+    Height = 15
+    Top = 102
+    Width = 41
+    Caption = 'Apelido'
+  end
+  object lblCpfCnpj: TLabel
+    Left = 512
+    Height = 15
+    Top = 102
+    Width = 53
+    Caption = 'CPF/CNPJ'
+  end
+  object lblLog: TLabel
+    Left = 48
+    Height = 15
+    Top = 160
+    Width = 62
+    Caption = 'Logradouro'
+  end
+  object lblNum: TLabel
+    Left = 232
+    Height = 15
+    Top = 160
+    Width = 44
+    Caption = 'Número'
+  end
+  object lblBairro: TLabel
+    Left = 320
+    Height = 15
+    Top = 160
+    Width = 31
+    Caption = 'Bairro'
+  end
+  object lblCep: TLabel
+    Left = 512
+    Height = 15
+    Top = 160
+    Width = 21
+    Caption = 'CEP'
+  end
+  object lblMun: TLabel
+    Left = 48
+    Height = 15
+    Top = 215
+    Width = 54
+    Caption = 'Município'
+  end
+  object lblUF: TLabel
+    Left = 232
+    Height = 15
+    Top = 215
+    Width = 14
+    Caption = 'UF'
+  end
+  object btnSelect: TButton
+    Left = 141
+    Height = 33
+    Top = 32
+    Width = 83
+    Caption = 'Selecionar'
+    TabOrder = 10
+    OnClick = btnSelectClick
+  end
+  object btnDelete: TButton
+    Left = 560
+    Height = 33
+    Top = 272
+    Width = 80
+    Caption = 'Deletar'
+    TabOrder = 11
+    OnClick = btnDeleteClick
+  end
+  object bdsCrudPessoas: TBufDataset
+    FieldDefs = <>
+    Left = 640
+    Top = 16
+  end
 end
