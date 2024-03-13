@@ -1,7 +1,7 @@
 object FrmInsert: TFrmInsert
-  Left = 376
+  Left = 230
   Height = 400
-  Top = 115
+  Top = 147
   Width = 690
   Caption = 'FrmInsert'
   ClientHeight = 0
@@ -183,106 +183,169 @@ object FrmInsert: TFrmInsert
       Caption = 'Atualizar'
       ClientHeight = 352
       ClientWidth = 682
-      object Label1: TLabel
+      object lblID: TLabel
         Left = 32
         Height = 15
         Top = 32
-        Width = 34
-        Caption = 'Label1'
+        Width = 11
+        Caption = 'ID'
       end
-      object Edit1: TEdit
+      object edtID: TEdit
         Left = 32
         Height = 23
         Top = 49
         Width = 80
         TabOrder = 0
-        Text = 'Edit1'
       end
-      object Button1: TButton
+      object btnConsultaU: TButton
         Left = 136
         Height = 32
         Top = 40
         Width = 83
-        Caption = 'Button1'
+        Caption = 'Consultar'
         TabOrder = 1
+        OnClick = btnConsultaUClick
       end
-      object Edit2: TEdit
+      object edtNomeU: TEdit
         Left = 32
         Height = 23
         Top = 117
         Width = 187
         TabOrder = 2
-        Text = 'Edit2'
       end
-      object Edit3: TEdit
+      object edtApelidoU: TEdit
         Left = 240
         Height = 23
         Top = 117
         Width = 224
         TabOrder = 3
-        Text = 'Edit3'
       end
-      object Edit4: TEdit
+      object edtCpfCnpjU: TEdit
         Left = 488
         Height = 23
         Top = 117
         Width = 144
         TabOrder = 4
-        Text = 'Edit4'
       end
-      object Edit5: TEdit
+      object edtLogU: TEdit
         Left = 32
         Height = 23
         Top = 200
         Width = 264
         TabOrder = 5
-        Text = 'Edit5'
       end
-      object Edit6: TEdit
+      object edtNumU: TEdit
         Left = 336
         Height = 23
         Top = 200
         Width = 128
         TabOrder = 6
-        Text = 'Edit6'
       end
-      object Edit7: TEdit
+      object edtBairroU: TEdit
         Left = 488
         Height = 23
         Top = 200
         Width = 144
         TabOrder = 7
-        Text = 'Edit7'
       end
-      object Edit8: TEdit
+      object edtCepU: TEdit
         Left = 32
         Height = 23
         Top = 264
         Width = 80
         TabOrder = 8
-        Text = 'Edit8'
       end
-      object Edit9: TEdit
+      object edtMunU: TEdit
         Left = 136
         Height = 23
         Top = 264
         Width = 160
         TabOrder = 9
-        Text = 'Edit9'
       end
-      object Edit10: TEdit
+      object edtUFU: TEdit
         Left = 336
         Height = 23
         Top = 264
         Width = 40
         TabOrder = 10
-        Text = 'Edit10'
+      end
+      object lblNomeU: TLabel
+        Left = 32
+        Height = 15
+        Top = 100
+        Width = 103
+        Caption = 'Nome/Razão Social'
+      end
+      object lblApelidoU: TLabel
+        Left = 240
+        Height = 15
+        Top = 100
+        Width = 153
+        Caption = 'Sobrenome/Apelido Fantasia'
+      end
+      object lblCpfCnpjU: TLabel
+        Left = 488
+        Height = 15
+        Top = 100
+        Width = 53
+        Caption = 'CPF/CNPJ'
+      end
+      object lblLogU: TLabel
+        Left = 33
+        Height = 15
+        Top = 184
+        Width = 62
+        Caption = 'Logradouro'
+      end
+      object lblNumU: TLabel
+        Left = 336
+        Height = 15
+        Top = 184
+        Width = 44
+        Caption = 'Número'
+      end
+      object lblBairroU: TLabel
+        Left = 488
+        Height = 15
+        Top = 184
+        Width = 31
+        Caption = 'Bairro'
+      end
+      object lblCepU: TLabel
+        Left = 33
+        Height = 15
+        Top = 248
+        Width = 21
+        Caption = 'CEP'
+      end
+      object lblMunU: TLabel
+        Left = 136
+        Height = 15
+        Top = 248
+        Width = 54
+        Caption = 'Município'
+      end
+      object lblUFU: TLabel
+        Left = 336
+        Height = 15
+        Top = 248
+        Width = 14
+        Caption = 'UF'
+      end
+      object btnSendU: TButton
+        Left = 488
+        Height = 33
+        Top = 254
+        Width = 144
+        Caption = 'Atualizar'
+        TabOrder = 11
+        OnClick = btnSendUClick
       end
     end
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
-    Left = 616
-    Top = 336
+    Left = 32
+    Top = 344
   end
 end
