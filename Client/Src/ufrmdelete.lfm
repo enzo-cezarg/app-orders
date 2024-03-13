@@ -5,8 +5,8 @@ object FrmDelete: TFrmDelete
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Deletar Registros'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 350
+  ClientWidth = 700
   LCLVersion = '3.0.0.3'
   object edtID: TEdit
     Left = 48
@@ -168,7 +168,7 @@ object FrmDelete: TFrmDelete
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
-    Left = 640
+    Left = 632
     Top = 16
   end
 end

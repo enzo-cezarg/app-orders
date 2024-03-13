@@ -25,7 +25,7 @@ var
   lID: string;
 begin
   if not aReq.Params.TryGetValue('id', lID) then
-    lID := '-1';
+    lID := '0';
 
   aRes.ContentType('application/json')
   .Send( TPessoaService.GetPessoas(lID) );
@@ -36,7 +36,7 @@ var
   lID: string;
 begin
   if not aReq.Params.TryGetValue('id', lID) then
-    lID := '-1';
+    lID := '0';
 
   aRes.ContentType('application/json')
   .Send( TPessoaService.SavePessoas( lID, aReq.Body ) );

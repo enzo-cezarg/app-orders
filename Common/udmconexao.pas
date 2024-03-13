@@ -312,11 +312,10 @@ begin
 
       ZQuery.Close;
       ZQuery.SQL.Clear;
-      ZQuery.SQL.Add(' SELECT * FROM pessoa WHERE id = 0');
+      ZQuery.SQL.Add(' SELECT FIRST 0 * FROM pessoa');
       ZQuery.Open;
 
       lJson.Put('success', True);
-      lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
       lJson.Put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
       lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
     except

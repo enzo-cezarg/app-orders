@@ -317,7 +317,7 @@ begin
       lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
 
 
-      lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/:id', [aID])
+      lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/:id', [aID]))
                           .ContentType('application/json')
                           .AddBody(lJson.Stringify)
                           .Put;

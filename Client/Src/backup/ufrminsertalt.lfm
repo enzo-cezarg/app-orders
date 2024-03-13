@@ -1,8 +1,8 @@
 object FrmInsertAlt: TFrmInsertAlt
-  Left = 445
-  Height = 350
-  Top = 181
-  Width = 700
+  Left = 244
+  Height = 400
+  Top = 173
+  Width = 800
   BorderStyle = bsDialog
   Caption = 'Inserir/Alterar Registros'
   ClientHeight = 0

@@ -230,7 +230,6 @@ begin
             // e depois adiciona os dados ao json resultante para que seja retornado
             // pela função
 
-
             if ZConnection.InTransaction then
               ZConnection.Commit;
 
@@ -313,7 +312,7 @@ begin
 
       ZQuery.Close;
       ZQuery.SQL.Clear;
-      ZQuery.SQL.Add(' SELECT * FROM pessoa WHERE id = 0');
+      ZQuery.SQL.Add(' SELECT FIRST 0 * FROM pessoa');
       ZQuery.Open;
 
       lJson.Put('success', True);

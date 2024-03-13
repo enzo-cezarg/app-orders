@@ -1,0 +1,216 @@
+object FrmInsert: TFrmInsert
+  Left = 596
+  Height = 400
+  Top = 174
+  Width = 690
+  Caption = 'FrmInsert'
+  ClientHeight = 400
+  ClientWidth = 690
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.3'
+  object pgcSelectOp: TPageControl
+    Left = 0
+    Height = 400
+    Top = 0
+    Width = 690
+    ActivePage = pgInsert
+    Align = alClient
+    TabHeight = 40
+    TabIndex = 0
+    TabOrder = 0
+    TabWidth = 150
+    OnChange = pgcSelectOpChange
+    object pgInsert: TTabSheet
+      Caption = 'Inserir'
+      ClientHeight = 352
+      ClientWidth = 682
+      Font.CharSet = ANSI_CHARSET
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
+      object lblDadosP: TLabel
+        Left = 32
+        Height = 15
+        Top = 32
+        Width = 80
+        Caption = 'Dados Pessoais'
+      end
+      object lblEndereco: TLabel
+        Left = 32
+        Height = 15
+        Top = 136
+        Width = 49
+        Caption = 'Endereço'
+      end
+      object edtNome: TEdit
+        Left = 32
+        Height = 23
+        Top = 75
+        Width = 160
+        TabOrder = 0
+      end
+      object edtApelido: TEdit
+        Left = 216
+        Height = 23
+        Top = 75
+        Width = 216
+        TabOrder = 1
+      end
+      object edtCpfCnpj: TEdit
+        Left = 480
+        Height = 23
+        Top = 75
+        Width = 152
+        TabOrder = 2
+      end
+      object edtLog: TEdit
+        Left = 32
+        Height = 23
+        Top = 178
+        Width = 304
+        TabOrder = 3
+      end
+      object edtNum: TEdit
+        Left = 360
+        Height = 23
+        Top = 178
+        Width = 72
+        TabOrder = 4
+      end
+      object edtBairro: TEdit
+        Left = 480
+        Height = 23
+        Top = 178
+        Width = 152
+        TabOrder = 5
+      end
+      object edtCep: TEdit
+        Left = 32
+        Height = 23
+        Top = 242
+        Width = 128
+        TabOrder = 6
+      end
+      object edtMun: TEdit
+        Left = 184
+        Height = 23
+        Top = 242
+        Width = 152
+        TabOrder = 7
+      end
+      object edtUF: TEdit
+        Left = 360
+        Height = 23
+        Top = 242
+        Width = 40
+        TabOrder = 8
+      end
+      object lblNome: TLabel
+        Left = 32
+        Height = 15
+        Top = 58
+        Width = 103
+        Caption = 'Nome/Razão Social'
+      end
+      object lblApelido: TLabel
+        Left = 216
+        Height = 15
+        Top = 58
+        Width = 153
+        Caption = 'Sobrenome/Apelido Fantasia'
+      end
+      object lblCpfCnpj: TLabel
+        Left = 480
+        Height = 15
+        Top = 58
+        Width = 53
+        Caption = 'CPF/CNPJ'
+      end
+      object lblLog: TLabel
+        Left = 32
+        Height = 15
+        Top = 163
+        Width = 62
+        Caption = 'Logradouro'
+      end
+      object lblNumero: TLabel
+        Left = 360
+        Height = 15
+        Top = 163
+        Width = 44
+        Caption = 'Número'
+      end
+      object lblBairro: TLabel
+        Left = 480
+        Height = 15
+        Top = 163
+        Width = 31
+        Caption = 'Bairro'
+      end
+      object lblCep: TLabel
+        Left = 32
+        Height = 15
+        Top = 228
+        Width = 21
+        Caption = 'CEP'
+      end
+      object lblMun: TLabel
+        Left = 184
+        Height = 15
+        Top = 228
+        Width = 54
+        Caption = 'Município'
+      end
+      object lblUF: TLabel
+        Left = 360
+        Height = 15
+        Top = 228
+        Width = 14
+        Caption = 'UF'
+      end
+      object btnSendInsert: TButton
+        Left = 480
+        Height = 33
+        Top = 232
+        Width = 152
+        Caption = 'Inserir'
+        TabOrder = 9
+        OnClick = btnSendInsertClick
+      end
+    end
+    object pgUpdate: TTabSheet
+      Caption = 'Atualizar'
+      ClientHeight = 352
+      ClientWidth = 682
+      object Label1: TLabel
+        Left = 32
+        Height = 15
+        Top = 32
+        Width = 34
+        Caption = 'Label1'
+      end
+      object Edit1: TEdit
+        Left = 32
+        Height = 23
+        Top = 49
+        Width = 80
+        TabOrder = 0
+        Text = 'Edit1'
+      end
+      object Button1: TButton
+        Left = 136
+        Height = 32
+        Top = 40
+        Width = 83
+        Caption = 'Button1'
+        TabOrder = 1
+      end
+    end
+  end
+  object bdsCrudPessoas: TBufDataset
+    FieldDefs = <>
+    Left = 616
+    Top = 336
+  end
+end

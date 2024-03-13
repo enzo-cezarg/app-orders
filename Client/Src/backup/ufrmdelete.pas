@@ -91,6 +91,7 @@ begin
       onDelete(edtID.Text);
       ShowMessage('Deletado com sucesso!');
       onAppend(edtID.Text);
+      datasetToView;
 
     except
         on E: exception do

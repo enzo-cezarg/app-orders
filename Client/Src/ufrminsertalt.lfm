@@ -1,12 +1,12 @@
 object FrmInsertAlt: TFrmInsertAlt
-  Left = 537
-  Height = 350
-  Top = 210
-  Width = 700
+  Left = 90
+  Height = 400
+  Top = 238
+  Width = 800
   BorderStyle = bsDialog
   Caption = 'Inserir/Alterar Registros'
-  ClientHeight = 350
-  ClientWidth = 700
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
   object edtNome: TEdit
@@ -188,7 +188,7 @@ object FrmInsertAlt: TFrmInsertAlt
     Width = 50
     Caption = 'Inserir'
     TabOrder = 12
-    OnChange = rInsertChange
+    OnClick = rInsertClick
   end
   object rUpdate: TRadioButton
     Left = 104
@@ -197,6 +197,7 @@ object FrmInsertAlt: TFrmInsertAlt
     Width = 64
     Caption = 'Atualizar'
     TabOrder = 13
+    OnClick = rUpdateClick
   end
   object lblSelectOp: TLabel
     Left = 24

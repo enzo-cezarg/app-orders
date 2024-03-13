@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, BufDataset, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, DBGrids, Menus, RxDBGrid, rxmemds, ZDataset, ufrmconsulta,
-  uFrmInsertAlt, uFrmDelete;
+  uFrmInsertAlt, uFrmDelete, ufrminsert;
 
 type
 
@@ -71,8 +71,11 @@ end;
 
 procedure TMainFrm.menuInsertAltClick(Sender: TObject);
 begin
-  FrmInsertAlt.ShowModal;
-  FrmInsertAlt.edtNome.Clear;
+
+    FrmInsert.ShowModal;
+
+
+  {FrmInsertAlt.edtNome.Clear;
   FrmInsertAlt.edtApelido.Clear;
   FrmInsertAlt.edtCpfCnpj.Clear;
   FrmInsertAlt.edtLog.Clear;
@@ -80,7 +83,7 @@ begin
   FrmInsertAlt.edtBairro.Clear;
   FrmInsertAlt.edtCep.Clear;
   FrmInsertAlt.edtMun.Clear;
-  FrmInsertAlt.edtUF.Clear;
+  FrmInsertAlt.edtUF.Clear;}
 end;
 
 procedure TMainFrm.menuDeleteClick(Sender: TObject);
