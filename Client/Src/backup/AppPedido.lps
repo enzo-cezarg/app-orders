@@ -22,8 +22,8 @@
         <UnitName Value="uMainFrm"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="161"/>
-        <CursorPos X="6" Y="175"/>
+        <TopLine Value="27"/>
+        <CursorPos X="50" Y="38"/>
         <UsageCount Value="97"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -105,7 +105,7 @@
         <UnitName Value="uFrmInsertAlt"/>
         <TopLine Value="332"/>
         <CursorPos X="82" Y="353"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
