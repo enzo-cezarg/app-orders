@@ -1,7 +1,7 @@
 object MainFrm: TMainFrm
-  Left = 305
+  Left = 307
   Height = 472
-  Top = 147
+  Top = 119
   Width = 663
   Caption = 'Principal'
   ClientHeight = 472
@@ -66,7 +66,9 @@ object MainFrm: TMainFrm
     Color = clWindow
     Columns = <>
     DataSource = dsMemTbl
+    ReadOnly = True
     TabOrder = 2
+    OnCellClick = dbgMemTblCellClick
   end
   object dbgQuery: TDBGrid
     Left = 0
@@ -77,7 +79,9 @@ object MainFrm: TMainFrm
     Color = clWindow
     Columns = <>
     DataSource = dsQuery
+    ReadOnly = True
     TabOrder = 3
+    OnCellClick = dbgQueryCellClick
   end
   object Button2: TButton
     Left = 128

@@ -451,7 +451,7 @@ begin
             lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
                             .ContentType('application/json')
                             .AddBody(lJson.Stringify)
-                            .Post;
+                            .Put;
 
             if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
               _MSG_OPERATION := 'ALTERADO com sucesso!'

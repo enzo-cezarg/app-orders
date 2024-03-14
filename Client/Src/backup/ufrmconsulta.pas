@@ -33,7 +33,7 @@ type
     procedure onAppend(aID: string);
     procedure datasetToView;
   public
-
+    procedure getID(aID: string);
   end;
 
 var
@@ -148,6 +148,12 @@ begin
     on E: exception do
        Raise Exception.Create(E.Message);
   end;
+end;
+
+procedure TFrmConsulta.getID(aID: string);
+begin
+  if Trim(aID) <> '' then
+    onAppend(aID);
 end;
 
 

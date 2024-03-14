@@ -3,7 +3,7 @@ object FrmInsert: TFrmInsert
   Height = 400
   Top = 147
   Width = 690
-  Caption = 'FrmInsert'
+  Caption = 'Inserir/Atualizar Registros'
   ClientHeight = 0
   ClientWidth = 0
   OnActivate = FormActivate

@@ -87,14 +87,6 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="ufrminsertalt.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FrmInsertAlt"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uFrmInsertAlt"/>
-      </Unit>
-      <Unit>
         <Filename Value="ufrmdelete.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FrmDelete"/>

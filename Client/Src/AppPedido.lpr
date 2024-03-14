@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, rxnew, zcomponent, uMainFrm, udmconexao, pessoa.router, pessoa.service,
-  viacep.router, ufrmconsulta, uFrmInsertAlt, uFrmDelete, ufrminsert;
+  viacep.router, ufrmconsulta, uFrmDelete, ufrminsert;
 
 {$R *.res}
 
@@ -22,7 +22,6 @@ begin
   Application.CreateForm(TMainFrm, MainFrm);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFrmConsulta, FrmConsulta);
-  Application.CreateForm(TFrmInsertAlt, FrmInsertAlt);
   Application.CreateForm(TFrmDelete, FrmDelete);
   Application.CreateForm(TFrmInsert, FrmInsert);
   Application.Run;

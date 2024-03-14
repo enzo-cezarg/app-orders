@@ -36,6 +36,8 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure dbgMemTblCellClick(Column: TColumn);
+    procedure dbgQueryCellClick(Column: TColumn);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure menuConsultaIDClick(Sender: TObject);
@@ -72,7 +74,7 @@ end;
 procedure TMainFrm.menuInsertAltClick(Sender: TObject);
 begin
 
-    FrmInsert.ShowModal;
+  FrmInsert.ShowModal;
 
 
   {FrmInsertAlt.edtNome.Clear;
@@ -84,6 +86,7 @@ begin
   FrmInsertAlt.edtCep.Clear;
   FrmInsertAlt.edtMun.Clear;
   FrmInsertAlt.edtUF.Clear;}
+
 end;
 
 procedure TMainFrm.menuDeleteClick(Sender: TObject);
@@ -159,6 +162,25 @@ begin
     FreeAndNil(lMtb);
   end;
   // RxMemoryData.LoadFromDataSet( ZQuery, 0, lmCopy );
+end;
+
+procedure TMainFrm.dbgMemTblCellClick(Column: TColumn);
+var
+  aID: string;
+begin
+  aID := dbgQuery.DataSource.DataSet.FieldByName('id').AsString;
+  FrmConsulta.getID(aID);
+  FrmConsulta.ShowModal;
+
+end;
+
+procedure TMainFrm.dbgQueryCellClick(Column: TColumn);
+var
+  aID: string;
+begin
+  aID := dbgQuery.DataSource.DataSet.FieldByName('id').AsString;
+  FrmConsulta.getID(aID);
+  FrmConsulta.ShowModal;
 end;
 
 end.

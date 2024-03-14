@@ -1,7 +1,7 @@
 object FrmConsulta: TFrmConsulta
-  Left = 636
+  Left = 530
   Height = 350
-  Top = 291
+  Top = 229
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Consulta'
