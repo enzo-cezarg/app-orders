@@ -63,6 +63,9 @@ type
 
   TJsonObject = class;
   TJsonArray = class;
+
+  { TJsonValue }
+
   TJsonValue = class(TJsonBase)
   private
     FValueType: TJsonValueType;

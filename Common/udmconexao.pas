@@ -28,6 +28,7 @@ type
     function SavePessoa(aID: Integer; aJson: string): string;
     function DeletePessoa(aID: Integer): string;
     function GetPessoaStructure: string;
+    function GetTpPessoa(aID: Integer): Integer;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
 
@@ -104,26 +105,40 @@ end;
 function TDM.GetPessoa(aID: Integer): string;
 var
   lJson: TJsonObject;
+  lTpPessoa: Integer;
 begin
   lJson := TJsonObject.Create();
   try
     try
       ZQuery.Close;
       ZQuery.SQL.Clear;
-      ZQuery.SQL.Add(' SELECT * FROM pessoa');
+      ZQuery.SQL.Add(' SELECT * FROM pessoa ');
 
       if (aID > -1) then
       begin
-        ZQuery.SQL.Add(' WHERE id = :id ');
+
+        lTpPessoa := GetTpPessoa(aID);
+        case lTpPessoa of
+          0: begin
+            ZQuery.SQL.Add(' LEFT JOIN cliente ON pessoa.id = cliente.id ');
+          end;
+          1: begin
+            ZQuery.SQL.Add(' LEFT JOIN funcionario ON pessoa.id = funcionario.id ');
+          end;
+          2: begin
+            ZQuery.SQL.Add(' LEFT JOIN fornecedor ON pessoa.id = fornecedor.id ');
+          end;
+        end;
+
+        ZQuery.SQL.Add(' WHERE pessoa.id = :id ');
         ZQuery.Params[0].AsInteger := aID;
-      // Procura por um ID específico se for passado como parâmetro
       end
       else
       begin
-        ZQuery.SQL.Add(' WHERE id > 0 ');
+        ZQuery.SQL.Add(' WHERE pessoa.id > 0 ');
       end;
 
-      ZQuery.SQL.Add(' ORDER BY id ');
+      ZQuery.SQL.Add(' ORDER BY pessoa.id ');
       ZQuery.Open;
       // Configura a query que buscará os dados no banco
 
@@ -226,9 +241,6 @@ begin
 
             if lJsonTmp.Values['success'].AsBoolean then
               lJson.Put('data', lJsonTmp.Values['data'].AsArray[0].AsObject );
-            // Cria um json temporário com os dados no novo ID, transforma em objeto
-            // e depois adiciona os dados ao json resultante para que seja retornado
-            // pela função
 
             if ZConnection.InTransaction then
               ZConnection.Commit;
@@ -330,6 +342,37 @@ begin
     FreeAndNil(lJson);
   end;
 end;
+
+function TDM.GetTpPessoa(aID: Integer): Integer;
+var
+  lQuery: TZQuery;
+  lJson: TJSONObject;
+begin
+
+  lQuery := TZQuery.Create(nil);
+  lJson := TJSONObject.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+    lQuery.SQL.Add(' SELECT tipo_pessoa FROM pessoa ');
+    lQuery.SQL.Add(' WHERE id = :id ');
+    lQuery.Params[0].AsInteger := aID;
+    try
+      lQuery.Open;
+
+      Result := lQuery.FieldByName('tipo_pessoa').AsInteger;
+    except
+      on E: exception do
+         Raise Exception.Create(E.Message);
+    end;
+
+  finally
+    lQuery.Close;
+    FreeAndNil(lQuery);
+    FreeAndNil(lJson);
+  end;
+
+end;
+
 
 end.
 

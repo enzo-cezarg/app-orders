@@ -26,6 +26,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="MemDSLaz"/>
+      </Item>
+      <Item>
         <PackageName Value="zcomponent"/>
       </Item>
       <Item>

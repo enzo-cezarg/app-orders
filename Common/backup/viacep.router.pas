@@ -33,11 +33,14 @@ begin
   .Get;
   // Pega os dados da API e armazena na variável lRes
 
+
+
   if (lRes.StatusCode = 200) then
-    aRes.ContentType('application/json').Send( lRes.Content )
+    aRes.ContentType('application/json').Send( lJsonTmp.Items[0].Stringify )
   else
     aRes.ContentType('application/json').Status( lRes.StatusCode ).Send( 'Error!' );
-  // Envia o conteúdo do json como response, ou envia um erro caso não tenha dados
+    Raise Exception.Create(lJsonTmp.Items[0].Stringify);
+  // Envia o conteúdo do json como response, ou envia um erro caso a requisição falhe
 end;
 
 class procedure TViaCep.Router;

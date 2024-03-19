@@ -64,8 +64,20 @@ begin
 end;
 
 class function TPessoaService.GetPessoaStructure: string;
+var
+  lDM: TDM;
 begin
-  //
+  lDM := TDM.Create(nil);
+  try
+    Result := lDM.GetPessoaStructure;
+  finally
+    FreeAndNil(lDM);
+  end;
+
+end;
+
+class function TPessoaService.GetPessoaDetails(aID: string): string;
+
 end;
 
 

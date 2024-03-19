@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, j4dl, dc4dl, rr4dl;
+  StdCtrls, MaskEdit, j4dl, dc4dl, rr4dl;
 
 type
 
@@ -16,11 +16,22 @@ type
     bdsCrudPessoas: TBufDataset;
     btnConsultar: TButton;
     btnClear: TButton;
+    btnShowDetail: TButton;
+    edtLog: TEdit;
+    edtBairro: TEdit;
+    edtNum: TEdit;
+    edtMun: TEdit;
+    edtUF: TEdit;
     edtNome: TEdit;
     edtApelido: TEdit;
     edtCpfCnpj: TEdit;
     edtCep: TEdit;
     edtID: TEdit;
+    lblLog: TLabel;
+    lblNum: TLabel;
+    lblBairro: TLabel;
+    lblMun: TLabel;
+    lblUF: TLabel;
     lblCep: TLabel;
     lblCpfCnpj: TLabel;
     lblApelido: TLabel;
@@ -28,6 +39,7 @@ type
     lblID: TLabel;
     procedure btnConsultarClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
+    procedure btnShowDetailClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     procedure onAppend(aID: string);
@@ -78,11 +90,30 @@ end;
 procedure TFrmConsulta.btnClearClick(Sender: TObject);
 begin
 
+  edtID.Clear;
   edtNome.Clear;
   edtApelido.Clear;
   edtCpfCnpj.Clear;
+  edtLog.Clear;
+  edtNum.Clear;
+  edtBairro.Clear;
   edtCep.Clear;
+  edtMun.Clear;
+  edtUF.Clear;
 
+end;
+
+procedure TFrmConsulta.btnShowDetailClick(Sender: TObject);
+begin
+  { if verificar_tipo(id)
+   form_correspondente.ShowModal
+
+   cada form terá um select correspondente exibindo os detalhes
+   como:
+
+   "SELECT p.nome_razao AS nome_pessoa, c.email AS email_pessoa
+   FROM pessoa p JOIN cliente c ON p.ID = c.ID ;"
+  }
 end;
 
 procedure TFrmConsulta.onAppend(aID: string);
@@ -134,7 +165,12 @@ begin
     edtNome.Clear;
     edtApelido.Clear;
     edtCpfCnpj.Clear;
+    edtLog.Clear;
+    edtNum.Clear;
+    edtBairro.Clear;
     edtCep.Clear;
+    edtMun.Clear;
+    edtUF.Clear;
 
     if bdsCrudPessoas.Active and (bdsCrudPessoas.RecordCount > 0) then
     begin
@@ -142,7 +178,12 @@ begin
       edtNome.Text          := bdsCrudPessoas.FieldByName('nome_razao').AsString;
       edtApelido.Text       := bdsCrudPessoas.FieldByName('apelido_fantasia').AsString;
       edtCpfCnpj.Text       := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
+      edtLog.Text           := bdsCrudPessoas.FieldByName('logradouro').AsString;
+      edtNum.Text           := bdsCrudPessoas.FieldByName('numero').AsString;
+      edtBairro.Text        := bdsCrudPessoas.FieldByName('bairro').AsString;
       edtCep.Text           := bdsCrudPessoas.FieldByName('cep').AsString;
+      edtMun.Text           := bdsCrudPessoas.FieldByName('municipio').AsString;
+      edtUF.Text            := bdsCrudPessoas.FieldByName('uf').AsString;
     end;
   except
     on E: exception do

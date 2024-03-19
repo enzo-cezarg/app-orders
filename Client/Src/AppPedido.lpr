@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, zcomponent, uMainFrm, udmconexao, pessoa.router, pessoa.service,
-  viacep.router, ufrmconsulta, uFrmDelete, ufrminsert;
+  Forms, memdslaz, rxnew, zcomponent, uMainFrm, udmconexao, pessoa.router,
+  pessoa.service, viacep.router, ufrmconsulta, uFrmDelete, ufrminsert;
 
 {$R *.res}
 

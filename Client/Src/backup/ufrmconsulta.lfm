@@ -1,12 +1,12 @@
 object FrmConsulta: TFrmConsulta
-  Left = 530
+  Left = 280
   Height = 350
-  Top = 229
+  Top = 132
   Width = 700
   BorderStyle = bsDialog
   Caption = 'Consulta'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 350
+  ClientWidth = 700
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
@@ -29,28 +29,28 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 125
     Width = 168
-    TabOrder = 1
+    TabOrder = 2
   end
   object edtApelido: TEdit
     Left = 224
     Height = 23
     Top = 125
     Width = 248
-    TabOrder = 2
-  end
-  object edtCpfCnpj: TEdit
-    Left = 32
-    Height = 23
-    Top = 181
-    Width = 248
     TabOrder = 3
   end
-  object edtCep: TEdit
-    Left = 304
+  object edtCpfCnpj: TEdit
+    Left = 504
     Height = 23
-    Top = 181
-    Width = 168
+    Top = 125
+    Width = 152
     TabOrder = 4
+  end
+  object edtCep: TEdit
+    Left = 32
+    Height = 23
+    Top = 264
+    Width = 168
+    TabOrder = 8
   end
   object lblNome: TLabel
     Left = 32
@@ -67,40 +67,119 @@ object FrmConsulta: TFrmConsulta
     Caption = 'Sobrenome'
   end
   object lblCpfCnpj: TLabel
-    Left = 32
+    Left = 504
     Height = 15
-    Top = 160
+    Top = 104
     Width = 53
     Caption = 'CPF/CNPJ'
   end
   object lblCep: TLabel
-    Left = 304
+    Left = 32
     Height = 15
-    Top = 160
+    Top = 243
     Width = 21
     Caption = 'CEP'
   end
   object btnConsultar: TButton
     Left = 160
-    Height = 25
-    Top = 35
-    Width = 90
+    Height = 33
+    Top = 27
+    Width = 104
     Caption = 'Consultar'
-    TabOrder = 5
+    TabOrder = 1
     OnClick = btnConsultarClick
   end
   object btnClear: TButton
-    Left = 32
-    Height = 25
-    Top = 232
+    Left = 536
+    Height = 33
+    Top = 187
     Width = 120
     Caption = 'Limpar Campos'
-    TabOrder = 6
+    TabOrder = 11
     OnClick = btnClearClick
+  end
+  object edtLog: TEdit
+    Left = 32
+    Height = 23
+    Top = 197
+    Width = 168
+    TabOrder = 5
+  end
+  object edtBairro: TEdit
+    Left = 320
+    Height = 23
+    Top = 197
+    Width = 152
+    TabOrder = 7
+  end
+  object edtNum: TEdit
+    Left = 224
+    Height = 23
+    Top = 197
+    Width = 72
+    TabOrder = 6
+  end
+  object edtMun: TEdit
+    Left = 224
+    Height = 23
+    Top = 264
+    Width = 136
+    TabOrder = 9
+  end
+  object edtUF: TEdit
+    Left = 384
+    Height = 23
+    Top = 264
+    Width = 88
+    TabOrder = 10
+  end
+  object lblLog: TLabel
+    Left = 32
+    Height = 15
+    Top = 180
+    Width = 62
+    Caption = 'Logradouro'
+  end
+  object lblNum: TLabel
+    Left = 224
+    Height = 15
+    Top = 180
+    Width = 44
+    Caption = 'Número'
+  end
+  object lblBairro: TLabel
+    Left = 320
+    Height = 15
+    Top = 180
+    Width = 31
+    Caption = 'Bairro'
+  end
+  object lblMun: TLabel
+    Left = 224
+    Height = 15
+    Top = 243
+    Width = 54
+    Caption = 'Município'
+  end
+  object lblUF: TLabel
+    Left = 384
+    Height = 15
+    Top = 243
+    Width = 14
+    Caption = 'UF'
+  end
+  object btnShowDetail: TButton
+    Left = 536
+    Height = 33
+    Top = 254
+    Width = 120
+    Caption = 'Detalhes'
+    TabOrder = 12
+    OnClick = btnShowDetailClick
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
-    Left = 640
-    Top = 296
+    Left = 632
+    Top = 32
   end
 end

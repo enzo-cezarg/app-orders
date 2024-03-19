@@ -69,6 +69,9 @@ begin
   .Post('/pessoa', SavePessoa)
   .Put('/pessoa/:id', SavePessoa)
   .Delete('/pessoa/:id', DeletePessoa);
+
+  // http://localhost:9095/pessoa/:id/detalhes/:tipo_pessoa
+
 end;
 
 end.
