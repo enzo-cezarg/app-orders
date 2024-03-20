@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, BufDataset, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, DBGrids, Menus, RxDBGrid, rxmemds, ZDataset, ufrmconsulta,
-  uFrmInsertAlt, uFrmDelete, ufrminsert;
+  uFrmDelete, ufrminsert, udmconexao;
 
 type
 
@@ -36,7 +36,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure dbgMemTblCellClick(Column: TColumn);
     procedure dbgQueryCellClick(Column: TColumn);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -164,22 +163,20 @@ begin
   // RxMemoryData.LoadFromDataSet( ZQuery, 0, lmCopy );
 end;
 
-procedure TMainFrm.dbgMemTblCellClick(Column: TColumn);
-var
-  aID: string;
-begin
-  aID := dbgQuery.DataSource.DataSet.FieldByName('id').AsString;
-  FrmConsulta.getID(aID);
-  FrmConsulta.ShowModal;
-
-end;
-
 procedure TMainFrm.dbgQueryCellClick(Column: TColumn);
 var
   aID: string;
+  lTpPessoa: integer;
 begin
   aID := dbgQuery.DataSource.DataSet.FieldByName('id').AsString;
   FrmConsulta.getID(aID);
+  lTpPessoa := DM.GetTpPessoa(StrToInt(aID));
+  case lTpPessoa of
+      0: FrmConsulta.edtTipo.Text := 'Cliente';
+      1: FrmConsulta.edtTipo.Text := 'Funcionário';
+      2: FrmConsulta.edtTipo.Text := 'Fornecedor';
+    end;
+
   FrmConsulta.ShowModal;
 end;
 

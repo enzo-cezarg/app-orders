@@ -9,9 +9,9 @@
         <Filename Value="AppPedido.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="5"/>
-        <CursorPos Y="29"/>
-        <UsageCount Value="110"/>
+        <TopLine Value="6"/>
+        <CursorPos Y="30"/>
+        <UsageCount Value="124"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.pas"/>
@@ -20,13 +20,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="148"/>
-        <CursorPos X="9" Y="147"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="110"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="156"/>
+        <CursorPos X="17" Y="58"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.pas"/>
@@ -34,47 +32,44 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="136"/>
-        <CursorPos X="82" Y="316"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="110"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="346"/>
+        <CursorPos X="3" Y="351"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\baserouter.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BaseRouter"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\pessoa.router.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="21"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="50"/>
         <CursorPos X="11" Y="34"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="108"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\pessoa.service.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="40"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="16"/>
         <CursorPos X="3" Y="44"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="108"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\viacep.router.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="25"/>
-        <CursorPos X="33" Y="44"/>
-        <UsageCount Value="94"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="6" Y="44"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\horse01.lpr"/>
@@ -82,7 +77,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="56" Y="21"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconsulta.pas"/>
@@ -90,11 +85,10 @@
         <ComponentName Value="FrmConsulta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="79" Y="111"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="91"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="125"/>
+        <CursorPos X="28" Y="136"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -108,7 +102,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos X="83" Y="75"/>
-        <UsageCount Value="88"/>
+        <UsageCount Value="102"/>
       </Unit>
       <Unit>
         <Filename Value="ufrminsert.pas"/>
@@ -116,11 +110,47 @@
         <ComponentName Value="FrmInsert"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="318"/>
-        <CursorPos X="37" Y="335"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="387"/>
+        <CursorPos X="45" Y="335"/>
+        <UsageCount Value="67"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhescliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="30"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesFuncionario"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="30"/>
+        <CursorPos X="54" Y="51"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesFornecedor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="28"/>
+        <CursorPos X="71" Y="37"/>
+        <ComponentState Value="1"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -132,7 +162,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="67"/>
         <CursorPos X="9" Y="82"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="ufrminsertalt.pas"/>
@@ -143,31 +173,31 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="332"/>
         <CursorPos X="82" Y="353"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="73"/>
       </Unit>
       <Unit>
         <Filename Value="C:\Projetos\Lazarus\Componentes\horse\src\Horse.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\udmconexao.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="AppPedido.lpi"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -175,7 +205,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="6"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\horse01.lpi"/>
@@ -183,21 +213,21 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\horse01.lps"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="81"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-process\src\process.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\rtl\win\sysutils.pp"/>
@@ -205,49 +235,48 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1375"/>
         <CursorPos X="3" Y="1382"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconfig.pas"/>
         <UnitName Value="uFrmConfig"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\repositorio-s3\Comum\Client\untCadEntidades.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="681"/>
         <CursorPos X="22" Y="267"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\j4dl\src\j4dl.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="160"/>
         <CursorPos X="3" Y="174"/>
-        <UsageCount Value="16"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\dc4dl\src\dc4dl.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="3" Y="82"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\rr4dl\src\rr4dl.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="13"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\rr4dl\src\rr4dl.Request.Contract.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="14" Y="36"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\rr4dl\src\rr4dl.request.fphttpclient.pas"/>
@@ -255,21 +284,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos Y="151"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\..\repositorio-s3\Server\Src\Service\untEntidade.Service.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1036"/>
         <CursorPos X="73" Y="1055"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\fpcsrc\packages\fcl-db\src\base\dataset.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1875"/>
         <CursorPos X="3" Y="1913"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconsultaaviso.pas"/>
@@ -278,28 +307,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="27" Y="41"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\extctrls.pp"/>
         <UnitName Value="ExtCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="81"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1751"/>
         <CursorPos Y="1764"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2261"/>
         <CursorPos Y="2273"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\lclmessageglue.pas"/>
@@ -307,42 +336,42 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="105"/>
         <CursorPos Y="125"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4311"/>
         <CursorPos Y="4323"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="157"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5418"/>
         <CursorPos Y="5431"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\interfaces\win32\win32callback.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2796"/>
         <CursorPos Y="2809"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\interfaces\win32\win32wsforms.pp"/>
@@ -350,14 +379,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="401"/>
         <CursorPos Y="413"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\include\messagedialogs.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="162"/>
         <CursorPos X="10" Y="175"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\dialogs.pp"/>
@@ -365,14 +394,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="3" Y="44"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Components\dc4dl\src\dc4dl.contrato.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="14" Y="27"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\interfaces\win32\win32wsstdctrls.pp"/>
@@ -380,21 +409,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1963"/>
         <CursorPos Y="1975"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\interfaces\win32\win32object.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="394"/>
         <CursorPos Y="414"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\config_lazarus\onlinepackagemanager\packages\Rx\rxdb\rxmemds.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="36"/>
         <CursorPos X="16" Y="49"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\fpcupdeluxe\lazarus\lcl\comctrls.pp"/>
@@ -402,97 +431,137 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="596"/>
         <CursorPos X="14" Y="608"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\fpcupdeluxe\lazarus\components\lazutils\textstrings.pas"/>
+        <UnitName Value="TextStrings"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="266"/>
+        <CursorPos Y="279"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="21">
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="ufrmconsulta.pas"/>
+        <Caret Line="113" Column="53" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="29" Column="22" TopLine="4"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="41" Column="38" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="42" Column="38" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="43" Column="38" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="44" Column="38" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="45" Column="38" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="46" Column="38" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="47" Column="38" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="48" Column="38" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="49" Column="38" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <Caret Line="50" Column="38" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmconsulta.pas"/>
+        <Caret Line="240" Column="34" TopLine="222"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmconsulta.pas"/>
+        <Caret Line="244" Column="46" TopLine="222"/>
+      </Position>
       <Position>
         <Filename Value="umainfrm.pas"/>
-        <Caret Line="178" Column="24" TopLine="153"/>
+        <Caret Line="147" TopLine="143"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="10" Column="16"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="172" Column="3" TopLine="153"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="174" Column="3" TopLine="154"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="10" Column="83"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="177" Column="22" TopLine="158"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="30" Column="3" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="41" Column="53" TopLine="20"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="42" Column="53" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="43" Column="53" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="44" Column="53" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="45" Column="53" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="46" Column="53" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="47" Column="53" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <Caret Line="48" Column="53" TopLine="27"/>
       </Position>
       <Position>
         <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="132" Column="3" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="133" Column="3" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="134" Column="3" TopLine="134"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="135" Column="3" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="136" Column="3" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="137" Column="3" TopLine="137"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="138" Column="3" TopLine="138"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="139" Column="3" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="140" Column="3" TopLine="140"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="162" Column="66" TopLine="145"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="100" Column="15" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="183" Column="8" TopLine="168"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Common\viacep.router.pas"/>
-        <Caret Line="42" Column="38" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Components\j4dl\src\j4dl.pas"/>
-        <Caret Line="211" Column="14" TopLine="199"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Components\j4dl\src\j4dl.pas"/>
-        <Caret Line="83" Column="25" TopLine="72"/>
-      </Position>
-      <Position>
-        <Filename Value="..\..\Common\viacep.router.pas"/>
-        <Caret Line="43" Column="26" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="103" TopLine="103"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="110" TopLine="110"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="107" Column="24" TopLine="92"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="108" Column="24" TopLine="108"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrmconsulta.pas"/>
-        <Caret Line="107" Column="24" TopLine="107"/>
+        <Caret Line="136" Column="26" TopLine="119"/>
       </Position>
     </JumpHistory>
     <RunParams>

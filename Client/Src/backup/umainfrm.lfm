@@ -68,7 +68,6 @@ object MainFrm: TMainFrm
     DataSource = dsMemTbl
     ReadOnly = True
     TabOrder = 2
-    OnCellClick = dbgMemTblCellClick
   end
   object dbgQuery: TDBGrid
     Left = 0

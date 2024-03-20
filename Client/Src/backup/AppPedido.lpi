@@ -104,6 +104,25 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhescliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhesfuncionario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesFuncionario"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ufrmdetalhesfornecedor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDetalhesFornecedor"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

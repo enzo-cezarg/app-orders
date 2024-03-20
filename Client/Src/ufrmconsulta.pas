@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, MaskEdit, j4dl, dc4dl, rr4dl;
+  StdCtrls, MaskEdit, j4dl, dc4dl, rr4dl, udmconexao, ufrmdetalhescliente,
+  ufrmdetalhesfuncionario, ufrmdetalhesfornecedor;
 
 type
 
@@ -17,6 +18,7 @@ type
     btnConsultar: TButton;
     btnClear: TButton;
     btnShowDetail: TButton;
+    edtTipo: TEdit;
     edtLog: TEdit;
     edtBairro: TEdit;
     edtNum: TEdit;
@@ -27,6 +29,9 @@ type
     edtCpfCnpj: TEdit;
     edtCep: TEdit;
     edtID: TEdit;
+    lblDadosP: TLabel;
+    lblEndereco: TLabel;
+    lblTipo: TLabel;
     lblLog: TLabel;
     lblNum: TLabel;
     lblBairro: TLabel;
@@ -44,6 +49,7 @@ type
   private
     procedure onAppend(aID: string);
     procedure datasetToView;
+    procedure putData(lTpPessoa: integer);
   public
     procedure getID(aID: string);
   end;
@@ -75,11 +81,20 @@ begin
 end;
 
 procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
+var
+  lTpPessoa: integer;
 begin
+  lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+
   if (Trim(edtID.Text) <> '') then
   begin
     FrmConsulta.onAppend(edtID.Text);
     FrmConsulta.datasetToView;
+    case lTpPessoa of
+      0: edtTipo.Text := 'Cliente';
+      1: edtTipo.Text := 'Funcionário';
+      2: edtTipo.Text := 'Fornecedor';
+    end;
   end
   else
   begin
@@ -91,6 +106,7 @@ procedure TFrmConsulta.btnClearClick(Sender: TObject);
 begin
 
   edtID.Clear;
+  edtTipo.Clear;
   edtNome.Clear;
   edtApelido.Clear;
   edtCpfCnpj.Clear;
@@ -104,16 +120,30 @@ begin
 end;
 
 procedure TFrmConsulta.btnShowDetailClick(Sender: TObject);
+var
+  lTpPessoa: integer;
 begin
-  { if verificar_tipo(id)
-   form_correspondente.ShowModal
+  lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+  try
+    case lTpPessoa of
+      0: begin
+        putData(lTpPessoa);
+        frmDetalhesCliente.ShowModal;
+      end;
+      1: begin
+        putData(lTpPessoa);
+        frmDetalhesFuncionario.ShowModal;
+      end;
+      2: begin
+        putData(lTpPessoa);
+        frmDetalhesFornecedor.ShowModal;
+      end;
+    end;
 
-   cada form terá um select correspondente exibindo os detalhes
-   como:
-
-   "SELECT p.nome_razao AS nome_pessoa, c.email AS email_pessoa
-   FROM pessoa p JOIN cliente c ON p.ID = c.ID ;"
-  }
+  except
+    on E: Exception do
+      Raise Exception.Create(E.Message);
+  end;
 end;
 
 procedure TFrmConsulta.onAppend(aID: string);
@@ -188,6 +218,58 @@ begin
   except
     on E: exception do
        Raise Exception.Create(E.Message);
+  end;
+end;
+
+procedure TFrmConsulta.putData(lTpPessoa: integer);
+begin
+  if bdsCrudPessoas.Active and (bdsCrudPessoas.RecordCount > 0) then
+  begin
+
+      case lTpPessoa of
+         0: begin
+           frmDetalhesCliente.edtEmail.Clear;
+           frmDetalhesCliente.edtLmtCred.Clear;
+           frmDetalhesCliente.mEdtTelF.Clear;
+           frmDetalhesCliente.mEdtTelC.Clear;
+           frmDetalhesCliente.mmObs.Clear;
+
+           frmDetalhesCliente.edtEmail.Text   := bdsCrudPessoas.FieldByName('email').AsString;
+           frmDetalhesCliente.edtLmtCred.Text := IntToStr(bdsCrudPessoas.FieldByName('limite_credito').AsInteger);
+           frmDetalhesCliente.mEdtTelF.Text   := bdsCrudPessoas.FieldByName('telefone_fixo').AsString;
+           frmDetalhesCliente.mEdtTelC.Text   := bdsCrudPessoas.FieldByName('telefone_celular').AsString;
+           frmDetalhesCliente.mmObs.Append(bdsCrudPessoas.FieldByName('obs').AsString);
+         end;
+         1: begin
+           frmDetalhesFuncionario.edtEmail.Clear;
+           frmDetalhesFuncionario.edtCargo.Clear;
+           frmDetalhesFuncionario.edtUser.Clear;
+           frmDetalhesFuncionario.edtSenha.Clear;
+           frmDetalhesFuncionario.edtComissao.Clear;
+
+           frmDetalhesFuncionario.edtEmail.Text    := bdsCrudPessoas.FieldByName('email').AsString;
+           frmDetalhesFuncionario.edtUser.Text     := bdsCrudPessoas.FieldByName('login').AsString;
+           frmDetalhesFuncionario.edtSenha.Text    := bdsCrudPessoas.FieldByName('senha').AsString;
+           frmDetalhesFuncionario.edtComissao.Text := IntToStr(bdsCrudPessoas.FieldByName('comissao').AsInteger);
+
+           if bdsCrudPessoas.FieldByName('master').AsInteger = 1 then
+             frmDetalhesFuncionario.edtCargo.Text := 'Gerente'
+           else
+             frmDetalhesFuncionario.edtCargo.Text := 'Funcionário';
+         end;
+         2: begin
+           frmDetalhesFornecedor.edtEmail.Clear;
+           frmDetalhesFornecedor.edtWebsite.Clear;
+           frmDetalhesFornecedor.edtTel.Clear;
+           frmDetalhesFornecedor.mmObs.Clear;
+
+           frmDetalhesFornecedor.edtEmail.Text   := bdsCrudPessoas.FieldByName('email').AsString;;
+           frmDetalhesFornecedor.edtWebsite.Text := bdsCrudPessoas.FieldByName('website').AsString;;
+           frmDetalhesFornecedor.edtTel.Text     := bdsCrudPessoas.FieldByName('telefone').AsString;;
+           frmDetalhesFornecedor.mmObs.Append(bdsCrudPessoas.FieldByName('obs').AsString);
+         end;
+
+      end;
   end;
 end;
 

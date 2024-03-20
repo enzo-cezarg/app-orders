@@ -1,0 +1,91 @@
+object frmDetalhesCliente: TfrmDetalhesCliente
+  Left = 632
+  Height = 300
+  Top = 101
+  Width = 500
+  Caption = 'Detalhes'
+  ClientHeight = 0
+  ClientWidth = 0
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.3'
+  object edtLmtCred: TEdit
+    Left = 328
+    Height = 23
+    Top = 40
+    Width = 144
+    AutoSelect = False
+    TabOrder = 1
+  end
+  object edtEmail: TEdit
+    Left = 32
+    Height = 23
+    Top = 40
+    Width = 272
+    AutoSelect = False
+    TabOrder = 0
+  end
+  object mEdtTelF: TMaskEdit
+    Left = 32
+    Height = 23
+    Top = 104
+    Width = 200
+    AutoSelect = False
+    MaxLength = 14
+    TabOrder = 2
+    EditMask = '(##) ####-####;0;_'
+    SpaceChar = '_'
+  end
+  object mEdtTelC: TMaskEdit
+    Left = 272
+    Height = 23
+    Top = 104
+    Width = 200
+    AutoSelect = False
+    MaxLength = 15
+    TabOrder = 3
+    EditMask = '(##) #####-####;0;_'
+    SpaceChar = '_'
+  end
+  object mmObs: TMemo
+    Left = 32
+    Height = 90
+    Top = 176
+    Width = 440
+    TabOrder = 4
+  end
+  object lblEmail: TLabel
+    Left = 33
+    Height = 15
+    Top = 25
+    Width = 34
+    Caption = 'E-mail'
+  end
+  object lblLmtCred: TLabel
+    Left = 328
+    Height = 15
+    Top = 25
+    Width = 75
+    Caption = 'Limite Crédito'
+  end
+  object lblTelF: TLabel
+    Left = 33
+    Height = 15
+    Top = 89
+    Width = 69
+    Caption = 'Telefone Fixo'
+  end
+  object lblTelC: TLabel
+    Left = 272
+    Height = 15
+    Top = 89
+    Width = 84
+    Caption = 'Telefone Celular'
+  end
+  object lblObs: TLabel
+    Left = 33
+    Height = 15
+    Top = 161
+    Width = 62
+    Caption = 'Observação'
+  end
+end

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, DB, BufDataset, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, StdCtrls, DBGrids, Menus, RxDBGrid, rxmemds, ZDataset, ufrmconsulta,
-  uFrmInsertAlt, uFrmDelete, ufrminsert;
+  uFrmDelete, ufrminsert, udmconexao;
 
 type
 
@@ -56,8 +56,6 @@ implementation
 {$R *.lfm}
 
 { TMainFrm }
-
-uses udmconexao;
 
 procedure TMainFrm.FormResize(Sender: TObject);
 begin
@@ -166,9 +164,17 @@ end;
 procedure TMainFrm.dbgQueryCellClick(Column: TColumn);
 var
   aID: string;
+  lTpPessoa: integer;
 begin
   aID := dbgQuery.DataSource.DataSet.FieldByName('id').AsString;
   FrmConsulta.getID(aID);
+  lTpPessoa := DM.GetTpPessoa(StrToInt(aID));
+  case lTpPessoa of
+      0: FrmConsulta.edtTipo.Text := 'Cliente';
+      1: FrmConsulta.edtTipo.Text := 'Funcionário';
+      2: FrmConsulta.edtTipo.Text := 'Fornecedor';
+    end;
+
   FrmConsulta.ShowModal;
 end;
 
