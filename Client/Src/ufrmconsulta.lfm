@@ -15,6 +15,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 37
     Width = 104
+    AutoSelect = False
     TabOrder = 0
   end
   object lblID: TLabel
@@ -29,6 +30,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 129
     Width = 168
+    AutoSelect = False
     TabOrder = 2
   end
   object edtApelido: TEdit
@@ -36,6 +38,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 129
     Width = 264
+    AutoSelect = False
     TabOrder = 3
   end
   object edtCpfCnpj: TEdit
@@ -43,6 +46,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 129
     Width = 152
+    AutoSelect = False
     TabOrder = 4
   end
   object edtCep: TEdit
@@ -50,6 +54,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 289
     Width = 168
+    AutoSelect = False
     TabOrder = 8
   end
   object lblNome: TLabel
@@ -103,6 +108,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 222
     Width = 168
+    AutoSelect = False
     TabOrder = 5
   end
   object edtBairro: TEdit
@@ -110,6 +116,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 222
     Width = 168
+    AutoSelect = False
     TabOrder = 7
   end
   object edtNum: TEdit
@@ -117,6 +124,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 222
     Width = 72
+    AutoSelect = False
     TabOrder = 6
   end
   object edtMun: TEdit
@@ -124,6 +132,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 289
     Width = 136
+    AutoSelect = False
     TabOrder = 9
   end
   object edtUF: TEdit
@@ -131,6 +140,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 289
     Width = 104
+    AutoSelect = False
     TabOrder = 10
   end
   object lblLog: TLabel
@@ -189,6 +199,7 @@ object FrmConsulta: TFrmConsulta
     Height = 23
     Top = 37
     Width = 120
+    AutoSelect = False
     TabOrder = 13
   end
   object lblEndereco: TLabel

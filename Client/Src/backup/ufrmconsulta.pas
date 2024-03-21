@@ -29,6 +29,8 @@ type
     edtCpfCnpj: TEdit;
     edtCep: TEdit;
     edtID: TEdit;
+    lblDadosP: TLabel;
+    lblEndereco: TLabel;
     lblTipo: TLabel;
     lblLog: TLabel;
     lblNum: TLabel;

@@ -115,12 +115,14 @@
         <Filename Value="ufrmdetalhesfuncionario.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDetalhesFuncionario"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmdetalhesfornecedor.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDetalhesFornecedor"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

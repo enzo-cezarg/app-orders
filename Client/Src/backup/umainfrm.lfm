@@ -3,14 +3,16 @@ object MainFrm: TMainFrm
   Height = 472
   Top = 119
   Width = 663
+  BorderStyle = bsSingle
   Caption = 'Principal'
-  ClientHeight = 472
-  ClientWidth = 663
+  ClientHeight = 0
+  ClientWidth = 0
   Menu = MainMenu
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
+  WindowState = wsMaximized
   object pnlTop: TPanel
     Left = 0
     Height = 50
@@ -26,12 +28,12 @@ object MainFrm: TMainFrm
       Height = 33
       Top = 8
       Width = 100
-      Caption = 'Open/Close Qr'
+      Caption = 'Open Qr'
       TabOrder = 0
       OnClick = Button1Click
     end
     object Button3: TButton
-      Left = 240
+      Left = 345
       Height = 33
       Top = 8
       Width = 96
@@ -40,13 +42,23 @@ object MainFrm: TMainFrm
       OnClick = Button3Click
     end
     object Button4: TButton
-      Left = 352
+      Left = 457
       Height = 33
       Top = 8
       Width = 96
       Caption = 'Rx Binario'
       TabOrder = 2
       OnClick = Button4Click
+    end
+    object Button5: TButton
+      Left = 126
+      Height = 33
+      Top = 8
+      Width = 100
+      Caption = 'Close Qr'
+      Enabled = False
+      TabOrder = 3
+      OnClick = Button5Click
     end
   end
   object mmJson: TMemo
@@ -83,11 +95,12 @@ object MainFrm: TMainFrm
     OnCellClick = dbgQueryCellClick
   end
   object Button2: TButton
-    Left = 128
+    Left = 233
     Height = 33
     Top = 8
     Width = 100
     Caption = 'Open/Close Mtb'
+    Enabled = False
     TabOrder = 4
     OnClick = Button2Click
   end
@@ -108,7 +121,7 @@ object MainFrm: TMainFrm
       'ORDER BY ID;'
     )
     Params = <>
-    Left = 416
+    Left = 456
     Top = 288
   end
   object BufDataset: TBufDataset
@@ -123,13 +136,28 @@ object MainFrm: TMainFrm
     Top = 376
   end
   object MainMenu: TMainMenu
-    Left = 616
+    Left = 1312
     Top = 8
     object MenuItem1: TMenuItem
       Caption = 'Cadastro'
       object menuConsultaID: TMenuItem
         Caption = 'Consulta por ID'
         OnClick = menuConsultaIDClick
+      end
+      object menuConsultaTp: TMenuItem
+        Caption = 'Consulta por Tipo'
+        object menuConsultaCl: TMenuItem
+          Caption = 'Clientes'
+          OnClick = menuConsultaClClick
+        end
+        object menuConsultaFu: TMenuItem
+          Caption = 'Funcionários'
+          OnClick = menuConsultaFuClick
+        end
+        object menuConsultaFo: TMenuItem
+          Caption = 'Fornecedores'
+          OnClick = menuConsultaFoClick
+        end
       end
       object menuInsertAlt: TMenuItem
         Caption = 'Inserir/Alterar Registros'

@@ -19,6 +19,7 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    Button5: TButton;
     dsQuery: TDataSource;
     dsMemTbl: TDataSource;
     dbgMemTbl: TDBGrid;
@@ -28,6 +29,10 @@ type
     menuConsultaID: TMenuItem;
     menuInsertAlt: TMenuItem;
     menuDelete: TMenuItem;
+    menuConsultaTp: TMenuItem;
+    menuConsultaCl: TMenuItem;
+    menuConsultaFu: TMenuItem;
+    menuConsultaFo: TMenuItem;
     mmJson: TMemo;
     pnlTop: TPanel;
     RxMemoryData: TRxMemoryData;
@@ -36,9 +41,13 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     procedure dbgQueryCellClick(Column: TColumn);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure menuConsultaClClick(Sender: TObject);
+    procedure menuConsultaFoClick(Sender: TObject);
+    procedure menuConsultaFuClick(Sender: TObject);
     procedure menuConsultaIDClick(Sender: TObject);
     procedure menuInsertAltClick(Sender: TObject);
     procedure menuDeleteClick(Sender: TObject);
@@ -63,6 +72,48 @@ begin
   dbgMemTbl.Height := mmJson.Height;
 end;
 
+procedure TMainFrm.menuConsultaClClick(Sender: TObject);
+begin
+  ZQuery.Active := False;
+
+  ZQuery.Close;
+  ZQuery.SQL.Clear;
+  ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 0 ORDER BY id');
+  ZQuery.Open;
+
+  ZQuery.Active := True;
+  Button3.Enabled := True;
+  Button5.Enabled := True;
+end;
+
+procedure TMainFrm.menuConsultaFoClick(Sender: TObject);
+begin
+  ZQuery.Active := False;
+
+  ZQuery.Close;
+  ZQuery.SQL.Clear;
+  ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 2 ORDER BY id');
+  ZQuery.Open;
+
+  ZQuery.Active := True;
+  Button3.Enabled := True;
+  Button5.Enabled := True;
+end;
+
+procedure TMainFrm.menuConsultaFuClick(Sender: TObject);
+begin
+  ZQuery.Active := False;
+
+  ZQuery.Close;
+  ZQuery.SQL.Clear;
+  ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 1 ORDER BY id');
+  ZQuery.Open;
+
+  ZQuery.Active := True;
+  Button3.Enabled := True;
+  Button5.Enabled := True;
+end;
+
 procedure TMainFrm.menuConsultaIDClick(Sender: TObject);
 begin
   FrmConsulta.ShowModal;
@@ -70,20 +121,7 @@ end;
 
 procedure TMainFrm.menuInsertAltClick(Sender: TObject);
 begin
-
   FrmInsert.ShowModal;
-
-
-  {FrmInsertAlt.edtNome.Clear;
-  FrmInsertAlt.edtApelido.Clear;
-  FrmInsertAlt.edtCpfCnpj.Clear;
-  FrmInsertAlt.edtLog.Clear;
-  FrmInsertAlt.edtNum.Clear;
-  FrmInsertAlt.edtBairro.Clear;
-  FrmInsertAlt.edtCep.Clear;
-  FrmInsertAlt.edtMun.Clear;
-  FrmInsertAlt.edtUF.Clear;}
-
 end;
 
 procedure TMainFrm.menuDeleteClick(Sender: TObject);
@@ -102,8 +140,19 @@ end;
 
 procedure TMainFrm.Button1Click(Sender: TObject);
 begin
-  ZQuery.Active := not ZQuery.Active;
-  Button3.Enabled := not Button3.Enabled;
+  Button1.Enabled := False;
+  Button5.Enabled := True;
+
+  ZQuery.Active := False;
+
+  ZQuery.Close;
+  ZQuery.SQL.Clear;
+  ZQuery.SQL.Add('SELECT * FROM pessoa ORDER BY id');
+  ZQuery.Open;
+
+  ZQuery.Active := True;
+  Button3.Enabled := True;
+
 end;
 
 procedure TMainFrm.Button2Click(Sender: TObject);
@@ -116,6 +165,7 @@ var
    lStream: TMemoryStream;
    lBuf: TBufDataSet;
 begin
+  Button2.Enabled := True;
   dsMemTbl.DataSet := BufDataSet;
 
   if BufDataSet.Active then
@@ -141,6 +191,7 @@ var
    lStream: TMemoryStream;
    lMtb: TRxMemoryData;
 begin
+  Button2.Enabled := True;
   dsMemTbl.DataSet := RxMemoryData;
 
   if RxMemoryData.Active then
@@ -159,6 +210,16 @@ begin
     FreeAndNil(lMtb);
   end;
   // RxMemoryData.LoadFromDataSet( ZQuery, 0, lmCopy );
+end;
+
+procedure TMainFrm.Button5Click(Sender: TObject);
+begin
+  if ZQuery.Active then
+  ZQuery.Active := not ZQuery.Active;
+
+  Button1.Enabled := True;
+  Button5.Enabled := False;
+  Button3.Enabled := False;
 end;
 
 procedure TMainFrm.dbgQueryCellClick(Column: TColumn);

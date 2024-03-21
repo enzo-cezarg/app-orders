@@ -4,8 +4,8 @@ object FrmInsert: TFrmInsert
   Top = 152
   Width = 690
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 400
+  ClientWidth = 690
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
@@ -31,17 +31,31 @@ object FrmInsert: TFrmInsert
       ParentFont = False
       object lblDadosP: TLabel
         Left = 32
-        Height = 15
+        Height = 17
         Top = 32
-        Width = 80
-        Caption = 'Dados Pessoais'
+        Width = 96
+        Caption = 'Dados Pessoais:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object lblEndereco: TLabel
         Left = 32
-        Height = 15
+        Height = 17
         Top = 136
-        Width = 49
-        Caption = 'Endereço'
+        Width = 59
+        Caption = 'Endereço:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object edtNome: TEdit
         Left = 32
@@ -54,7 +68,7 @@ object FrmInsert: TFrmInsert
         Left = 216
         Height = 23
         Top = 75
-        Width = 216
+        Width = 232
         TabOrder = 1
       end
       object edtCpfCnpj: TEdit
@@ -76,7 +90,7 @@ object FrmInsert: TFrmInsert
         Left = 360
         Height = 23
         Top = 178
-        Width = 72
+        Width = 88
         NumbersOnly = True
         TabOrder = 4
       end
@@ -106,7 +120,7 @@ object FrmInsert: TFrmInsert
         Left = 360
         Height = 23
         Top = 242
-        Width = 40
+        Width = 44
         TabOrder = 8
       end
       object lblNome: TLabel
@@ -240,10 +254,10 @@ object FrmInsert: TFrmInsert
         TabOrder = 5
       end
       object edtNumU: TEdit
-        Left = 336
+        Left = 325
         Height = 23
         Top = 200
-        Width = 128
+        Width = 139
         NumbersOnly = True
         TabOrder = 6
       end
@@ -270,10 +284,10 @@ object FrmInsert: TFrmInsert
         TabOrder = 9
       end
       object edtUFU: TEdit
-        Left = 336
+        Left = 325
         Height = 23
         Top = 264
-        Width = 40
+        Width = 68
         TabOrder = 10
       end
       object lblNomeU: TLabel
@@ -305,7 +319,7 @@ object FrmInsert: TFrmInsert
         Caption = 'Logradouro'
       end
       object lblNumU: TLabel
-        Left = 336
+        Left = 325
         Height = 15
         Top = 184
         Width = 44
@@ -333,7 +347,7 @@ object FrmInsert: TFrmInsert
         Caption = 'Município'
       end
       object lblUFU: TLabel
-        Left = 336
+        Left = 325
         Height = 15
         Top = 248
         Width = 14
