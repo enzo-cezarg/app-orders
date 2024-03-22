@@ -170,8 +170,6 @@ begin
   end;
 end;
 
-
-
 procedure TFrmInsert.getStructure;
 var
   lJson: TJSONObject;

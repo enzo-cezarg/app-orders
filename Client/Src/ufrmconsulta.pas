@@ -42,14 +42,15 @@ type
     lblApelido: TLabel;
     lblNome: TLabel;
     lblID: TLabel;
-    procedure btnConsultarClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
+    procedure btnConsultarClick(Sender: TObject);
     procedure btnShowDetailClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     procedure onAppend(aID: string);
     procedure datasetToView;
     procedure putData(lTpPessoa: integer);
+    procedure clearFields;
   public
     procedure getID(aID: string);
   end;
@@ -83,40 +84,37 @@ end;
 procedure TFrmConsulta.btnConsultarClick(Sender: TObject);
 var
   lTpPessoa: integer;
+  DM: TDM;
 begin
-  lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
-
   if (Trim(edtID.Text) <> '') then
   begin
-    FrmConsulta.onAppend(edtID.Text);
-    FrmConsulta.datasetToView;
-    case lTpPessoa of
-      0: edtTipo.Text := 'Cliente';
-      1: edtTipo.Text := 'Funcionário';
-      2: edtTipo.Text := 'Fornecedor';
+    DM := TDM.Create(nil);
+    lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+    try
+      if DM.isExist(StrToInt(edtID.Text)) then
+      begin
+        FrmConsulta.onAppend(edtID.Text);
+        FrmConsulta.datasetToView;
+        case lTpPessoa of
+          0: edtTipo.Text := 'Cliente';
+          1: edtTipo.Text := 'Funcionário';
+          2: edtTipo.Text := 'Fornecedor';
+        end;
+      end
+      else
+      begin
+        clearFields;
+        ShowMessage('ID Inválido!');
+      end;
+    finally
+      FreeAndNil(DM);
     end;
-  end
-  else
-  begin
-    edtID.Clear;
   end;
 end;
 
 procedure TFrmConsulta.btnClearClick(Sender: TObject);
 begin
-
-  edtID.Clear;
-  edtTipo.Clear;
-  edtNome.Clear;
-  edtApelido.Clear;
-  edtCpfCnpj.Clear;
-  edtLog.Clear;
-  edtNum.Clear;
-  edtBairro.Clear;
-  edtCep.Clear;
-  edtMun.Clear;
-  edtUF.Clear;
-
+  clearFields;
 end;
 
 procedure TFrmConsulta.btnShowDetailClick(Sender: TObject);
@@ -271,6 +269,21 @@ begin
 
       end;
   end;
+end;
+
+procedure TFrmConsulta.clearFields;
+begin
+  edtID.Clear;
+  edtTipo.Clear;
+  edtNome.Clear;
+  edtApelido.Clear;
+  edtCpfCnpj.Clear;
+  edtLog.Clear;
+  edtNum.Clear;
+  edtBairro.Clear;
+  edtCep.Clear;
+  edtMun.Clear;
+  edtUF.Clear;
 end;
 
 procedure TFrmConsulta.getID(aID: string);

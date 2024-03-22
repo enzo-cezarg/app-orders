@@ -135,6 +135,7 @@ begin
     end
     else
     begin
+      clearUpdateFields;
       ShowMessage('ID Inválido!');
     end;
   finally
