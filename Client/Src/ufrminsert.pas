@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, j4dl, rr4dl, dc4dl;
+  ComCtrls, StdCtrls, j4dl, rr4dl, dc4dl, udmconexao;
 
 type
 
@@ -73,6 +73,7 @@ type
     function confirmOperation: Boolean;
     procedure onSave(aID: string);
     procedure onAppend(aID: string);
+    procedure clearUpdateFields;
   public
 
   end;
@@ -122,9 +123,25 @@ begin
 end;
 
 procedure TFrmInsert.btnConsultaUClick(Sender: TObject);
+var
+  DM: TDM;
 begin
-  onAppend(edtID.Text);
-  datasetToView;
+  try
+    DM := TDM.Create(nil);
+    if DM.isExist(StrToInt(edtID.Text)) then
+    begin
+      onAppend(edtID.Text);
+      datasetToView;
+    end
+    else
+    begin
+      clearUpdateFields;
+      ShowMessage('ID Inválido!');
+    end;
+  finally
+    FreeAndNil(DM);
+  end;
+
 end;
 
 procedure TFrmInsert.btnSendUClick(Sender: TObject);
@@ -507,6 +524,20 @@ begin
   finally
     FreeAndNil(lJson);
   end;
+end;
+
+procedure TFrmInsert.clearUpdateFields;
+begin
+  edtID.Clear;
+  edtNomeU.Clear;
+  edtApelidoU.Clear;
+  edtCpfCnpjU.Clear;
+  edtLogU.Clear;
+  edtNumU.Clear;
+  edtBairroU.Clear;
+  edtCepU.Clear;
+  edtMunU.Clear;
+  edtUFU.Clear;
 end;
 
 end.

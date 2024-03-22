@@ -123,10 +123,10 @@ begin
             ZQuery.SQL.Add(' LEFT JOIN cliente ON pessoa.id = cliente.id ');
           end;
           1: begin
-            ZQuery.SQL.Add(' LEFT JOIN funcionario ON pessoa.id = cliente.id ');
+            ZQuery.SQL.Add(' LEFT JOIN funcionario ON pessoa.id = funcionario.id ');
           end;
           2: begin
-            ZQuery.SQL.Add(' LEFT JOIN fornecedor ON pessoa.id = cliente.id ');
+            ZQuery.SQL.Add(' LEFT JOIN fornecedor ON pessoa.id = fornecedor.id ');
           end;
         end;
 

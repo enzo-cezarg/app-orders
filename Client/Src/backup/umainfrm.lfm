@@ -5,8 +5,8 @@ object MainFrm: TMainFrm
   Width = 663
   BorderStyle = bsSingle
   Caption = 'Principal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 472
+  ClientWidth = 663
   Menu = MainMenu
   OnCreate = FormCreate
   OnResize = FormResize
@@ -93,6 +93,7 @@ object MainFrm: TMainFrm
     ReadOnly = True
     TabOrder = 3
     OnCellClick = dbgQueryCellClick
+    OnMouseEnter = dbgQueryMouseEnter
   end
   object Button2: TButton
     Left = 233

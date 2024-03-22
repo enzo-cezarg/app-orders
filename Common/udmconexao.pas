@@ -22,8 +22,8 @@ type
   private
     FTpConexao: TTpConexao;
     procedure SetTpConexao(AValue: TTpConexao);
-    function isExist(aID: Integer): Boolean;
   public
+    function isExist(aID: Integer): Boolean;
     function GetPessoa(aID: Integer): string;
     function SavePessoa(aID: Integer; aJson: string): string;
     function DeletePessoa(aID: Integer): string;

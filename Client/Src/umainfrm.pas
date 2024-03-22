@@ -52,7 +52,7 @@ type
     procedure menuInsertAltClick(Sender: TObject);
     procedure menuDeleteClick(Sender: TObject);
   private
-
+    procedure saveIDIndex;
   public
 
   end;
@@ -81,6 +81,8 @@ begin
   ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 0 ORDER BY id');
   ZQuery.Open;
 
+  saveIDIndex;
+
   ZQuery.Active := True;
   Button3.Enabled := True;
   Button5.Enabled := True;
@@ -95,6 +97,8 @@ begin
   ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 2 ORDER BY id');
   ZQuery.Open;
 
+  saveIDIndex;
+
   ZQuery.Active := True;
   Button3.Enabled := True;
   Button5.Enabled := True;
@@ -108,6 +112,8 @@ begin
   ZQuery.SQL.Clear;
   ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 1 ORDER BY id');
   ZQuery.Open;
+
+  saveIDIndex;
 
   ZQuery.Active := True;
   Button3.Enabled := True;
@@ -127,6 +133,21 @@ end;
 procedure TMainFrm.menuDeleteClick(Sender: TObject);
 begin
   FrmDelete.ShowModal;
+end;
+
+procedure TMainFrm.saveIDIndex;
+var
+  i: integer;
+begin
+  for i := 0 to ZQuery.FieldCount - 1 do
+  begin
+    if ZQuery.Fields[i].FieldName = 'ID' then
+    begin
+      dbgQuery.Columns[i].Index := 0;
+      Break;
+    end;
+  end;
+
 end;
 
 procedure TMainFrm.FormCreate(Sender: TObject);
@@ -149,6 +170,8 @@ begin
   ZQuery.SQL.Clear;
   ZQuery.SQL.Add('SELECT * FROM pessoa ORDER BY id');
   ZQuery.Open;
+
+  saveIDIndex;
 
   ZQuery.Active := True;
   Button3.Enabled := True;
