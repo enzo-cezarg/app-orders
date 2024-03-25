@@ -53,6 +53,7 @@ type
     procedure menuDeleteClick(Sender: TObject);
   private
     procedure saveIDIndex;
+    procedure resetConnection;
   public
 
   end;
@@ -76,6 +77,8 @@ procedure TMainFrm.menuConsultaClClick(Sender: TObject);
 begin
   ZQuery.Active := False;
 
+  resetConnection;
+
   ZQuery.Close;
   ZQuery.SQL.Clear;
   ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 0 ORDER BY id');
@@ -92,6 +95,8 @@ procedure TMainFrm.menuConsultaFoClick(Sender: TObject);
 begin
   ZQuery.Active := False;
 
+  resetConnection;
+
   ZQuery.Close;
   ZQuery.SQL.Clear;
   ZQuery.SQL.Add('SELECT * FROM pessoa WHERE tipo_pessoa = 2 ORDER BY id');
@@ -107,6 +112,8 @@ end;
 procedure TMainFrm.menuConsultaFuClick(Sender: TObject);
 begin
   ZQuery.Active := False;
+
+  resetConnection;
 
   ZQuery.Close;
   ZQuery.SQL.Clear;
@@ -150,6 +157,14 @@ begin
 
 end;
 
+procedure TMainFrm.resetConnection;
+begin
+
+  ZQuery.Connection.Connected := False;
+  ZQuery.Connection.Connected := True;
+
+end;
+
 procedure TMainFrm.FormCreate(Sender: TObject);
 begin
   if not Assigned( DM ) then
@@ -166,10 +181,13 @@ begin
 
   ZQuery.Active := False;
 
+  resetConnection;
+
   ZQuery.Close;
   ZQuery.SQL.Clear;
   ZQuery.SQL.Add('SELECT * FROM pessoa ORDER BY id');
   ZQuery.Open;
+
 
   saveIDIndex;
 

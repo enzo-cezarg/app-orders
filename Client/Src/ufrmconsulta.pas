@@ -45,13 +45,14 @@ type
     procedure btnClearClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
     procedure btnShowDetailClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     procedure onAppend(aID: string);
     procedure datasetToView;
     procedure putData(lTpPessoa: integer);
-    procedure clearFields;
   public
+    procedure clearFields;
     procedure getID(aID: string);
   end;
 
@@ -142,6 +143,11 @@ begin
     on E: Exception do
       Raise Exception.Create(E.Message);
   end;
+end;
+
+procedure TFrmConsulta.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  clearFields;
 end;
 
 procedure TFrmConsulta.onAppend(aID: string);

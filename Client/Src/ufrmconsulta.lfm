@@ -7,6 +7,7 @@ object FrmConsulta: TFrmConsulta
   Caption = 'Consulta'
   ClientHeight = 350
   ClientWidth = 700
+  OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'

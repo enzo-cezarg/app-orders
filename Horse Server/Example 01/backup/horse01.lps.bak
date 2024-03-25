@@ -46,8 +46,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="343"/>
-        <CursorPos X="60" Y="362"/>
+        <TopLine Value="109"/>
+        <CursorPos X="76" Y="129"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
