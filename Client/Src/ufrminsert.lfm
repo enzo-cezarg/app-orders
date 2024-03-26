@@ -4,8 +4,8 @@ object FrmInsert: TFrmInsert
   Top = 152
   Width = 690
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 400
+  ClientWidth = 690
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
@@ -197,8 +197,8 @@ object FrmInsert: TFrmInsert
       end
       object selectTp: TRxRadioGroup
         Left = 32
-        Height = 48
-        Top = 16
+        Height = 66
+        Top = 0
         Width = 408
         AutoFill = True
         Caption = 'Tipo'
@@ -209,7 +209,7 @@ object FrmInsert: TFrmInsert
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 3
-        ClientHeight = 26
+        ClientHeight = 44
         ClientWidth = 404
         Columns = 3
         Font.CharSet = ANSI_CHARSET

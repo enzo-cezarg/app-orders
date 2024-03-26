@@ -5,8 +5,8 @@ object MainFrm: TMainFrm
   Width = 663
   BorderStyle = bsSingle
   Caption = 'Principal'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 472
+  ClientWidth = 663
   Menu = MainMenu
   OnCreate = FormCreate
   OnResize = FormResize
@@ -63,7 +63,7 @@ object MainFrm: TMainFrm
   end
   object mmJson: TMemo
     Left = 0
-    Height = 166
+    Height = 158
     Top = 50
     Width = 663
     Align = alTop
@@ -83,8 +83,8 @@ object MainFrm: TMainFrm
   end
   object dbgQuery: TDBGrid
     Left = 0
-    Height = 129
-    Top = 216
+    Height = 137
+    Top = 208
     Width = 663
     Align = alClient
     Color = clWindow
