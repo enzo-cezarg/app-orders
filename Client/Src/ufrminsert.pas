@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, j4dl, rr4dl, dc4dl, udmconexao;
+  ComCtrls, StdCtrls, Menus, j4dl, rr4dl, dc4dl, udmconexao, rxctrls;
 
 type
 
@@ -17,6 +17,7 @@ type
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
+    selectTp: TRxRadioGroup;
     edtID: TEdit;
     edtUFU: TEdit;
     edtNomeU: TEdit;
@@ -99,8 +100,8 @@ implementation
 procedure TFrmInsert.FormCreate(Sender: TObject);
 begin
   FrmInsert.BorderStyle := _FORM_BORDER_STYLE;
-  FrmInsert.Width := _FORM_WIDTH;
-  FrmInsert.Height := _FORM_HEIGHT;
+  FrmInsert.Width       := _FORM_WIDTH;
+  FrmInsert.Height      := _FORM_HEIGHT;
 
 end;
 
@@ -108,6 +109,7 @@ procedure TFrmInsert.FormActivate(Sender: TObject);
 begin
   getStructure;
   datasetToView;
+  selectTp.ItemIndex := -1;
 end;
 
 procedure TFrmInsert.btnSendInsertClick(Sender: TObject);
@@ -261,15 +263,16 @@ begin
 
          if (bdsCrudPessoas.Active) and (bdsCrudPessoas.RecordCount > 0 ) then
          begin
-           edtNome.Text     := bdsCrudPessoas.FieldByName('nome_razao').AsString;
-           edtApelido.Text  := bdsCrudPessoas.FieldByName('apelido_fantasia').AsString;
-           edtCpfCnpj.Text  := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
-           edtLog.Text      := bdsCrudPessoas.FieldByName('logradouro').AsString;
-           edtNum.Text      := bdsCrudPessoas.FieldByName('numero').AsString;
-           edtBairro.Text   := bdsCrudPessoas.FieldByName('bairro').AsString;
-           edtCep.Text      := bdsCrudPessoas.FieldByName('cep').AsString;
-           edtMun.Text      := bdsCrudPessoas.FieldByName('municipio').AsString;
-           edtUF.Text       := bdsCrudPessoas.FieldByName('uf').AsString;
+           selectTp.ItemIndex := bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger;
+           edtNome.Text       := bdsCrudPessoas.FieldByName('nome_razao').AsString;
+           edtApelido.Text    := bdsCrudPessoas.FieldByName('apelido_fantasia').AsString;
+           edtCpfCnpj.Text    := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
+           edtLog.Text        := bdsCrudPessoas.FieldByName('logradouro').AsString;
+           edtNum.Text        := bdsCrudPessoas.FieldByName('numero').AsString;
+           edtBairro.Text     := bdsCrudPessoas.FieldByName('bairro').AsString;
+           edtCep.Text        := bdsCrudPessoas.FieldByName('cep').AsString;
+           edtMun.Text        := bdsCrudPessoas.FieldByName('municipio').AsString;
+           edtUF.Text         := bdsCrudPessoas.FieldByName('uf').AsString;
          end;
       end;
       1: begin
@@ -347,7 +350,6 @@ begin
       0:
       begin
         bdsCrudPessoas.Append;
-        // bdsCrudPessoas.FieldByName('id').AsString := '0';
       end;
       1:
         bdsCrudPessoas.Edit;
@@ -382,7 +384,15 @@ begin
 
         if (Trim(edtUF.Text) <> '') then
           bdsCrudPessoas.FieldByName('uf').AsString := Trim(edtUF.Text);
-        end;
+
+          case selectTp.ItemIndex of
+            0: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 0;
+
+            1: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 1;
+
+            2: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 2;
+          end;
+      end;
       1:
       begin
         if (Trim(edtID.Text) <> '') then
@@ -429,56 +439,61 @@ var
   lRes: IResponse;
   lJson: TJSONObject;
 begin
-  case pgcSelectOp.PageIndex of
-    0:
-    begin
-      try
-        lJson := TJSONObject.Create(nil);
-          try
+  if selectTp.ItemIndex = -1 then
+    _MSG_OPERATION := 'Selecione o tipo antes de prosseguir!'
+  else
+  begin
+    case pgcSelectOp.PageIndex of
+      0:
+      begin
+        try
+          lJson := TJSONObject.Create(nil);
+            try
 
-            lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
+              lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
 
-            lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa')
-                            .ContentType('application/json')
-                            .AddBody(lJson.Stringify)
-                            .Post;
+              lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa')
+                              .ContentType('application/json')
+                              .AddBody(lJson.Stringify)
+                              .Post;
 
-            if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
-              _MSG_OPERATION := 'INCLUÍDO com sucesso!';
+              if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
+                _MSG_OPERATION := 'INCLUÍDO com sucesso!';
 
 
-          except
-            on E: exception do
-              Raise Exception.Create(E.Message);
-          end;
-      finally
-        FreeAndNil(lJson);
+            except
+              on E: exception do
+                Raise Exception.Create(E.Message);
+            end;
+        finally
+          FreeAndNil(lJson);
+        end;
       end;
-    end;
-    1:
-    begin
-      try
-        lJson := TJSONObject.Create(nil);
-          try
+      1:
+      begin
+        try
+          lJson := TJSONObject.Create(nil);
+            try
 
-            lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
+              lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
 
-            lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
-                            .ContentType('application/json')
-                            .AddBody(lJson.Stringify)
-                            .Put;
+              lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
+                              .ContentType('application/json')
+                              .AddBody(lJson.Stringify)
+                              .Put;
 
-            if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
-              _MSG_OPERATION := 'ALTERADO com sucesso!'
-            else
-              raise exception.create(lJson.Stringify);
+              if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
+                _MSG_OPERATION := 'ALTERADO com sucesso!'
+              else
+                raise exception.create(lJson.Stringify);
 
-          except
-            on E: exception do
-              Raise Exception.Create(E.Message);
-          end;
-      finally
-        FreeAndNil(lJson);
+            except
+              on E: exception do
+                Raise Exception.Create(E.Message);
+            end;
+        finally
+          FreeAndNil(lJson);
+        end;
       end;
     end;
   end;
