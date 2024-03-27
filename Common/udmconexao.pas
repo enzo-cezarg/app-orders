@@ -196,6 +196,8 @@ begin
           lQuery.SQL.Add(' (:nome_razao, :apelido_fantasia, :cpf_cnpj,                         ');
           lQuery.SQL.Add(' :logradouro, :numero, :bairro, :cep, :municipio, :uf, :tipo_pessoa) ');
           lQuery.SQL.Add(' RETURNING id                                                        ');
+
+          lQuery.ParamByName('tipo_pessoa').AsInteger       := lJson.Values['tipo_pessoa'].AsInteger;
         end
         else
         begin
@@ -217,7 +219,7 @@ begin
         lQuery.ParamByName('cep').AsString                := lJson.Values['cep'].AsString;
         lQuery.ParamByName('municipio').AsString          := lJson.Values['municipio'].AsString;
         lQuery.ParamByName('uf').AsString                 := lJson.Values['uf'].AsString;
-        lQuery.ParamByName('tipo_pessoa').AsInteger       := lJson.Values['tipo_pessoa'].AsInteger;
+
 
         try
           if not lIsExist then

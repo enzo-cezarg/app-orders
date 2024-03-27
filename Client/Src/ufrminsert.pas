@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, BufDataset, DB, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, Menus, j4dl, rr4dl, dc4dl, udmconexao, rxctrls;
+  ComCtrls, StdCtrls, Menus, MaskEdit, j4dl, rr4dl, dc4dl, udmconexao, rxctrls,
+  rxlookup, rxdbcomb;
 
 type
 
@@ -17,6 +18,8 @@ type
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
+    mEdtCpfCnpj: TMaskEdit;
+    selectTpCad: TRxRadioGroup;
     selectTp: TRxRadioGroup;
     edtID: TEdit;
     edtUFU: TEdit;
@@ -30,7 +33,6 @@ type
     edtMunU: TEdit;
     edtNome: TEdit;
     edtApelido: TEdit;
-    edtCpfCnpj: TEdit;
     edtLog: TEdit;
     edtNum: TEdit;
     edtBairro: TEdit;
@@ -66,7 +68,9 @@ type
     procedure btnSendUClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure mEdtCpfCnpjMouseEnter(Sender: TObject);
     procedure pgcSelectOpChange(Sender: TObject);
+    procedure selectTpCadSelectionChanged(Sender: TObject);
   private
     procedure getStructure;
     procedure datasetToView;
@@ -75,6 +79,7 @@ type
     procedure onSave(aID: string);
     procedure onAppend(aID: string);
     procedure clearUpdateFields;
+    procedure checkTpCad;
   public
 
   end;
@@ -83,6 +88,7 @@ var
   FrmInsert: TFrmInsert;
   _MSG_OPERATION: string;
   _UPDATE_ID: string;
+  _TIPO_PESSOA: integer;
 
 const
 
@@ -103,6 +109,14 @@ begin
   FrmInsert.Width       := _FORM_WIDTH;
   FrmInsert.Height      := _FORM_HEIGHT;
 
+end;
+
+procedure TFrmInsert.mEdtCpfCnpjMouseEnter(Sender: TObject);
+begin
+  if not mEdtCpfCnpj.Enabled then
+    mEdtCpfCnpj.ShowHint := True
+  else
+    mEdtCpfCnpj.ShowHint := False;
 end;
 
 procedure TFrmInsert.FormActivate(Sender: TObject);
@@ -133,6 +147,7 @@ begin
     if DM.isExist(StrToInt(edtID.Text)) then
     begin
       onAppend(edtID.Text);
+      _TIPO_PESSOA := DM.GetTpPessoa(StrToInt(edtID.Text));
       datasetToView;
     end
     else
@@ -163,13 +178,25 @@ begin
   case pgcSelectOp.PageIndex of
     0:
     begin
+      selectTpCad.ItemIndex := -1;
       datasetToView;
     end;
     1:
     begin
-       datasetToView;
+      selectTpCad.ItemIndex := -1;
+      datasetToView;
     end;
   end;
+end;
+
+{procedure TFrmInsert.selectTpCadClick(Sender: TObject);
+begin
+  checkTpCad;
+end;}
+
+procedure TFrmInsert.selectTpCadSelectionChanged(Sender: TObject);
+begin
+  checkTpCad;
 end;
 
 procedure TFrmInsert.getStructure;
@@ -225,7 +252,7 @@ begin
            Clear;
            MaxLength := 50;
          end;
-         with edtCpfCnpj do
+         with mEdtCpfCnpj do
          begin
            Clear;
            MaxLength := 14;
@@ -266,7 +293,7 @@ begin
            selectTp.ItemIndex := bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger;
            edtNome.Text       := bdsCrudPessoas.FieldByName('nome_razao').AsString;
            edtApelido.Text    := bdsCrudPessoas.FieldByName('apelido_fantasia').AsString;
-           edtCpfCnpj.Text    := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
+           mEdtCpfCnpj.Text   := bdsCrudPessoas.FieldByName('cpf_cnpj').AsString;
            edtLog.Text        := bdsCrudPessoas.FieldByName('logradouro').AsString;
            edtNum.Text        := bdsCrudPessoas.FieldByName('numero').AsString;
            edtBairro.Text     := bdsCrudPessoas.FieldByName('bairro').AsString;
@@ -364,8 +391,8 @@ begin
         if (Trim(edtApelido.Text) <> '') then
           bdsCrudPessoas.FieldByName('apelido_fantasia').AsString := Trim(edtApelido.Text);
 
-        if (Trim(edtCpfCnpj.Text) <> '') then
-          bdsCrudPessoas.FieldByName('cpf_cnpj').AsString := Trim(edtCpfCnpj.Text);
+        if (Trim(mEdtCpfCnpj.EditText) <> '') then
+          bdsCrudPessoas.FieldByName('cpf_cnpj').AsString := Trim(mEdtCpfCnpj.EditText);
 
         if (Trim(edtLog.Text) <> '') then
           bdsCrudPessoas.FieldByName('logradouro').AsString := Trim(edtLog.Text);
@@ -424,6 +451,8 @@ begin
 
         if (Trim(edtUFU.Text) <> '') then
           bdsCrudPessoas.FieldByName('uf').AsString := Trim(edtUFU.Text);
+
+        // bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := _TIPO_PESSOA;
       end;
     end;
   end;
@@ -439,13 +468,16 @@ var
   lRes: IResponse;
   lJson: TJSONObject;
 begin
-  if selectTp.ItemIndex = -1 then
-    _MSG_OPERATION := 'Selecione o tipo antes de prosseguir!'
-  else
-  begin
+
     case pgcSelectOp.PageIndex of
       0:
       begin
+        if selectTp.ItemIndex = -1 then
+        begin
+          _MSG_OPERATION := 'Selecione o tipo antes de prosseguir!';
+          Exit;
+        end;
+
         try
           lJson := TJSONObject.Create(nil);
             try
@@ -469,6 +501,7 @@ begin
           FreeAndNil(lJson);
         end;
       end;
+
       1:
       begin
         try
@@ -497,7 +530,6 @@ begin
       end;
     end;
   end;
-end;
 
 procedure TFrmInsert.onAppend(aID: string);
 var
@@ -551,6 +583,26 @@ begin
   edtCepU.Clear;
   edtMunU.Clear;
   edtUFU.Clear;
+end;
+
+procedure TFrmInsert.checkTpCad;
+begin
+  case selectTpCad.ItemIndex of
+      -1: mEdtCpfCnpj.Enabled := False;
+      0:
+      begin
+        mEdtCpfCnpj.EditMask := '999.999.999-99;0';
+        mEdtCpfCnpj.Enabled := True;
+        mEdtCpfCnpj.MaxLength := 11;
+      end;
+      1:
+      begin
+        mEdtCpfCnpj.EditMask := '99.999.999/9999-99;0';
+        mEdtCpfCnpj.Enabled := True;
+        mEdtCpfCnpj.MaxLength := 18;
+        // Aqui talvez?
+      end;
+  end;
 end;
 
 end.
