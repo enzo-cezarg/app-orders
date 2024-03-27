@@ -4,8 +4,8 @@ object FrmInsert: TFrmInsert
   Top = 152
   Width = 690
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 400
-  ClientWidth = 690
+  ClientHeight = 0
+  ClientWidth = 0
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'

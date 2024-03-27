@@ -76,9 +76,11 @@ type
     procedure datasetToView;
     procedure viewToDataset;
     function confirmOperation: Boolean;
+    function addDetails: Boolean;
     procedure onSave(aID: string);
     procedure onAppend(aID: string);
     procedure clearUpdateFields;
+    procedure clearAll;
     procedure checkTpCad;
   public
 
@@ -88,7 +90,6 @@ var
   FrmInsert: TFrmInsert;
   _MSG_OPERATION: string;
   _UPDATE_ID: string;
-  _TIPO_PESSOA: integer;
 
 const
 
@@ -147,7 +148,6 @@ begin
     if DM.isExist(StrToInt(edtID.Text)) then
     begin
       onAppend(edtID.Text);
-      _TIPO_PESSOA := DM.GetTpPessoa(StrToInt(edtID.Text));
       datasetToView;
     end
     else
@@ -178,21 +178,22 @@ begin
   case pgcSelectOp.PageIndex of
     0:
     begin
-      selectTpCad.ItemIndex := -1;
+      mEdtCpfCnpj.EditMask := '';
       datasetToView;
+      selectTpCad.ItemIndex := -1;
+      selectTp.ItemIndex := -1;
+      clearAll;
     end;
     1:
     begin
-      selectTpCad.ItemIndex := -1;
+      mEdtCpfCnpj.EditMask := '';
       datasetToView;
+      selectTpCad.ItemIndex := -1;
+      selectTp.ItemIndex := -1;
+      clearAll;
     end;
   end;
 end;
-
-{procedure TFrmInsert.selectTpCadClick(Sender: TObject);
-begin
-  checkTpCad;
-end;}
 
 procedure TFrmInsert.selectTpCadSelectionChanged(Sender: TObject);
 begin
@@ -451,8 +452,6 @@ begin
 
         if (Trim(edtUFU.Text) <> '') then
           bdsCrudPessoas.FieldByName('uf').AsString := Trim(edtUFU.Text);
-
-        // bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := _TIPO_PESSOA;
       end;
     end;
   end;
@@ -461,6 +460,11 @@ end;
 function TFrmInsert.confirmOperation: Boolean;
 begin
   Result := MessageDlg('Deseja confirmar?', mtConfirmation, mbYesNo, 0) = mrYes;
+end;
+
+function TFrmInsert.addDetails: Boolean;
+begin
+  Result := MessageDlg('Deseja inserir informações adicionais?', mtConfirmation, mbYesNo, 0) = mrYes;
 end;
 
 procedure TFrmInsert.onSave(aID: string);
@@ -573,6 +577,30 @@ end;
 
 procedure TFrmInsert.clearUpdateFields;
 begin
+  edtID.Clear;
+  edtNomeU.Clear;
+  edtApelidoU.Clear;
+  edtCpfCnpjU.Clear;
+  edtLogU.Clear;
+  edtNumU.Clear;
+  edtBairroU.Clear;
+  edtCepU.Clear;
+  edtMunU.Clear;
+  edtUFU.Clear;
+end;
+
+procedure TFrmInsert.clearAll;
+begin
+  edtNome.Clear;
+  edtApelido.Clear;
+  mEdtCpfCnpj.Clear;
+  edtLog.Clear;
+  edtNum.Clear;
+  edtBairro.Clear;
+  edtCep.Clear;
+  edtMun.Clear;
+  edtUF.Clear;
+
   edtID.Clear;
   edtNomeU.Clear;
   edtApelidoU.Clear;

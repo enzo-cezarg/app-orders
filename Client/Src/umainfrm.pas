@@ -33,7 +33,6 @@ type
     menuConsultaCl: TMenuItem;
     menuConsultaFu: TMenuItem;
     menuConsultaFo: TMenuItem;
-    mmJson: TMemo;
     pnlTop: TPanel;
     RxMemoryData: TRxMemoryData;
     ZQuery: TZQuery;
@@ -44,7 +43,6 @@ type
     procedure Button5Click(Sender: TObject);
     procedure dbgQueryCellClick(Column: TColumn);
     procedure FormCreate(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure menuConsultaClClick(Sender: TObject);
     procedure menuConsultaFoClick(Sender: TObject);
     procedure menuConsultaFuClick(Sender: TObject);
@@ -66,12 +64,6 @@ implementation
 {$R *.lfm}
 
 { TMainFrm }
-
-procedure TMainFrm.FormResize(Sender: TObject);
-begin
-  mmJson.Height    := Trunc((Self.Height - (39 + pnlTop.Height)) / 3);
-  dbgMemTbl.Height := mmJson.Height;
-end;
 
 procedure TMainFrm.menuConsultaClClick(Sender: TObject);
 begin

@@ -11,7 +11,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos Y="30"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="162"/>
       </Unit>
       <Unit>
         <Filename Value="umainfrm.pas"/>
@@ -21,10 +21,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMainFrm"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="85"/>
-        <CursorPos X="19" Y="80"/>
+        <TopLine Value="136"/>
+        <CursorPos X="44" Y="45"/>
         <ComponentState Value="1"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="162"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -37,7 +37,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="77"/>
         <CursorPos X="59" Y="221"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="162"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -46,7 +46,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="BaseRouter"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Common\pessoa.router.pas"/>
@@ -54,7 +54,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="44"/>
         <CursorPos X="11" Y="34"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -63,7 +63,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="36"/>
         <CursorPos X="3" Y="44"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -72,7 +72,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="6" Y="44"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\Horse Server\Example 01\horse01.lpr"/>
@@ -80,7 +80,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="56" Y="21"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconsulta.pas"/>
@@ -90,7 +90,8 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="21"/>
         <CursorPos X="3" Y="230"/>
-        <UsageCount Value="140"/>
+        <ComponentState Value="1"/>
+        <UsageCount Value="143"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -104,7 +105,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos X="83" Y="75"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="140"/>
       </Unit>
       <Unit>
         <Filename Value="ufrminsert.pas"/>
@@ -114,9 +115,10 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="178"/>
-        <CursorPos X="35" Y="181"/>
-        <UsageCount Value="102"/>
+        <TopLine Value="171"/>
+        <CursorPos X="32" Y="192"/>
+        <ComponentState Value="1"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -127,7 +129,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="69"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmdetalhesfuncionario.pas"/>
@@ -137,7 +139,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="54" Y="51"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="64"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmdetalhesfornecedor.pas"/>
@@ -148,7 +150,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="22" Y="37"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="60"/>
       </Unit>
       <Unit>
         <Filename Value="ufrmconsultacep.pas"/>
@@ -449,26 +451,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="ufrminsert.pas"/>
-        <Caret Line="437" Column="44" TopLine="410"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrminsert.pas"/>
-        <Caret Line="394" Column="9" TopLine="385"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrminsert.pas"/>
-        <Caret Line="393" Column="16" TopLine="382"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrminsert.pas"/>
-        <Caret Line="392" Column="16" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrminsert.pas"/>
-        <Caret Line="114" Column="27" TopLine="114"/>
-      </Position>
-      <Position>
-        <Filename Value="ufrminsert.pas"/>
         <Caret Line="115" Column="27" TopLine="115"/>
       </Position>
       <Position>
@@ -566,6 +548,26 @@
       <Position>
         <Filename Value="ufrminsert.pas"/>
         <Caret Line="453" Column="12" TopLine="443"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsert.pas"/>
+        <Caret Line="79" Column="33" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsert.pas"/>
+        <Caret Line="83" Column="24" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="ufrminsert.pas"/>
+        <Caret Line="191" Column="16" TopLine="170"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="80" Column="19" TopLine="84"/>
+      </Position>
+      <Position>
+        <Filename Value="umainfrm.pas"/>
+        <Caret Line="79" Column="19" TopLine="79"/>
       </Position>
     </JumpHistory>
     <RunParams>

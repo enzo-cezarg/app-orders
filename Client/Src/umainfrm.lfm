@@ -5,11 +5,10 @@ object MainFrm: TMainFrm
   Width = 663
   BorderStyle = bsSingle
   Caption = 'Principal'
-  ClientHeight = 472
-  ClientWidth = 663
+  ClientHeight = 0
+  ClientWidth = 0
   Menu = MainMenu
   OnCreate = FormCreate
-  OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '3.0.0.3'
   WindowState = wsMaximized
@@ -17,11 +16,11 @@ object MainFrm: TMainFrm
     Left = 0
     Height = 50
     Top = 0
-    Width = 663
+    Width = 0
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 663
+    ClientWidth = 0
     TabOrder = 0
     object Button1: TButton
       Left = 16
@@ -61,37 +60,29 @@ object MainFrm: TMainFrm
       OnClick = Button5Click
     end
   end
-  object mmJson: TMemo
-    Left = 0
-    Height = 158
-    Top = 50
-    Width = 663
-    Align = alTop
-    TabOrder = 1
-  end
   object dbgMemTbl: TDBGrid
     Left = 0
-    Height = 127
-    Top = 345
-    Width = 663
+    Height = 317
+    Top = -317
+    Width = 0
     Align = alBottom
     Color = clWindow
     Columns = <>
     DataSource = dsMemTbl
     ReadOnly = True
-    TabOrder = 2
+    TabOrder = 1
   end
   object dbgQuery: TDBGrid
     Left = 0
-    Height = 137
-    Top = 208
-    Width = 663
+    Height = 0
+    Top = 0
+    Width = 0
     Align = alClient
     Color = clWindow
     Columns = <>
     DataSource = dsQuery
     ReadOnly = True
-    TabOrder = 3
+    TabOrder = 2
     OnCellClick = dbgQueryCellClick
   end
   object Button2: TButton
@@ -101,13 +92,13 @@ object MainFrm: TMainFrm
     Width = 100
     Caption = 'Open/Close Mtb'
     Enabled = False
-    TabOrder = 4
+    TabOrder = 3
     OnClick = Button2Click
   end
   object dsQuery: TDataSource
     DataSet = ZQuery
-    Left = 344
-    Top = 288
+    Left = 328
+    Top = 184
   end
   object dsMemTbl: TDataSource
     DataSet = BufDataset
@@ -122,7 +113,7 @@ object MainFrm: TMainFrm
     )
     Params = <>
     Left = 456
-    Top = 288
+    Top = 184
   end
   object BufDataset: TBufDataset
     FieldDefs = <>
