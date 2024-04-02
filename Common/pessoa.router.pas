@@ -78,7 +78,6 @@ begin
   .Get('/pessoa/:id', GetPessoa)
   .Get('/pessoa/structure', GetPessoaStructure)
   .Post('/pessoa', SavePessoa)
-  .Post('/pessoa/detail/:id', SavePessoaDetails)
   .Put('/pessoa/:id', SavePessoa)
   .Put('/pessoa/detail/:id', SavePessoaDetails)
   .Delete('/pessoa/:id', DeletePessoa);
