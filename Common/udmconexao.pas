@@ -5,7 +5,7 @@ unit udmconexao;
 interface
 
 uses
-  Classes, SysUtils, ZConnection, ZDataset;
+  Classes, SysUtils, ZConnection, ZDataset, DB, BufDataset;
 
 type
 
@@ -26,6 +26,7 @@ type
     function isExist(aID: Integer): Boolean;
     function GetPessoa(aID: Integer): string;
     function SavePessoa(aID: Integer; aJson: string): string;
+    function SavePessoaDetails(aID: Integer; aJson: string): string;
     function DeletePessoa(aID: Integer): string;
     function GetPessoaStructure: string;
     function GetTpPessoa(aID: Integer): Integer;
@@ -273,6 +274,119 @@ begin
   end;
 end;
 
+function TDM.SavePessoaDetails(aID: Integer; aJson: string): string;
+var
+  lJsonReq: TJSONObject;
+  lQuery: TZQuery;
+  tpOperacao,
+  lID,
+  lTpPessoa: Integer;
+  lMsg: String;
+begin
+  lJsonReq := TJSONObject.Create(nil);
+  lQuery := TZQuery.Create(nil);
+  lQuery.Connection := ZConnection;
+  try
+    try
+
+      if not lJsonReq.IsJsonObject(aJson) then
+        Raise Exception.Create('JSON Inválido!');
+
+      lJsonReq.Parse(aJson);
+
+      lID := lJsonReq.Values['id'].AsInteger;
+
+      lTpPessoa := lJsonReq.Values['tipo_pessoa'].AsInteger;
+      tpOperacao := lJsonReq.Values['tipo_operacao'].AsInteger;
+
+      case tpOperacao of
+        0:
+        begin
+
+          case lTpPessoa of
+            0:
+            begin
+              lQuery.SQL.Add(' INSERT INTO cliente                                                     ');
+              lQuery.SQL.Add(' (id, limite_credito, telefone_fixo, telefone_celular, email, obs)       ');
+              lQuery.SQL.Add(' VALUES                                                                  ');
+              lQuery.SQL.Add(' (:id, :limite_credito, :telefone_fixo, :telefone_celular, :email, :obs) ');
+
+              lQuery.ParamByName('id').AsInteger                 := lID;
+              lQuery.ParamByName('limite_credito').AsInteger     := lJsonReq.Values['limite_credito'].AsInteger;
+              lQuery.ParamByName('telefone_fixo').AsString       := lJsonReq.Values['telefone_fixo'].AsString;
+              lQuery.ParamByName('telefone_celular').AsString    := lJsonReq.Values['telefone_celular'].AsString;
+              lQuery.ParamByName('email').AsString               := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('obs').AsString                 := lJsonReq.Values['obs'].AsString;
+            end;
+            1:
+            begin
+              lQuery.SQL.Add(' INSERT INTO funcionario                           ');
+              lQuery.SQL.Add(' (id, comissao, email, login, senha, master)       ');
+              lQuery.SQL.Add(' VALUES                                            ');
+              lQuery.SQL.Add(' (:id, :comissao, :email, :login, :senha, :master) ');
+
+              lQuery.ParamByName('id').AsInteger         := lID;
+              lQuery.ParamByName('comissao').AsInteger   := lJsonReq.Values['comissao'].AsInteger;
+              lQuery.ParamByName('email').AsString       := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('login').AsString       := lJsonReq.Values['login'].AsString;
+              lQuery.ParamByName('senha').AsString       := lJsonReq.Values['senha'].AsString;
+              lQuery.ParamByName('master').AsInteger     := lJsonReq.Values['master'].AsInteger;
+            end;
+            2:
+            begin
+              lQuery.SQL.Add(' INSERT INTO fornecedor                   ');
+              lQuery.SQL.Add(' (id, telefone, email, website, obs)      ');
+              lQuery.SQL.Add(' VALUES                                   ');
+              lQuery.SQL.Add(' (:id, :telefone, :email, :website, :obs) ');
+
+              lQuery.ParamByName('id').AsInteger         := lID;
+              lQuery.ParamByName('telefone').AsString    := lJsonReq.Values['telefone'].AsString;
+              lQuery.ParamByName('email').AsString       := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('website').AsString     := lJsonReq.Values['website'].AsString;
+              lQuery.ParamByName('obs').AsString         := lJsonReq.Values['obs'].AsString;
+            end;
+          end;
+
+        end;
+        1:
+        begin
+          //
+        end;
+      end;
+
+      case tpOperacao of
+        0:
+        begin
+          lQuery.ExecSQL;
+          lMsg := 'INCLUÍDO com sucesso!';
+          lQuery.Connection.Commit;
+        end;
+        1:
+        begin
+          lQuery.ExecSQL;
+          lMsg := 'ALTERADO com sucesso!';
+          lQuery.Connection.Commit
+        end;
+      end;
+
+
+    except
+        on E: exception do
+          Raise Exception.Create(E.Message);
+    end;
+
+    lJsonReq.Clear;
+    lJsonReq.Put('success', True);
+    lJsonReq.Put('message', lMsg);
+    lJsonReq.Put('data', TConverter.New.LoadDataSet(lQuery).ToJSONArray);
+
+  finally
+    Result := lJsonReq.Stringify;
+    FreeAndNil(lJsonReq);
+    FreeAndNil(lQuery);
+  end;
+end;
+
 function TDM.DeletePessoa(aID: Integer): string;
 var
   lQuery: TZQuery;
@@ -375,7 +489,6 @@ begin
   end;
 
 end;
-
 
 end.
 

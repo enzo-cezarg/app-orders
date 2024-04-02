@@ -76,10 +76,6 @@ begin
 
 end;
 
-class function TPessoaService.GetPessoaDetails(aID: string): string;
-
-end;
-
 
 end.
 

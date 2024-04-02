@@ -42,6 +42,17 @@ begin
   .Send( TPessoaService.SavePessoas( lID, aReq.Body ) );
 end;
 
+procedure SavePessoaDetails(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
+var
+  lID: string;
+begin
+  if not aReq.Params.TryGetValue('id', lID) then
+    lID := '0';
+
+  aRes.ContentType('application/json')
+  .Send( TPessoaService.SavePessoaDetails( lID, aReq.Body ) );
+end;
+
 procedure DeletePessoa(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
 var
   lID: string;
@@ -67,7 +78,9 @@ begin
   .Get('/pessoa/:id', GetPessoa)
   .Get('/pessoa/structure', GetPessoaStructure)
   .Post('/pessoa', SavePessoa)
+  .Post('/pessoa/detail/:id', SavePessoaDetails)
   .Put('/pessoa/:id', SavePessoa)
+  .Put('/pessoa/detail/:id', SavePessoaDetails)
   .Delete('/pessoa/:id', DeletePessoa);
 
   // http://localhost:9095/pessoa/:id/detalhes/:tipo_pessoa

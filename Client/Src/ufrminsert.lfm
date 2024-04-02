@@ -1,38 +1,38 @@
 object FrmInsert: TFrmInsert
-  Left = 280
-  Height = 400
-  Top = 152
-  Width = 690
+  Left = 230
+  Height = 600
+  Top = 70
+  Width = 750
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 600
+  ClientWidth = 750
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
   object pgcSelectOp: TPageControl
     Left = 0
-    Height = 400
+    Height = 600
     Top = 0
-    Width = 690
-    ActivePage = pgUpdate
+    Width = 750
+    ActivePage = pgInsert
     Align = alClient
     TabHeight = 40
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabWidth = 150
     OnChange = pgcSelectOpChange
     object pgInsert: TTabSheet
       Caption = 'Inserir'
-      ClientHeight = 352
-      ClientWidth = 682
+      ClientHeight = 552
+      ClientWidth = 742
       Font.CharSet = ANSI_CHARSET
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       ParentFont = False
       object lblDadosP: TLabel
-        Left = 32
+        Left = 28
         Height = 17
-        Top = 70
+        Top = 104
         Width = 96
         Caption = 'Dados Pessoais:'
         Font.CharSet = ANSI_CHARSET
@@ -44,9 +44,9 @@ object FrmInsert: TFrmInsert
         ParentFont = False
       end
       object lblEndereco: TLabel
-        Left = 32
+        Left = 28
         Height = 17
-        Top = 155
+        Top = 200
         Width = 59
         Caption = 'Endereço:'
         Font.CharSet = ANSI_CHARSET
@@ -58,140 +58,131 @@ object FrmInsert: TFrmInsert
         ParentFont = False
       end
       object edtNome: TEdit
-        Left = 32
+        Left = 64
         Height = 23
-        Top = 113
+        Top = 153
         Width = 160
         TabOrder = 0
       end
       object edtApelido: TEdit
-        Left = 216
+        Left = 248
         Height = 23
-        Top = 113
+        Top = 153
         Width = 232
         TabOrder = 1
       end
       object edtLog: TEdit
-        Left = 32
+        Left = 64
         Height = 23
-        Top = 197
+        Top = 242
         Width = 304
         TabOrder = 3
       end
       object edtNum: TEdit
-        Left = 360
+        Left = 392
         Height = 23
-        Top = 197
+        Top = 242
         Width = 88
         NumbersOnly = True
         TabOrder = 4
       end
       object edtBairro: TEdit
-        Left = 480
+        Left = 520
         Height = 23
-        Top = 197
-        Width = 152
+        Top = 242
+        Width = 185
         TabOrder = 5
       end
       object edtCep: TEdit
-        Left = 32
+        Left = 64
         Height = 23
-        Top = 261
+        Top = 306
         Width = 128
         NumbersOnly = True
         TabOrder = 6
       end
       object edtMun: TEdit
-        Left = 184
+        Left = 216
         Height = 23
-        Top = 261
+        Top = 306
         Width = 152
         TabOrder = 7
       end
       object edtUF: TEdit
-        Left = 360
+        Left = 392
         Height = 23
-        Top = 261
+        Top = 306
         Width = 44
         TabOrder = 8
       end
       object lblNome: TLabel
-        Left = 32
+        Left = 64
         Height = 15
-        Top = 96
+        Top = 136
         Width = 103
         Caption = 'Nome/Razão Social'
       end
       object lblApelido: TLabel
-        Left = 216
+        Left = 248
         Height = 15
-        Top = 96
+        Top = 136
         Width = 153
         Caption = 'Sobrenome/Apelido Fantasia'
       end
       object lblCpfCnpj: TLabel
-        Left = 480
+        Left = 520
         Height = 15
-        Top = 96
+        Top = 136
         Width = 53
         Caption = 'CPF/CNPJ'
       end
       object lblLog: TLabel
-        Left = 32
+        Left = 64
         Height = 15
-        Top = 182
+        Top = 227
         Width = 62
         Caption = 'Logradouro'
       end
       object lblNumero: TLabel
-        Left = 360
+        Left = 392
         Height = 15
-        Top = 182
+        Top = 227
         Width = 44
         Caption = 'Número'
       end
       object lblBairro: TLabel
-        Left = 480
+        Left = 520
         Height = 15
-        Top = 182
+        Top = 227
         Width = 31
         Caption = 'Bairro'
       end
       object lblCep: TLabel
-        Left = 32
+        Left = 64
         Height = 15
-        Top = 247
+        Top = 292
         Width = 21
         Caption = 'CEP'
       end
       object lblMun: TLabel
-        Left = 184
+        Left = 216
         Height = 15
-        Top = 247
+        Top = 292
         Width = 54
         Caption = 'Município'
       end
       object lblUF: TLabel
-        Left = 360
+        Left = 392
         Height = 15
-        Top = 247
+        Top = 292
         Width = 14
         Caption = 'UF'
       end
-      object btnSendInsert: TButton
-        Left = 480
-        Height = 33
-        Top = 251
-        Width = 152
-        Caption = 'Inserir'
-        TabOrder = 9
-        OnClick = btnSendInsertClick
-      end
       object selectTp: TRxRadioGroup
-        Left = 32
+        Left = 24
         Height = 66
-        Top = 0
-        Width = 408
+        Top = 17
+        Width = 456
         AutoFill = True
         Caption = 'Tipo'
         ChildSizing.LeftRightSpacing = 30
@@ -203,7 +194,7 @@ object FrmInsert: TFrmInsert
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 3
         ClientHeight = 44
-        ClientWidth = 404
+        ClientWidth = 452
         Columns = 3
         Font.CharSet = ANSI_CHARSET
         Font.Height = -13
@@ -216,15 +207,16 @@ object FrmInsert: TFrmInsert
           'Funcionário'
           'Fornecedor'
         )
+        OnClick = selectTpClick
         ParentFont = False
         TabOrder = 10
       end
       object mEdtCpfCnpj: TMaskEdit
-        Left = 480
+        Left = 520
         Height = 23
         Hint = 'Selecione o tipo do cadastro.'
-        Top = 113
-        Width = 152
+        Top = 153
+        Width = 185
         Enabled = False
         MaxLength = 0
         ParentShowHint = False
@@ -234,9 +226,9 @@ object FrmInsert: TFrmInsert
         SpaceChar = #0
       end
       object selectTpCad: TRxRadioGroup
-        Left = 464
+        Left = 520
         Height = 65
-        Top = 1
+        Top = 18
         Width = 185
         AutoFill = True
         Caption = 'Tipo Cadastro'
@@ -265,11 +257,262 @@ object FrmInsert: TFrmInsert
         ParentFont = False
         TabOrder = 11
       end
+      object lblDetails: TLabel
+        Left = 28
+        Height = 17
+        Top = 352
+        Width = 55
+        Caption = 'Detalhes:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object detailsTipo: TPageControl
+        Left = 0
+        Height = 168
+        Top = 384
+        Width = 742
+        ActivePage = tabCliente
+        Align = alBottom
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabIndex = 0
+        TabOrder = 12
+        TabWidth = 246
+        OnChanging = detailsTipoChanging
+        object tabCliente: TTabSheet
+          Caption = 'Cliente'
+          ClientHeight = 140
+          ClientWidth = 734
+          object c_mEdtTelF: TMaskEdit
+            Left = 32
+            Height = 23
+            Top = 32
+            Width = 131
+            MaxLength = 14
+            TabOrder = 0
+            EditMask = '(99) 9999-9999;1;_'
+            Text = '(  )     -    '
+            SpaceChar = '_'
+          end
+          object c_mEdtTelC: TMaskEdit
+            Left = 32
+            Height = 23
+            Top = 96
+            Width = 131
+            MaxLength = 15
+            TabOrder = 1
+            EditMask = '(99) 99999-9999;1;_'
+            Text = '(  )      -    '
+            SpaceChar = '_'
+          end
+          object c_mmObs: TMemo
+            Left = 192
+            Height = 88
+            Top = 32
+            Width = 304
+            TabOrder = 2
+          end
+          object c_edtEmail: TEdit
+            Left = 517
+            Height = 23
+            Top = 32
+            Width = 184
+            TabOrder = 3
+          end
+          object c_lblTelF: TLabel
+            Left = 32
+            Height = 15
+            Top = 17
+            Width = 69
+            Caption = 'Telefone Fixo'
+          end
+          object c_lblTelC: TLabel
+            Left = 32
+            Height = 15
+            Top = 80
+            Width = 84
+            Caption = 'Telefone Celular'
+          end
+          object c_lblObs: TLabel
+            Left = 192
+            Height = 15
+            Top = 17
+            Width = 67
+            Caption = 'Observações'
+          end
+          object c_lblEmail: TLabel
+            Left = 517
+            Height = 15
+            Top = 17
+            Width = 34
+            Caption = 'E-mail'
+          end
+        end
+        object tabFuncionario: TTabSheet
+          Caption = 'Funcionário'
+          ClientHeight = 140
+          ClientWidth = 734
+          object fu_edtUser: TEdit
+            Left = 32
+            Height = 23
+            Top = 32
+            Width = 136
+            TabOrder = 0
+          end
+          object fu_edtSenha: TEdit
+            Left = 32
+            Height = 23
+            Top = 96
+            Width = 136
+            TabOrder = 1
+          end
+          object fu_edtEmail: TEdit
+            Left = 208
+            Height = 23
+            Top = 32
+            Width = 232
+            TabOrder = 2
+          end
+          object fu_edtCom: TEdit
+            Left = 208
+            Height = 23
+            Top = 96
+            Width = 120
+            TabOrder = 3
+          end
+          object selectTpFun: TRxRadioGroup
+            Left = 496
+            Height = 66
+            Top = 8
+            Width = 217
+            AutoFill = True
+            Caption = 'Gerente?'
+            ChildSizing.LeftRightSpacing = 45
+            ChildSizing.HorizontalSpacing = 40
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 46
+            ClientWidth = 213
+            Columns = 2
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            TabOrder = 4
+          end
+          object fu_lblUser: TLabel
+            Left = 32
+            Height = 15
+            Top = 17
+            Width = 40
+            Caption = 'Usuário'
+          end
+          object fu_lblEmail: TLabel
+            Left = 208
+            Height = 15
+            Top = 17
+            Width = 34
+            Caption = 'E-mail'
+          end
+          object fu_lblSenha: TLabel
+            Left = 32
+            Height = 15
+            Top = 81
+            Width = 32
+            Caption = 'Senha'
+          end
+          object fu_lblCom: TLabel
+            Left = 208
+            Height = 15
+            Top = 81
+            Width = 52
+            Caption = 'Comissão'
+          end
+        end
+        object tabFornecedor: TTabSheet
+          Caption = 'Fornecedor'
+          ClientHeight = 140
+          ClientWidth = 734
+          object fo_mmObs: TMemo
+            Left = 216
+            Height = 90
+            Top = 30
+            Width = 286
+            TabOrder = 0
+          end
+          object fo_edtTelF: TEdit
+            Left = 32
+            Height = 23
+            Top = 30
+            Width = 160
+            TabOrder = 1
+          end
+          object fo_edtWebsite: TEdit
+            Left = 32
+            Height = 23
+            Top = 97
+            Width = 160
+            TabOrder = 2
+          end
+          object fo_edtEmail: TEdit
+            Left = 517
+            Height = 23
+            Top = 30
+            Width = 184
+            TabOrder = 3
+          end
+          object fo_lblTelF: TLabel
+            Left = 32
+            Height = 15
+            Top = 15
+            Width = 69
+            Caption = 'Telefone Fixo'
+          end
+          object fo_lblObs: TLabel
+            Left = 216
+            Height = 15
+            Top = 15
+            Width = 67
+            Caption = 'Observações'
+          end
+          object fo_lblEmail: TLabel
+            Left = 517
+            Height = 15
+            Top = 15
+            Width = 34
+            Caption = 'E-mail'
+          end
+          object fo_lblWebsite: TLabel
+            Left = 32
+            Height = 15
+            Top = 81
+            Width = 42
+            Caption = 'Website'
+          end
+        end
+      end
+      object btnSendInsert: TButton
+        Left = 520
+        Height = 33
+        Top = 496
+        Width = 185
+        Caption = 'Inserir'
+        TabOrder = 9
+        OnClick = btnSendInsertClick
+      end
     end
     object pgUpdate: TTabSheet
       Caption = 'Atualizar'
-      ClientHeight = 352
-      ClientWidth = 682
+      ClientHeight = 552
+      ClientWidth = 742
       object lblID: TLabel
         Left = 32
         Height = 15
@@ -353,13 +596,6 @@ object FrmInsert: TFrmInsert
         Width = 160
         TabOrder = 9
       end
-      object edtUFU: TEdit
-        Left = 325
-        Height = 23
-        Top = 264
-        Width = 68
-        TabOrder = 10
-      end
       object lblNomeU: TLabel
         Left = 32
         Height = 15
@@ -432,11 +668,18 @@ object FrmInsert: TFrmInsert
         TabOrder = 11
         OnClick = btnSendUClick
       end
+      object edtUFU: TEdit
+        Left = 325
+        Height = 23
+        Top = 264
+        Width = 68
+        TabOrder = 10
+      end
     end
   end
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
-    Left = 32
-    Top = 344
+    Left = 688
+    Top = 8
   end
 end

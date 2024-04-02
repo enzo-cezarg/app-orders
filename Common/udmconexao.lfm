@@ -15,6 +15,7 @@ object DM: TDM
       'AutoEncodeStrings=True'
       'controls_cp=CP_UTF8'
     )
+    AutoCommit = False
     Connected = True
     BeforeConnect = ZConnectionBeforeConnect
     HostName = 'localhost'

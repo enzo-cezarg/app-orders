@@ -18,7 +18,34 @@ type
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
+    c_edtEmail: TEdit;
+    c_lblTelF: TLabel;
+    c_lblTelC: TLabel;
+    c_lblObs: TLabel;
+    c_lblEmail: TLabel;
+    fu_edtUser: TEdit;
+    fu_edtSenha: TEdit;
+    fu_edtEmail: TEdit;
+    fu_edtCom: TEdit;
+    fo_edtTelF: TEdit;
+    fo_edtWebsite: TEdit;
+    fo_edtEmail: TEdit;
+    fu_lblUser: TLabel;
+    fu_lblEmail: TLabel;
+    fu_lblSenha: TLabel;
+    fu_lblCom: TLabel;
+    fo_lblTelF: TLabel;
+    fo_lblObs: TLabel;
+    fo_lblEmail: TLabel;
+    fo_lblWebsite: TLabel;
+    lblDetails: TLabel;
+    c_mEdtTelF: TMaskEdit;
+    c_mEdtTelC: TMaskEdit;
     mEdtCpfCnpj: TMaskEdit;
+    detailsTipo: TPageControl;
+    c_mmObs: TMemo;
+    fo_mmObs: TMemo;
+    selectTpFun: TRxRadioGroup;
     selectTpCad: TRxRadioGroup;
     selectTp: TRxRadioGroup;
     edtID: TEdit;
@@ -63,20 +90,24 @@ type
     pgcSelectOp: TPageControl;
     pgInsert: TTabSheet;
     pgUpdate: TTabSheet;
+    tabCliente: TTabSheet;
+    tabFuncionario: TTabSheet;
+    tabFornecedor: TTabSheet;
     procedure btnConsultaUClick(Sender: TObject);
     procedure btnSendInsertClick(Sender: TObject);
     procedure btnSendUClick(Sender: TObject);
+    procedure detailsTipoChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mEdtCpfCnpjMouseEnter(Sender: TObject);
     procedure pgcSelectOpChange(Sender: TObject);
     procedure selectTpCadSelectionChanged(Sender: TObject);
+    procedure selectTpClick(Sender: TObject);
   private
     procedure getStructure;
     procedure datasetToView;
     procedure viewToDataset;
     function confirmOperation: Boolean;
-    function addDetails: Boolean;
     procedure onSave(aID: string);
     procedure onAppend(aID: string);
     procedure clearUpdateFields;
@@ -95,8 +126,8 @@ const
 
   // Definições do formulário
   _FORM_BORDER_STYLE = bsDialog;
-  _FORM_WIDTH = 690;
-  _FORM_HEIGHT = 400;
+  _FORM_WIDTH = 750;
+  _FORM_HEIGHT = 600;
 
 implementation
 
@@ -173,6 +204,12 @@ begin
     ShowMessage('Operação cancelada!');
 end;
 
+procedure TFrmInsert.detailsTipoChanging(Sender: TObject;
+  var AllowChange: Boolean);
+begin
+  AllowChange := False;
+end;
+
 procedure TFrmInsert.pgcSelectOpChange(Sender: TObject);
 begin
   case pgcSelectOp.PageIndex of
@@ -198,6 +235,33 @@ end;
 procedure TFrmInsert.selectTpCadSelectionChanged(Sender: TObject);
 begin
   checkTpCad;
+end;
+
+procedure TFrmInsert.selectTpClick(Sender: TObject);
+begin
+  case selectTp.ItemIndex of
+    0:
+    begin
+      detailsTipo.Page[0].Enabled := True;
+      detailsTipo.ActivePageIndex := 0;
+      detailsTipo.Page[1].Enabled := False;
+      detailsTipo.Page[2].Enabled := False;
+    end;
+    1:
+    begin
+      detailsTipo.Page[1].Enabled := True;
+      detailsTipo.ActivePageIndex := 1;
+      detailsTipo.Page[0].Enabled := False;
+      detailsTipo.Page[2].Enabled := False;
+    end;
+    2:
+    begin
+      detailsTipo.Page[2].Enabled := True;
+      detailsTipo.ActivePageIndex := 2;
+      detailsTipo.Page[0].Enabled := False;
+      detailsTipo.Page[1].Enabled := False;
+    end;
+  end;
 end;
 
 procedure TFrmInsert.getStructure;
@@ -413,13 +477,15 @@ begin
         if (Trim(edtUF.Text) <> '') then
           bdsCrudPessoas.FieldByName('uf').AsString := Trim(edtUF.Text);
 
-          case selectTp.ItemIndex of
-            0: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 0;
+        case selectTp.ItemIndex of
+          0: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 0;
 
-            1: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 1;
+          1: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 1;
 
-            2: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 2;
-          end;
+          2: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 2;
+        end;
+
+        // case da page control vai aqui
       end;
       1:
       begin
@@ -460,11 +526,6 @@ end;
 function TFrmInsert.confirmOperation: Boolean;
 begin
   Result := MessageDlg('Deseja confirmar?', mtConfirmation, mbYesNo, 0) = mrYes;
-end;
-
-function TFrmInsert.addDetails: Boolean;
-begin
-  Result := MessageDlg('Deseja inserir informações adicionais?', mtConfirmation, mbYesNo, 0) = mrYes;
 end;
 
 procedure TFrmInsert.onSave(aID: string);
@@ -628,7 +689,6 @@ begin
         mEdtCpfCnpj.EditMask := '99.999.999/9999-99;0';
         mEdtCpfCnpj.Enabled := True;
         mEdtCpfCnpj.MaxLength := 18;
-        // Aqui talvez?
       end;
   end;
 end;
