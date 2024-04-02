@@ -302,7 +302,6 @@ begin
       case tpOperacao of
         0:
         begin
-
           case lTpPessoa of
             0:
             begin
@@ -346,11 +345,50 @@ begin
               lQuery.ParamByName('obs').AsString         := lJsonReq.Values['obs'].AsString;
             end;
           end;
-
         end;
         1:
         begin
-          //
+          case lTpPessoa of
+            0:
+            begin
+              lQuery.SQL.Add(' UPDATE cliente SET                                                ');
+              lQuery.SQL.Add(' limite_credito = :limite_credito, telefone_fixo = :telefone_fixo, ');
+              lQuery.SQL.Add(' telefone_celular = :telefone_celular, email = :email, obs = :obs  ');
+              lQuery.SQL.Add(' WHERE id = :id                                                    ');
+
+              lQuery.ParamByName('id').AsInteger                 := lID;
+              lQuery.ParamByName('limite_credito').AsInteger     := lJsonReq.Values['limite_credito'].AsInteger;
+              lQuery.ParamByName('telefone_fixo').AsString       := lJsonReq.Values['telefone_fixo'].AsString;
+              lQuery.ParamByName('telefone_celular').AsString    := lJsonReq.Values['telefone_celular'].AsString;
+              lQuery.ParamByName('email').AsString               := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('obs').AsString                 := lJsonReq.Values['obs'].AsString;
+            end;
+            1:
+            begin
+              lQuery.SQL.Add(' UPDATE funcionario SET                                                                 ');
+              lQuery.SQL.Add(' comissao = :comissao, email = :email, login = :login, senha = :senha, master = :master ');
+              lQuery.SQL.Add(' WHERE id = :id                                                                         ');
+
+              lQuery.ParamByName('id').AsInteger         := lID;
+              lQuery.ParamByName('comissao').AsInteger   := lJsonReq.Values['comissao'].AsInteger;
+              lQuery.ParamByName('email').AsString       := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('login').AsString       := lJsonReq.Values['login'].AsString;
+              lQuery.ParamByName('senha').AsString       := lJsonReq.Values['senha'].AsString;
+              lQuery.ParamByName('master').AsInteger     := lJsonReq.Values['master'].AsInteger;
+            end;
+            2:
+            begin
+              lQuery.SQL.Add(' UPDATE fornecedor SET                                                ');
+              lQuery.SQL.Add(' telefone = :telefone, email = :email, website = :website, obs = :obs ');
+              lQuery.SQL.Add(' WHERE id = :id                                                       ');
+
+              lQuery.ParamByName('id').AsInteger         := lID;
+              lQuery.ParamByName('telefone').AsString    := lJsonReq.Values['telefone'].AsString;
+              lQuery.ParamByName('email').AsString       := lJsonReq.Values['email'].AsString;
+              lQuery.ParamByName('website').AsString     := lJsonReq.Values['website'].AsString;
+              lQuery.ParamByName('obs').AsString         := lJsonReq.Values['obs'].AsString;
+            end;
+          end;
         end;
       end;
 
