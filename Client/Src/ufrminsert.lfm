@@ -1,7 +1,7 @@
 object FrmInsert: TFrmInsert
-  Left = 230
+  Left = 305
   Height = 600
-  Top = 70
+  Top = 38
   Width = 750
   Caption = 'Inserir/Atualizar Registros'
   ClientHeight = 600
@@ -276,10 +276,11 @@ object FrmInsert: TFrmInsert
         Height = 168
         Top = 384
         Width = 742
-        ActivePage = tabCliente
+        ActivePage = tabFornecedor
         Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
-        TabIndex = 0
+        Enabled = False
+        TabIndex = 2
         TabOrder = 12
         TabWidth = 246
         OnChanging = detailsTipoChanging
@@ -680,6 +681,11 @@ object FrmInsert: TFrmInsert
   object bdsCrudPessoas: TBufDataset
     FieldDefs = <>
     Left = 688
+    Top = 8
+  end
+  object bdsCrudDetails: TBufDataset
+    FieldDefs = <>
+    Left = 592
     Top = 8
   end
 end

@@ -72,18 +72,29 @@ begin
 
 end;
 
+procedure GetDetailStructure(aReq: THorseRequest; aRes: THorseResponse; aNext: TNextProc);
+var
+  lTpPessoa: string;
+begin
+  if not aReq.Params.TryGetValue('id', lID) then
+    lID := '-1';
+
+  aRes.ContentType('application/json')
+  .Send( TPessoaService.GetDetailStructure );
+
+end;
+
 class procedure TPessoa.Router;
 begin
   THorse.Get('/pessoa', GetPessoa)
   .Get('/pessoa/:id', GetPessoa)
   .Get('/pessoa/structure', GetPessoaStructure)
+  .Get('/pessoa/detail/structure/:tipo_pessoa', GetDetailStructure)
   .Post('/pessoa', SavePessoa)
-  //.Post('/pessoa/detail/:id', SavePessoaDetails)
   .Put('/pessoa/:id', SavePessoa)
   .Put('/pessoa/detail/:id', SavePessoaDetails)
   .Delete('/pessoa/:id', DeletePessoa);
 
-  // http://localhost:9095/pessoa/:id/detalhes/:tipo_pessoa
 
 end;
 

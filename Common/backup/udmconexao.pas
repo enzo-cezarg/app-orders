@@ -29,6 +29,7 @@ type
     function SavePessoaDetails(aID: Integer; aJson: string): string;
     function DeletePessoa(aID: Integer): string;
     function GetPessoaStructure: string;
+    function GetDetailStructure(aTpPessoa: Integer): string;
     function GetTpPessoa(aID: Integer): Integer;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
@@ -145,6 +146,7 @@ begin
 
       lJson.Put('success', True);
       lJson.Put('message', Format('Total de Registros: %d', [ZQuery.RecordCount]));
+      lJson.Put('tipo_operacao', -1);
       lJson.Put('structure', TConverter.New.LoadDataSet(ZQuery).ToJSONStructure);
       lJson.Put('data', TConverter.New.LoadDataSet(ZQuery).ToJSONArray);
       // Monta o json
@@ -348,7 +350,7 @@ begin
         end;
         1:
         begin
-          case tpPessoa of
+          case lTpPessoa of
             0:
             begin
               lQuery.SQL.Add(' UPDATE cliente SET                                                ');
@@ -406,8 +408,6 @@ begin
           lQuery.Connection.Commit
         end;
       end;
-
-
     except
         on E: exception do
           Raise Exception.Create(E.Message);
@@ -445,6 +445,7 @@ begin
           lQuery.ExecSQL;
           lJson.Put('success', True);
           lJson.Put('message', 'Deletado com sucesso!');
+          lQuery.Connection.Commit;
         end
         else
         begin
@@ -495,6 +496,50 @@ begin
   finally
     Result := lJson.Stringify;
     FreeAndNil(lJson);
+  end;
+end;
+
+function TDM.GetDetailStructure(aTpPessoa: Integer): string;
+var
+  lJson: TJsonObject;
+  lQuery: TZQuery;
+begin
+  lJson := TJsonObject.Create(nil);
+  lQuery := TZQuery.Create(nil);
+  try
+    try
+      lQuery.Close;
+      lQuery.SQL.Clear;
+      case aTpPessoa of
+        0:
+        begin
+          lQuery.SQL.Add(' SELECT FIRST 0 * FROM cliente');
+        end;
+        1:
+        begin
+          lQuery.SQL.Add(' SELECT FIRST 0 * FROM funcionario');
+        end;
+        2:
+        begin
+          lQuery.SQL.Add(' SELECT FIRST 0 * FROM fornecedor');
+        end;
+      end;
+      lQuery.Open;
+
+      lJson.Put('success', True);
+      lJson.Put('structure', TConverter.New.LoadDataSet(lQuery).ToJSONStructure);
+      lJson.Put('data', TConverter.New.LoadDataSet(lQuery).ToJSONArray);
+    except
+      on E: exception do
+      begin
+        lJson.Put('success', False);
+        lJson.Put('message', E.Message);
+      end;
+    end;
+  finally
+    Result := lJson.Stringify;
+    FreeAndNil(lJson);
+    FreeAndNil(lQuery);
   end;
 end;
 

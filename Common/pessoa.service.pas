@@ -20,6 +20,7 @@ type
     class function SavePessoaDetails(aID, aJson: string): string;
     class function DeletePessoas(aID: string): string;
     class function GetPessoaStructure: string;
+    class function GetDetailStructure(aTpPessoa: string): string;
   end;
 
 implementation
@@ -88,6 +89,18 @@ begin
     FreeAndNil(lDM);
   end;
 
+end;
+
+class function TPessoaService.GetDetailStructure(aTpPessoa: string): string;
+var
+  lDM: TDM;
+begin
+  lDM := TDM.Create(nil);
+  try
+    Result := lDM.GetDetailStructure(StrToInt(aTpPessoa));
+  finally
+    FreeAndNil(lDM);
+  end;
 end;
 
 

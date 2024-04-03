@@ -18,6 +18,7 @@ type
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
+    bdsCrudDetails: TBufDataset;
     c_edtEmail: TEdit;
     c_lblTelF: TLabel;
     c_lblTelC: TLabel;
@@ -105,7 +106,9 @@ type
     procedure selectTpClick(Sender: TObject);
   private
     procedure getStructure;
+    procedure getDetailStructure(aTpPessoa: integer);
     procedure datasetToView;
+    procedure detailDatasetToView(aTpPessoa: integer);
     procedure viewToDataset;
     function confirmOperation: Boolean;
     procedure onSave(aID: string);
@@ -212,6 +215,10 @@ end;
 
 procedure TFrmInsert.pgcSelectOpChange(Sender: TObject);
 begin
+
+  if selectTp.ItemIndex = -1 then
+    detailsTipo.Enabled := False;
+
   case pgcSelectOp.PageIndex of
     0:
     begin
@@ -239,6 +246,7 @@ end;
 
 procedure TFrmInsert.selectTpClick(Sender: TObject);
 begin
+  detailsTipo.Enabled := True;
   case selectTp.ItemIndex of
     0:
     begin
@@ -246,6 +254,8 @@ begin
       detailsTipo.ActivePageIndex := 0;
       detailsTipo.Page[1].Enabled := False;
       detailsTipo.Page[2].Enabled := False;
+
+      getDetailStructure(0);
     end;
     1:
     begin
@@ -253,6 +263,8 @@ begin
       detailsTipo.ActivePageIndex := 1;
       detailsTipo.Page[0].Enabled := False;
       detailsTipo.Page[2].Enabled := False;
+
+      getDetailStructure(1);
     end;
     2:
     begin
@@ -260,6 +272,8 @@ begin
       detailsTipo.ActivePageIndex := 2;
       detailsTipo.Page[0].Enabled := False;
       detailsTipo.Page[1].Enabled := False;
+
+      getDetailStructure(2);
     end;
   end;
 end;
@@ -300,6 +314,45 @@ begin
     end;
   finally
   end;
+end;
+
+procedure TFrmInsert.getDetailStructure(aTpPessoa: integer);
+var
+  lJson: TJSONObject;
+  lRes: IResponse;
+begin
+  try
+    lJson := TJSONObject.Create;
+    try
+      lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/detail/structure/%s', [IntToStr(aTpPessoa)]))
+                          .ContentType('application/json')
+                          .Get;
+
+      if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
+      begin
+        if not lJson.IsJsonObject(lRes.Content) then
+          Raise exception.Create('JSON Invalido!');
+
+        lJson.Parse(lRes.Content);
+
+        if lJson.Values['success'].AsBoolean then
+        begin
+          bdsCrudPessoas.Close;
+          TConverter.New.LoadJson(lJson.Values['structure'].AsArray).ToStructure(bdsCrudDetails);
+          TConverter.New.LoadJson(lJson.Values['data'].AsArray).ToDataSet(bdsCrudDetails);
+          bdsCrudPessoas.Open;
+        end;
+      end
+      else
+        Raise Exception.Create(lRes.Content);
+
+    except
+      on E: Exception do
+        Raise Exception.Create(E.Message);
+    end;
+  finally
+  end;
+
 end;
 
 procedure TFrmInsert.datasetToView;
@@ -434,6 +487,122 @@ begin
   end;
 end;
 
+procedure TFrmInsert.detailDatasetToView(aTpPessoa: integer);
+begin
+  try
+    case pgcSelectOp.PageIndex of
+      0:
+      begin
+        case aTpPessoa of
+          0: // CLIENTE -----------------------------------------------------------------
+          begin
+            with c_mEdtTelF do
+            begin
+              Clear;
+              MaxLength := 14;
+            end;
+            with c_mEdtTelC do
+            begin
+              Clear;
+              MaxLength := 15;
+            end;
+            with c_mmObs do
+            begin
+              Clear;
+            end;
+            with c_edtEmail do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+
+            if (bdsCrudDetails.Active) and (bdsCrudDetails.RecordCount > 0 ) then
+            begin
+              c_mEdtTelF.Text    := bdsCrudDetails.FieldByName('telefone_fixo').AsString;
+              c_mEdtTelC.Text    := bdsCrudDetails.FieldByName('telefone_celular').AsString;
+              c_edtEmail.Text    := bdsCrudDetails.FieldByName('email').AsString;
+              c_mmObs.Append(bdsCrudDetails.FieldByName('obs').AsString);
+            end;
+          end;
+          1: // FUNCIONÁRIO -----------------------------------------------------------------
+          begin
+            with fu_edtUser do
+            begin
+              Clear;
+              MaxLength := 35;
+            end;
+            with fu_edtSenha do
+            begin
+              Clear;
+              MaxLength := 35;
+            end;
+            with fu_edtEmail do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+            with fu_edtCom do
+            begin
+              Clear;
+              MaxLength := 15;
+            end;
+            with selectTpFun do
+            begin
+              ItemIndex := -1;
+            end;
+
+            if (bdsCrudDetails.Active) and (bdsCrudDetails.RecordCount > 0 ) then
+            begin
+              fu_edtUser.Text            := bdsCrudDetails.FieldByName('login').AsString;
+              fu_edtSenha.Text           := bdsCrudDetails.FieldByName('senha').AsString;
+              fu_edtEmail.Text           := bdsCrudDetails.FieldByName('email').AsString;
+              fu_edtCom.Text             := bdsCrudDetails.FieldByName('comissao').AsString;
+              selectTpFun.ItemIndex      := bdsCrudDetails.FieldByName('master').AsInteger;
+            end;
+          end;
+          2: // FORNECEDOR -----------------------------------------------------------------
+          begin
+            with fo_mmObs do
+            begin
+              Clear;
+            end;
+            with fo_edtTelF do
+            begin
+              Clear;
+              MaxLength := 14;
+            end;
+            with fo_edtWebsite do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+            with fo_edtEmail do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+
+            if (bdsCrudDetails.Active) and (bdsCrudDetails.RecordCount > 0 ) then
+            begin
+              fo_edtTelF.Text      := bdsCrudDetails.FieldByName('telefone').AsString;
+              fo_edtWebsite.Text   := bdsCrudDetails.FieldByName('website').AsString;
+              fo_edtEmail.Text     := bdsCrudDetails.FieldByName('email').AsString;
+              fo_mmObs.Append(bdsCrudDetails.FieldByName('obs').AsString);
+            end;
+          end;
+        end;
+      end;
+      1:
+      begin
+        //
+      end;
+    end;
+  except
+    on E: Exception do
+      Raise Exception.Create(E.Message);
+  end;
+end;
+
 procedure TFrmInsert.viewToDataset;
 begin
   if bdsCrudPessoas.Active then
@@ -484,8 +653,6 @@ begin
 
           2: bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger := 2;
         end;
-
-        // case da page control vai aqui
       end;
       1:
       begin
@@ -548,6 +715,7 @@ begin
             try
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
+              lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
 
               lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa')
                               .ContentType('application/json')
@@ -556,7 +724,6 @@ begin
 
               if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
                 _MSG_OPERATION := 'INCLUÍDO com sucesso!';
-
 
             except
               on E: exception do
@@ -574,6 +741,7 @@ begin
             try
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
+              lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
 
               lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
                               .ContentType('application/json')
