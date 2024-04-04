@@ -30,6 +30,7 @@ type
     function DeletePessoa(aID: Integer): string;
     function GetPessoaStructure: string;
     function GetDetailStructure(aTpPessoa: Integer): string;
+    function GetLastID: Integer;
     function GetTpPessoa(aID: Integer): Integer;
     property TpConexao: TTpConexao read FTpConexao write SetTpConexao;
   end;
@@ -540,6 +541,27 @@ begin
   finally
     Result := lJson.Stringify;
     FreeAndNil(lJson);
+    FreeAndNil(lQuery);
+  end;
+end;
+
+function TDM.GetLastID: Integer;
+var
+  lQuery: TZQuery;
+begin
+  lQuery := TZQuery.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+    lQuery.Connection.Connected := False;
+    lQuery.Connection.Connected := True;
+    lQuery.SQL.Clear;
+    lQuery.SQL.Add('SELECT FIRST 1 id FROM pessoa ORDER BY ID DESC');
+    lQuery.Open;
+
+    Result := lQuery.FieldByName('id').AsInteger;
+
+  finally
+    lQuery.Close;
     FreeAndNil(lQuery);
   end;
 end;

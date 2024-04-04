@@ -13,12 +13,15 @@ type
 
   { TFrmInsert }
 
+  TIntArray = array[0..1] of Integer;
+
   TFrmInsert = class(TForm)
     btnSendInsert: TButton;
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
     bdsCrudDetails: TBufDataset;
+    Button1: TButton;
     c_edtEmail: TEdit;
     c_lblTelF: TLabel;
     c_lblTelC: TLabel;
@@ -46,6 +49,7 @@ type
     detailsTipo: TPageControl;
     c_mmObs: TMemo;
     fo_mmObs: TMemo;
+    Memo1: TMemo;
     selectTpFun: TRxRadioGroup;
     selectTpCad: TRxRadioGroup;
     selectTp: TRxRadioGroup;
@@ -97,6 +101,7 @@ type
     procedure btnConsultaUClick(Sender: TObject);
     procedure btnSendInsertClick(Sender: TObject);
     procedure btnSendUClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure detailsTipoChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -110,8 +115,11 @@ type
     procedure datasetToView;
     procedure detailDatasetToView(aTpPessoa: integer);
     procedure viewToDataset;
+    procedure detailViewToDataset(aID, aTpPessoa: integer);
+    function getLastRow: TIntArray;
     function confirmOperation: Boolean;
     procedure onSave(aID: string);
+    procedure onSaveDetail(aID: string);
     procedure onAppend(aID: string);
     procedure clearUpdateFields;
     procedure clearAll;
@@ -167,6 +175,11 @@ begin
   if confirmOperation then
   begin
     onSave('0');
+
+
+    detailViewToDataSet(DM.GetLastID, bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
+    onSaveDetail('0');
+
     ShowMessage(_MSG_OPERATION);
   end
   else
@@ -205,6 +218,11 @@ begin
   end
   else
     ShowMessage('Operação cancelada!');
+end;
+
+procedure TFrmInsert.Button1Click(Sender: TObject);
+begin
+  ShowMessage(IntToStr(DM.GetLastID));
 end;
 
 procedure TFrmInsert.detailsTipoChanging(Sender: TObject;
@@ -590,7 +608,7 @@ begin
               fo_mmObs.Append(bdsCrudDetails.FieldByName('obs').AsString);
             end;
           end;
-        end;
+        end; // ----------------------------------------------------------------------------
       end;
       1:
       begin
@@ -690,6 +708,95 @@ begin
   end;
 end;
 
+procedure TFrmInsert.detailViewToDataset(aID, aTpPessoa: integer);
+begin
+  if bdsCrudDetails.Active then
+  begin
+    case pgcSelectOp.PageIndex of
+      0:
+      begin
+        bdsCrudDetails.Append;
+      end;
+      1:
+        bdsCrudDetails.Edit;
+    end;
+  end;
+
+  case pgcSelectOp.PageIndex of
+    0:
+    begin
+
+      bdsCrudDetails.FieldByName('id').AsInteger := aID;
+
+      case aTpPessoa of
+        0: // CLIENTE ---------------------------------------------------------------------
+        begin
+          if (Trim(c_mEdtTelF.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone_fixo').AsString := Trim(c_mEdtTelF.Text);
+
+          if (Trim(c_mEdtTelC.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone_celular').AsString := Trim(c_mEdtTelC.Text);
+
+          if (Trim(c_mmObs.Text) <> '') then
+          bdsCrudDetails.FieldByName('obs').AsString := Trim(c_mmObs.Text);
+
+          if (Trim(c_edtEmail.Text) <> '') then
+          bdsCrudDetails.FieldByName('email').AsString := Trim(c_edtEmail.Text);
+        end;
+        1: // FUNCIONÁRIO -----------------------------------------------------------------
+        begin
+          if (Trim(fu_edtUser.Text) <> '') then
+            bdsCrudDetails.FieldByName('login').AsString := Trim(fu_edtUser.Text);
+
+          if (Trim(fu_edtSenha.Text) <> '') then
+            bdsCrudDetails.FieldByName('senha').AsString := Trim(fu_edtUser.Text);
+
+          if (Trim(fu_edtEmail.Text) <> '') then
+            bdsCrudDetails.FieldByName('email').AsString := Trim(fu_edtEmail.Text);
+
+          if (Trim(fu_edtCom.Text) <> '') then
+            bdsCrudDetails.FieldByName('comissao').AsInteger := StrToInt(Trim(fu_edtCom.Text));
+
+          if selectTpFun.ItemIndex = 0 then
+            bdsCrudDetails.FieldByName('master').AsInteger := 0
+          else if selectTpFun.ItemIndex = 1 then
+            bdsCrudDetails.FieldByName('master').AsInteger := 1;
+        end;
+        2: // FORNECEDOR ------------------------------------------------------------------
+        begin
+          if (Trim(fo_edtTelF.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone').AsString := Trim(fo_edtTelF.Text);
+
+          if (Trim(fo_edtWebsite.Text) <> '') then
+          bdsCrudDetails.FieldByName('website').AsString := Trim(fo_edtWebsite.Text);
+
+          if (Trim(fo_edtEmail.Text) <> '') then
+          bdsCrudDetails.FieldByName('email').AsString := Trim(fo_edtEmail.Text);
+
+          if (Trim(fo_mmObs.Text) <> '') then
+          bdsCrudDetails.FieldByName('obs').AsString := Trim(fo_mmObs.Text);
+        end;
+      end; // -----------------------------------------------------------------------------
+    end;
+    1:
+    begin
+      //
+    end;
+  end;
+end;
+
+function TFrmInsert.getLastRow: TIntArray;
+var
+  lParams: TIntArray;
+begin
+  lParams[1] := bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger;
+  try
+    lParams[0] := DM.GetLastID;
+  finally
+    Result := lParams;
+  end;
+end;
+
 function TFrmInsert.confirmOperation: Boolean;
 begin
   Result := MessageDlg('Deseja confirmar?', mtConfirmation, mbYesNo, 0) = mrYes;
@@ -715,7 +822,6 @@ begin
             try
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
-              lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
 
               lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa')
                               .ContentType('application/json')
@@ -741,7 +847,6 @@ begin
             try
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
-              lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
 
               lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
                               .ContentType('application/json')
@@ -763,6 +868,49 @@ begin
       end;
     end;
   end;
+
+procedure TFrmInsert.onSaveDetail(aID: string);
+var
+  lRes: IResponse;
+  lJson: TJSONObject;
+begin
+  case pgcSelectOp.PageIndex of
+    0:
+    begin
+      if selectTp.ItemIndex = -1 then
+        Exit;
+
+      try
+        lJson := TJSONObject.Create(nil);
+
+        try
+          lJson.Assign(TConverter.New.LoadDataSet(bdsCrudDetails).ToJSONObject);
+          lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
+          lJson.Put('id', bdsCrudDetails.FieldByName('id').AsInteger);
+          lJson.Put('tipo_pessoa', bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
+
+          lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/detail/0')
+                              .ContentType('application/json')
+                              .AddBody(lJson.Stringify)
+                              .Put;
+
+          memo1.Append(lJson.Stringify);
+
+        except
+          on E: exception do
+            Raise Exception.Create(E.Message);
+        end;
+      finally
+        FreeAndNil(lJson);
+      end;
+
+    end;
+    1:
+    begin
+      //
+    end;
+  end;
+end;
 
 procedure TFrmInsert.onAppend(aID: string);
 var
