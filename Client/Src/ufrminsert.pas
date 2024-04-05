@@ -218,11 +218,13 @@ begin
     DM := TDM.Create(nil);
     if DM.isExist(StrToInt(edtID.Text)) then
     begin
-      onAppend(edtID.Text);
       lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+      getDetailStructure(lTPpessoa);
+      onAppend(edtID.Text);
       detailsTipoU.Enabled := True;
       detailsTipoU.PageIndex := lTpPessoa;
       datasetToView;
+      detailDatasetToView(lTpPessoa);
     end
     else
     begin
@@ -236,11 +238,16 @@ begin
 end;
 
 procedure TFrmInsert.btnSendUClick(Sender: TObject);
+var
+  lTpPessoa: Integer;
 begin
   viewToDataset;
   if confirmOperation then
   begin
     onSave(edtID.Text);
+    lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+    detailViewToDataset(StrToInt(edtID.Text), lTpPessoa);
+    onSaveDetail(edtID.Text);
     ShowMessage(_MSG_OPERATION);
   end
   else
@@ -640,7 +647,104 @@ begin
       end;
       1:
       begin
-        //
+        case aTpPessoa of
+          0: // CLIENTE -----------------------------------------------------------------
+          begin
+            with c_EdtTelFU do
+            begin
+              Clear;
+              MaxLength := 14;
+            end;
+            with c_EdtTelCU do
+            begin
+              Clear;
+              MaxLength := 15;
+            end;
+            with c_mmObsU do
+            begin
+              Clear;
+            end;
+            with c_edtEmailU do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+
+            if (bdsCrudPessoas.Active) and (bdsCrudPessoas.RecordCount > 0 ) then
+            begin
+              c_EdtTelFU.Text    := bdsCrudPessoas.FieldByName('telefone_fixo').AsString;
+              c_EdtTelCU.Text    := bdsCrudPessoas.FieldByName('telefone_celular').AsString;
+              c_edtEmailU.Text    := bdsCrudPessoas.FieldByName('email').AsString;
+              c_mmObsU.Append(bdsCrudPessoas.FieldByName('obs').AsString);
+            end;
+          end;
+          1: // FUNCIONÁRIO -----------------------------------------------------------------
+          begin
+            with fu_edtUserU do
+            begin
+              Clear;
+              MaxLength := 35;
+            end;
+            with fu_edtSenhaU do
+            begin
+              Clear;
+              MaxLength := 35;
+            end;
+            with fu_edtEmailU do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+            with fu_edtComU do
+            begin
+              Clear;
+              MaxLength := 15;
+            end;
+            with selectTpFunU do
+            begin
+              ItemIndex := -1;
+            end;
+
+            if (bdsCrudPessoas.Active) and (bdsCrudPessoas.RecordCount > 0 ) then
+            begin
+              fu_edtUserU.Text            := bdsCrudPessoas.FieldByName('login').AsString;
+              fu_edtSenhaU.Text           := bdsCrudPessoas.FieldByName('senha').AsString;
+              fu_edtEmailU.Text           := bdsCrudPessoas.FieldByName('email').AsString;
+              fu_edtComU.Text             := bdsCrudPessoas.FieldByName('comissao').AsString;
+              selectTpFunU.ItemIndex      := bdsCrudPessoas.FieldByName('master').AsInteger;
+            end;
+          end;
+          2: // FORNECEDOR -----------------------------------------------------------------
+          begin
+            with fo_mmObsU do
+            begin
+              Clear;
+            end;
+            with fo_edtTelFU do
+            begin
+              Clear;
+              MaxLength := 14;
+            end;
+            with fo_edtWebsiteU do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+            with fo_edtEmailU do
+            begin
+              Clear;
+              MaxLength := 100;
+            end;
+
+            if (bdsCrudPessoas.Active) and (bdsCrudPessoas.RecordCount > 0 ) then
+            begin
+              fo_edtTelFU.Text      := bdsCrudPessoas.FieldByName('telefone').AsString;
+              fo_edtWebsiteU.Text   := bdsCrudPessoas.FieldByName('website').AsString;
+              fo_edtEmailU.Text     := bdsCrudPessoas.FieldByName('email').AsString;
+              fo_mmObsU.Append(bdsCrudPessoas.FieldByName('obs').AsString);
+            end;
+          end;
+        end;
       end;
     end;
   except
@@ -808,7 +912,56 @@ begin
     end;
     1:
     begin
-      //
+
+      bdsCrudDetails.FieldByName('id').AsInteger := aID;
+
+      case aTpPessoa of
+        0: // CLIENTE ---------------------------------------------------------------------
+        begin
+          if (Trim(c_EdtTelFU.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone_fixo').AsString := Trim(c_EdtTelFU.Text);
+
+          if (Trim(c_EdtTelCU.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone_celular').AsString := Trim(c_EdtTelCU.Text);
+
+          if (Trim(c_mmObsU.Text) <> '') then
+          bdsCrudDetails.FieldByName('obs').AsString := Trim(c_mmObsU.Text);
+
+          if (Trim(c_edtEmailU.Text) <> '') then
+          bdsCrudDetails.FieldByName('email').AsString := Trim(c_edtEmailU.Text);
+        end;
+        1: // FUNCIONÁRIO -----------------------------------------------------------------
+        begin
+          if (Trim(fu_edtUserU.Text) <> '') then
+            bdsCrudDetails.FieldByName('login').AsString := Trim(fu_edtUserU.Text);
+
+          if (Trim(fu_edtSenhaU.Text) <> '') then
+            bdsCrudDetails.FieldByName('senha').AsString := Trim(fu_edtUserU.Text);
+
+          if (Trim(fu_edtEmailU.Text) <> '') then
+            bdsCrudDetails.FieldByName('email').AsString := Trim(fu_edtEmailU.Text);
+
+          if (Trim(fu_edtComU.Text) <> '') then
+            bdsCrudDetails.FieldByName('comissao').AsInteger := StrToInt(Trim(fu_edtComU.Text));
+
+          if selectTpFunU.ItemIndex <> -1 then
+            bdsCrudDetails.FieldByName('master').AsInteger := selectTpFunU.ItemIndex;
+        end;
+        2: // FORNECEDOR ------------------------------------------------------------------
+        begin
+          if (Trim(fo_edtTelFU.Text) <> '') then
+          bdsCrudDetails.FieldByName('telefone').AsString := Trim(fo_edtTelFU.Text);
+
+          if (Trim(fo_edtWebsiteU.Text) <> '') then
+          bdsCrudDetails.FieldByName('website').AsString := Trim(fo_edtWebsiteU.Text);
+
+          if (Trim(fo_edtEmailU.Text) <> '') then
+          bdsCrudDetails.FieldByName('email').AsString := Trim(fo_edtEmailU.Text);
+
+          if (Trim(fo_mmObsU.Text) <> '') then
+          bdsCrudDetails.FieldByName('obs').AsString := Trim(fo_mmObsU.Text);
+        end;
+      end; // -----------------------------------------------------------------------------
     end;
   end;
 end;
@@ -908,7 +1061,7 @@ begin
           lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/detail/0')
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
-                              .Put;    ;
+                              .Put;
 
         except
           on E: exception do
@@ -920,7 +1073,27 @@ begin
     end;
     1:
     begin
-      //
+      try
+        lJson := TJSONObject.Create(nil);
+
+        try
+          lJson.Assign(TConverter.New.LoadDataSet(bdsCrudDetails).ToJSONObject);
+          lJson.Put('tipo_operacao', pgcSelectOp.PageIndex);
+          lJson.Put('id', bdsCrudDetails.FieldByName('id').AsInteger);
+          lJson.Put('tipo_pessoa', bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
+
+          lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/detail/%s', [aID]))
+                              .ContentType('application/json')
+                              .AddBody(lJson.Stringify)
+                              .Put;
+
+        except
+          on E: exception do
+            Raise Exception.Create(E.Message);
+        end;
+      finally
+        FreeAndNil(lJson);
+      end;
     end;
   end;
 end;
@@ -1001,6 +1174,38 @@ begin
   edtCepU.Clear;
   edtMunU.Clear;
   edtUFU.Clear;
+
+  c_mEdtTelF.Clear;
+  c_mEdtTelC.Clear;
+  c_mmObs.Clear;
+  c_EdtEmail.Clear;
+
+  c_EdtTelFU.Clear;
+  c_EdtTelCU.Clear;
+  c_mmObsU.Clear;
+  c_EdtEmailU.Clear;
+
+  fu_edtUser.Clear;
+  fu_edtSenha.Clear;
+  fu_edtEmail.Clear;
+  fu_edtCom.Clear;
+  selectTpFun.ItemIndex := -1;
+
+  fu_edtUserU.Clear;
+  fu_edtSenhaU.Clear;
+  fu_edtEmailU.Clear;
+  fu_edtComU.Clear;
+  selectTpFunU.ItemIndex := -1;
+
+  fo_mmObs.Clear;
+  fo_edtTelF.Clear;
+  fo_edtWebsite.Clear;
+  fo_edtEmail.Clear;
+
+  fo_mmObsU.Clear;
+  fo_edtTelFU.Clear;
+  fo_edtWebsiteU.Clear;
+  fo_edtEmailU.Clear;
 end;
 
 procedure TFrmInsert.checkTpCad;

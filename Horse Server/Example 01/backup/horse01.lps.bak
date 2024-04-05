@@ -43,7 +43,6 @@
         <ComponentName Value="DM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="499"/>
         <CursorPos X="39" Y="511"/>
@@ -64,6 +63,7 @@
       <Unit>
         <Filename Value="..\..\Common\pessoa.router.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="71"/>
         <CursorPos X="53" Y="83"/>

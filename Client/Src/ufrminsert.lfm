@@ -1,11 +1,11 @@
 object FrmInsert: TFrmInsert
-  Left = 245
+  Left = 304
   Height = 600
-  Top = 45
+  Top = 58
   Width = 750
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 600
+  ClientWidth = 750
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
@@ -276,11 +276,11 @@ object FrmInsert: TFrmInsert
         Height = 168
         Top = 384
         Width = 742
-        ActivePage = tabFornecedor
+        ActivePage = tabFuncionario
         Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
         Enabled = False
-        TabIndex = 2
+        TabIndex = 1
         TabOrder = 12
         TabWidth = 246
         OnChanging = detailsTipoChanging
@@ -404,8 +404,8 @@ object FrmInsert: TFrmInsert
             ClientWidth = 213
             Columns = 2
             Items.Strings = (
-              'Sim'
               'Não'
+              'Sim'
             )
             TabOrder = 4
           end
@@ -678,9 +678,9 @@ object FrmInsert: TFrmInsert
         Height = 224
         Top = 328
         Width = 750
-        ActivePage = tabFornecedorU
+        ActivePage = tabFuncionarioU
         Enabled = False
-        TabIndex = 2
+        TabIndex = 1
         TabOrder = 12
         TabWidth = 249
         OnChanging = detailsTipoUChanging
@@ -796,8 +796,8 @@ object FrmInsert: TFrmInsert
             ClientWidth = 182
             Columns = 2
             Items.Strings = (
-              'Sim'
               'Não'
+              'Sim'
             )
             TabOrder = 4
           end
