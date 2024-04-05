@@ -1,11 +1,11 @@
 object FrmInsert: TFrmInsert
-  Left = 232
+  Left = 245
   Height = 600
-  Top = 44
+  Top = 45
   Width = 750
   Caption = 'Inserir/Atualizar Registros'
-  ClientHeight = 600
-  ClientWidth = 750
+  ClientHeight = 0
+  ClientWidth = 0
   OnActivate = FormActivate
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
@@ -14,10 +14,10 @@ object FrmInsert: TFrmInsert
     Height = 600
     Top = 0
     Width = 750
-    ActivePage = pgInsert
+    ActivePage = pgUpdate
     Align = alClient
     TabHeight = 40
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabWidth = 150
     OnChange = pgcSelectOpChange
@@ -509,25 +509,6 @@ object FrmInsert: TFrmInsert
         TabOrder = 9
         OnClick = btnSendInsertClick
       end
-      object Memo1: TMemo
-        Left = 464
-        Height = 90
-        Top = 280
-        Width = 248
-        Lines.Strings = (
-          'Memo1'
-        )
-        TabOrder = 13
-      end
-      object Button1: TButton
-        Left = 368
-        Height = 25
-        Top = 344
-        Width = 75
-        Caption = 'Button1'
-        TabOrder = 14
-        OnClick = Button1Click
-      end
     end
     object pgUpdate: TTabSheet
       Caption = 'Atualizar'
@@ -537,8 +518,14 @@ object FrmInsert: TFrmInsert
         Left = 32
         Height = 15
         Top = 32
-        Width = 11
+        Width = 13
         Caption = 'ID'
+        Font.CharSet = ANSI_CHARSET
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object edtID: TEdit
         Left = 32
@@ -568,14 +555,14 @@ object FrmInsert: TFrmInsert
         Left = 240
         Height = 23
         Top = 117
-        Width = 224
+        Width = 280
         TabOrder = 3
       end
       object edtCpfCnpjU: TEdit
-        Left = 488
+        Left = 536
         Height = 23
         Top = 117
-        Width = 144
+        Width = 170
         NumbersOnly = True
         TabOrder = 4
       end
@@ -583,11 +570,11 @@ object FrmInsert: TFrmInsert
         Left = 32
         Height = 23
         Top = 200
-        Width = 264
+        Width = 307
         TabOrder = 5
       end
       object edtNumU: TEdit
-        Left = 325
+        Left = 381
         Height = 23
         Top = 200
         Width = 139
@@ -595,22 +582,22 @@ object FrmInsert: TFrmInsert
         TabOrder = 6
       end
       object edtBairroU: TEdit
-        Left = 488
+        Left = 536
         Height = 23
         Top = 200
-        Width = 144
+        Width = 170
         TabOrder = 7
       end
       object edtCepU: TEdit
         Left = 32
         Height = 23
         Top = 264
-        Width = 80
+        Width = 112
         NumbersOnly = True
         TabOrder = 8
       end
       object edtMunU: TEdit
-        Left = 136
+        Left = 179
         Height = 23
         Top = 264
         Width = 160
@@ -631,7 +618,7 @@ object FrmInsert: TFrmInsert
         Caption = 'Sobrenome/Apelido Fantasia'
       end
       object lblCpfCnpjU: TLabel
-        Left = 488
+        Left = 536
         Height = 15
         Top = 100
         Width = 53
@@ -645,14 +632,14 @@ object FrmInsert: TFrmInsert
         Caption = 'Logradouro'
       end
       object lblNumU: TLabel
-        Left = 325
+        Left = 381
         Height = 15
         Top = 184
         Width = 44
         Caption = 'Número'
       end
       object lblBairroU: TLabel
-        Left = 488
+        Left = 536
         Height = 15
         Top = 184
         Width = 31
@@ -666,34 +653,253 @@ object FrmInsert: TFrmInsert
         Caption = 'CEP'
       end
       object lblMunU: TLabel
-        Left = 136
+        Left = 179
         Height = 15
         Top = 248
         Width = 54
         Caption = 'Município'
       end
       object lblUFU: TLabel
-        Left = 325
+        Left = 381
         Height = 15
         Top = 248
         Width = 14
         Caption = 'UF'
       end
-      object btnSendU: TButton
-        Left = 488
-        Height = 33
-        Top = 256
-        Width = 144
-        Caption = 'Atualizar'
-        TabOrder = 11
-        OnClick = btnSendUClick
-      end
       object edtUFU: TEdit
-        Left = 325
+        Left = 381
         Height = 23
         Top = 264
         Width = 68
         TabOrder = 10
+      end
+      object detailsTipoU: TPageControl
+        Left = -4
+        Height = 224
+        Top = 328
+        Width = 750
+        ActivePage = tabFornecedorU
+        Enabled = False
+        TabIndex = 2
+        TabOrder = 12
+        TabWidth = 249
+        OnChanging = detailsTipoUChanging
+        object tabClienteU: TTabSheet
+          Caption = 'Cliente'
+          ClientHeight = 196
+          ClientWidth = 742
+          object c_edtTelFU: TEdit
+            Left = 32
+            Height = 23
+            Top = 39
+            Width = 144
+            TabOrder = 0
+          end
+          object c_edtTelCU: TEdit
+            Left = 32
+            Height = 23
+            Top = 95
+            Width = 144
+            TabOrder = 1
+          end
+          object c_mmObsU: TMemo
+            Left = 224
+            Height = 79
+            Top = 39
+            Width = 288
+            TabOrder = 2
+          end
+          object c_edtEmailU: TEdit
+            Left = 536
+            Height = 23
+            Top = 39
+            Width = 168
+            TabOrder = 3
+          end
+          object c_lblTelFU: TLabel
+            Left = 32
+            Height = 15
+            Top = 24
+            Width = 69
+            Caption = 'Telefone Fixo'
+          end
+          object c_lblObsU: TLabel
+            Left = 224
+            Height = 15
+            Top = 24
+            Width = 67
+            Caption = 'Observações'
+          end
+          object c_lblEmailU: TLabel
+            Left = 536
+            Height = 15
+            Top = 24
+            Width = 34
+            Caption = 'E-mail'
+          end
+          object c_lblTelCU: TLabel
+            Left = 32
+            Height = 15
+            Top = 80
+            Width = 84
+            Caption = 'Telefone Celular'
+          end
+        end
+        object tabFuncionarioU: TTabSheet
+          Caption = 'Funcionário'
+          ClientHeight = 196
+          ClientWidth = 742
+          object fu_edtUserU: TEdit
+            Left = 32
+            Height = 23
+            Top = 40
+            Width = 168
+            TabOrder = 0
+          end
+          object fu_edtSenhaU: TEdit
+            Left = 32
+            Height = 23
+            Top = 112
+            Width = 168
+            TabOrder = 1
+          end
+          object fu_edtEmailU: TEdit
+            Left = 272
+            Height = 23
+            Top = 40
+            Width = 208
+            TabOrder = 2
+          end
+          object fu_edtComU: TEdit
+            Left = 272
+            Height = 23
+            Top = 112
+            Width = 112
+            TabOrder = 3
+          end
+          object selectTpFunU: TRxRadioGroup
+            Left = 520
+            Height = 72
+            Top = 16
+            Width = 186
+            AutoFill = True
+            Caption = 'Gerente?'
+            ChildSizing.LeftRightSpacing = 30
+            ChildSizing.HorizontalSpacing = 40
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            ClientHeight = 52
+            ClientWidth = 182
+            Columns = 2
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            TabOrder = 4
+          end
+          object fu_lblUserU: TLabel
+            Left = 32
+            Height = 15
+            Top = 25
+            Width = 40
+            Caption = 'Usuário'
+          end
+          object fu_lblEmailU: TLabel
+            Left = 272
+            Height = 15
+            Top = 25
+            Width = 34
+            Caption = 'E-mail'
+          end
+          object fu_lblSenhaU: TLabel
+            Left = 32
+            Height = 15
+            Top = 97
+            Width = 32
+            Caption = 'Senha'
+          end
+          object fu_lblComU: TLabel
+            Left = 272
+            Height = 15
+            Top = 97
+            Width = 52
+            Caption = 'Comissão'
+          end
+        end
+        object tabFornecedorU: TTabSheet
+          Caption = 'Fornecedor'
+          ClientHeight = 196
+          ClientWidth = 742
+          object fo_edtTelFU: TEdit
+            Left = 32
+            Height = 23
+            Top = 39
+            Width = 144
+            TabOrder = 0
+          end
+          object fo_edtWebsiteU: TEdit
+            Left = 32
+            Height = 23
+            Top = 91
+            Width = 144
+            TabOrder = 1
+          end
+          object fo_mmObsU: TMemo
+            Left = 248
+            Height = 75
+            Top = 39
+            Width = 248
+            TabOrder = 2
+          end
+          object fo_edtEmailU: TEdit
+            Left = 536
+            Height = 23
+            Top = 39
+            Width = 168
+            TabOrder = 3
+          end
+          object fo_lblTelFU: TLabel
+            Left = 32
+            Height = 15
+            Top = 24
+            Width = 69
+            Caption = 'Telefone Fixo'
+          end
+          object fo_lblObsU: TLabel
+            Left = 248
+            Height = 15
+            Top = 24
+            Width = 67
+            Caption = 'Observações'
+          end
+          object fo_lblEmailU: TLabel
+            Left = 536
+            Height = 15
+            Top = 24
+            Width = 34
+            Caption = 'E-mail'
+          end
+          object fo_lblWebsiteU: TLabel
+            Left = 32
+            Height = 15
+            Top = 76
+            Width = 42
+            Caption = 'Website'
+          end
+        end
+      end
+      object btnSendU: TButton
+        Left = 536
+        Height = 33
+        Top = 488
+        Width = 170
+        Caption = 'Atualizar'
+        TabOrder = 11
+        OnClick = btnSendUClick
       end
     end
   end

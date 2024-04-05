@@ -13,20 +13,27 @@ type
 
   { TFrmInsert }
 
-  TIntArray = array[0..1] of Integer;
-
   TFrmInsert = class(TForm)
     btnSendInsert: TButton;
     bdsCrudPessoas: TBufDataset;
     btnConsultaU: TButton;
     btnSendU: TButton;
     bdsCrudDetails: TBufDataset;
-    Button1: TButton;
     c_edtEmail: TEdit;
     c_lblTelF: TLabel;
     c_lblTelC: TLabel;
     c_lblObs: TLabel;
     c_lblEmail: TLabel;
+    c_edtTelFU: TEdit;
+    fo_edtEmailU: TEdit;
+    c_edtTelCU: TEdit;
+    c_edtEmailU: TEdit;
+    fu_edtUserU: TEdit;
+    fu_edtSenhaU: TEdit;
+    fu_edtEmailU: TEdit;
+    fu_edtComU: TEdit;
+    fo_edtTelFU: TEdit;
+    fo_edtWebsiteU: TEdit;
     fu_edtUser: TEdit;
     fu_edtSenha: TEdit;
     fu_edtEmail: TEdit;
@@ -42,6 +49,18 @@ type
     fo_lblObs: TLabel;
     fo_lblEmail: TLabel;
     fo_lblWebsite: TLabel;
+    c_lblTelFU: TLabel;
+    fo_lblObsU: TLabel;
+    fo_lblEmailU: TLabel;
+    fo_lblWebsiteU: TLabel;
+    c_lblObsU: TLabel;
+    c_lblEmailU: TLabel;
+    c_lblTelCU: TLabel;
+    fu_lblUserU: TLabel;
+    fu_lblEmailU: TLabel;
+    fu_lblSenhaU: TLabel;
+    fu_lblComU: TLabel;
+    fo_lblTelFU: TLabel;
     lblDetails: TLabel;
     c_mEdtTelF: TMaskEdit;
     c_mEdtTelC: TMaskEdit;
@@ -49,7 +68,10 @@ type
     detailsTipo: TPageControl;
     c_mmObs: TMemo;
     fo_mmObs: TMemo;
-    Memo1: TMemo;
+    detailsTipoU: TPageControl;
+    c_mmObsU: TMemo;
+    fo_mmObsU: TMemo;
+    selectTpFunU: TRxRadioGroup;
     selectTpFun: TRxRadioGroup;
     selectTpCad: TRxRadioGroup;
     selectTp: TRxRadioGroup;
@@ -98,11 +120,14 @@ type
     tabCliente: TTabSheet;
     tabFuncionario: TTabSheet;
     tabFornecedor: TTabSheet;
+    tabClienteU: TTabSheet;
+    tabFuncionarioU: TTabSheet;
+    tabFornecedorU: TTabSheet;
     procedure btnConsultaUClick(Sender: TObject);
     procedure btnSendInsertClick(Sender: TObject);
     procedure btnSendUClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure detailsTipoChanging(Sender: TObject; var AllowChange: Boolean);
+    procedure detailsTipoUChanging(Sender: TObject; var AllowChange: Boolean);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mEdtCpfCnpjMouseEnter(Sender: TObject);
@@ -116,7 +141,6 @@ type
     procedure detailDatasetToView(aTpPessoa: integer);
     procedure viewToDataset;
     procedure detailViewToDataset(aID, aTpPessoa: integer);
-    function getLastRow: TIntArray;
     function confirmOperation: Boolean;
     procedure onSave(aID: string);
     procedure onSaveDetail(aID: string);
@@ -176,7 +200,6 @@ begin
   begin
     onSave('0');
 
-
     detailViewToDataSet(DM.GetLastID, bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
     onSaveDetail('0');
 
@@ -189,12 +212,16 @@ end;
 procedure TFrmInsert.btnConsultaUClick(Sender: TObject);
 var
   DM: TDM;
+  lTpPessoa: Integer;
 begin
   try
     DM := TDM.Create(nil);
     if DM.isExist(StrToInt(edtID.Text)) then
     begin
       onAppend(edtID.Text);
+      lTpPessoa := DM.GetTpPessoa(StrToInt(edtID.Text));
+      detailsTipoU.Enabled := True;
+      detailsTipoU.PageIndex := lTpPessoa;
       datasetToView;
     end
     else
@@ -220,12 +247,13 @@ begin
     ShowMessage('Operação cancelada!');
 end;
 
-procedure TFrmInsert.Button1Click(Sender: TObject);
+procedure TFrmInsert.detailsTipoChanging(Sender: TObject;
+  var AllowChange: Boolean);
 begin
-  ShowMessage(IntToStr(DM.GetLastID));
+  AllowChange := False;
 end;
 
-procedure TFrmInsert.detailsTipoChanging(Sender: TObject;
+procedure TFrmInsert.detailsTipoUChanging(Sender: TObject;
   var AllowChange: Boolean);
 begin
   AllowChange := False;
@@ -785,18 +813,6 @@ begin
   end;
 end;
 
-function TFrmInsert.getLastRow: TIntArray;
-var
-  lParams: TIntArray;
-begin
-  lParams[1] := bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger;
-  try
-    lParams[0] := DM.GetLastID;
-  finally
-    Result := lParams;
-  end;
-end;
-
 function TFrmInsert.confirmOperation: Boolean;
 begin
   Result := MessageDlg('Deseja confirmar?', mtConfirmation, mbYesNo, 0) = mrYes;
@@ -892,9 +908,7 @@ begin
           lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/detail/0')
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
-                              .Put;
-
-          memo1.Append(lJson.Stringify);
+                              .Put;    ;
 
         except
           on E: exception do
@@ -903,7 +917,6 @@ begin
       finally
         FreeAndNil(lJson);
       end;
-
     end;
     1:
     begin
