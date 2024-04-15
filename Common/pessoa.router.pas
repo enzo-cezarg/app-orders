@@ -90,7 +90,8 @@ begin
   .Get('/pessoa/:id', GetPessoa)
   .Get('/pessoa/structure', GetPessoaStructure)
   .Get('/pessoa/detail/structure/:tipo_pessoa', GetDetailStructure)
-  .Post('/pessoa', SavePessoa)
+  //.Post('/pessoa', SavePessoa)
+  .Put('/pessoa', SavePessoa)
   .Put('/pessoa/:id', SavePessoa)
   .Put('/pessoa/detail/:id', SavePessoaDetails)
   .Delete('/pessoa/:id', DeletePessoa);

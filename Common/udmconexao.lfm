@@ -8,19 +8,17 @@ object DM: TDM
   Width = 510
   object ZConnection: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = True
     ClientCodepage = 'ISO8859_1'
     Properties.Strings = (
       'codepage=ISO8859_1'
-      'AutoEncodeStrings=True'
       'controls_cp=CP_UTF8'
+      'RawStringEncoding=DB_CP'
     )
     AutoCommit = False
-    Connected = True
     BeforeConnect = ZConnectionBeforeConnect
+    DisableSavepoints = False
     HostName = 'localhost'
     Port = 3050
-    Database = 'C:\Users\User\Desktop\Repositórios\AppPedidos\Database\APPORDERS.FDB'
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebird'

@@ -76,11 +76,11 @@ procedure GetDetailStructure(aReq: THorseRequest; aRes: THorseResponse; aNext: T
 var
   lTpPessoa: string;
 begin
-  if not aReq.Params.TryGetValue('id', lID) then
-    lID := '-1';
+  if not aReq.Params.TryGetValue('tipo_pessoa', lTpPessoa) then
+    lTpPessoa := '-1';
 
   aRes.ContentType('application/json')
-  .Send( TPessoaService.GetDetailStructure );
+  .Send( TPessoaService.GetDetailStructure(lTpPessoa) );
 
 end;
 

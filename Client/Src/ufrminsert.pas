@@ -199,7 +199,7 @@ begin
   if confirmOperation then
   begin
     onSave('0');
-
+    Sleep(1200);
     detailViewToDataSet(DM.GetLastID, bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
     onSaveDetail('0');
 
@@ -339,7 +339,7 @@ begin
   try
     lJson := TJSONObject.Create;
     try
-      lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/structure')
+      lRes := TRequest.New.BaseURL('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/structure')
                           .ContentType('application/json')
                           .Get;
 
@@ -377,7 +377,7 @@ begin
   try
     lJson := TJSONObject.Create;
     try
-      lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/detail/structure/%s', [IntToStr(aTpPessoa)]))
+      lRes := TRequest.New.BaseURL(Format('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/detail/structure/%s', [IntToStr(aTpPessoa)]))
                           .ContentType('application/json')
                           .Get;
 
@@ -992,10 +992,10 @@ begin
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
 
-              lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa')
+              lRes := TRequest.New.BaseURL('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa')
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
-                              .Post;
+                              .Put;
 
               if (lRes.StatusCode = 200) and (Trim(lRes.Content) <> '') then
                 _MSG_OPERATION := 'INCLUÍDO com sucesso!';
@@ -1017,7 +1017,7 @@ begin
 
               lJson.Assign(TConverter.New.LoadDataSet(bdsCrudPessoas).ToJSONObject);
 
-              lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
+              lRes := TRequest.New.BaseURL(Format('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/%s', [aID]))
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
                               .Put;
@@ -1058,7 +1058,7 @@ begin
           lJson.Put('id', bdsCrudDetails.FieldByName('id').AsInteger);
           lJson.Put('tipo_pessoa', bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
 
-          lRes := TRequest.New.BaseURL('http://localhost:9095/pessoa/detail/0')
+          lRes := TRequest.New.BaseURL('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/detail/0')
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
                               .Put;
@@ -1082,7 +1082,7 @@ begin
           lJson.Put('id', bdsCrudDetails.FieldByName('id').AsInteger);
           lJson.Put('tipo_pessoa', bdsCrudPessoas.FieldByName('tipo_pessoa').AsInteger);
 
-          lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/detail/%s', [aID]))
+          lRes := TRequest.New.BaseURL(Format('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/detail/%s', [aID]))
                               .ContentType('application/json')
                               .AddBody(lJson.Stringify)
                               .Put;
@@ -1108,7 +1108,7 @@ begin
 
     try
 
-      lRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
+      lRes := TRequest.New.BaseURL(Format('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/%s', [aID]))
                           .ContentType('application/json')
                           .Get;
 

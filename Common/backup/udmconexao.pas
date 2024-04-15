@@ -5,7 +5,7 @@ unit udmconexao;
 interface
 
 uses
-  Classes, SysUtils, ZConnection, ZDataset, DB, BufDataset;
+  Classes, SysUtils, ZConnection, ZDataset, DB, BufDataset, constantes;
 
 type
 
@@ -60,17 +60,17 @@ end;
 
 procedure TDM.ZConnectionBeforeConnect(Sender: TObject);
 begin
-  ZConnection.Database := 'C:\Users\User\Desktop\Repositórios\AppPedidos\Database\APPORDERS.FDB';
-  ZConnection.Protocol := 'firebird';
-  ZConnection.Port := 3050;
-  ZConnection.User := 'SYSDBA';
-  ZConnection.Password := 'masterkey';
+  //ZConnection.HostName := IP_SERVER;
+  ZConnection.HostName := IP_LOCAL;
 
-  {$IFDEF WIN32}
-  ZConnection.LibLocation := '';
-  {$ELSE}
-  ZConnection.LibLocation := '';
-  {$ENDIF}
+  ZConnection.Port := PORT;
+  ZConnection.Protocol := PROTOCOL;
+  ZConnection.User := USER;
+  ZConnection.Password := PASSWORD;
+  ZConnection.Database := LIN_DATABASE;
+
+  ZConnection.LibraryLocation := LIN_LIBRARY_LOCATION;
+  //ZConnection.LibraryLocation := WIN_LIBRARY_LOCATION;
 end;
 
 procedure TDM.SetTpConexao(AValue: TTpConexao);
@@ -191,7 +191,7 @@ begin
 
         lIsExist := IsExist(aID);
 
-        if not lIsExist then
+        if (not lIsExist) or (aID = 0) then
         begin
           lQuery.SQL.Add(' INSERT INTO pessoa                                                  ');
           lQuery.SQL.Add(' (nome_razao, apelido_fantasia, cpf_cnpj,                            ');
@@ -228,33 +228,20 @@ begin
         try
           if not lIsExist then
           begin
-            lQuery.Open;
-            aID := lQuery.Fields[0].AsInteger;
+            lQuery.ExecSQL;
             lMsg := 'Incluído com sucesso!';
+            lQuery.Connection.Commit;
           end
           else
           begin
             lQuery.ExecSQL;
             lMsg := 'Alterado com sucesso!';
+            lQuery.Connection.Commit;
           end;
 
           lJson.Clear;
           lJson.Put('success', true);
           lJson.Put('message', lMsg);
-
-          lJsonTmp := TJsonObject.Create();
-          try
-            lJsonTmp.Parse( GetPessoa(aID) );
-
-            if lJsonTmp.Values['success'].AsBoolean then
-              lJson.Put('data', lJsonTmp.Values['data'].AsArray[0].AsObject );
-
-            if ZConnection.InTransaction then
-              ZConnection.Commit;
-
-          finally
-            FreeAndNil(lJsonTmp);
-          end;
 
         except
           on E: exception do
@@ -291,6 +278,11 @@ begin
   lQuery.Connection := ZConnection;
   try
     try
+
+      if not ZConnection.Connected then
+        ZConnection.Connected := True;
+      if not ZConnection.InTransaction then
+        ZConnection.StartTransaction;
 
       if not lJsonReq.IsJsonObject(aJson) then
         Raise Exception.Create('JSON Inválido!');
@@ -400,13 +392,11 @@ begin
         begin
           lQuery.ExecSQL;
           lMsg := 'INCLUÍDO com sucesso!';
-          lQuery.Connection.Commit;
         end;
         1:
         begin
           lQuery.ExecSQL;
           lMsg := 'ALTERADO com sucesso!';
-          lQuery.Connection.Commit
         end;
       end;
     except
@@ -419,6 +409,7 @@ begin
     lJsonReq.Put('message', lMsg);
     lJsonReq.Put('data', TConverter.New.LoadDataSet(lQuery).ToJSONArray);
 
+    lQuery.Connection.Commit;
   finally
     Result := lJsonReq.Stringify;
     FreeAndNil(lJsonReq);
@@ -553,7 +544,7 @@ begin
   try
     lQuery.Connection := ZConnection;
     lQuery.Connection.Connected := False;
-    lQuery.Connection.Connected := False;
+    lQuery.Connection.Connected := True;
     lQuery.SQL.Clear;
     lQuery.SQL.Add('SELECT FIRST 1 id FROM pessoa ORDER BY ID DESC');
     lQuery.Open;

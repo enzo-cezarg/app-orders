@@ -158,7 +158,7 @@ begin
   vlObjJson := TJSONObject.Create;
   try
     try
-      vlObjRes := TRequest.New.BaseURL(Format('http://localhost:9095/pessoa/%s', [aID]))
+      vlObjRes := TRequest.New.BaseURL(Format('http://192.168.0.96/cgi-bin/horse01.cgi/pessoa/%s', [aID]))
                               .ContentType('application/json')
                               //.AddHeader('conexao', vlObjJson.Stringify)
                               .Get;

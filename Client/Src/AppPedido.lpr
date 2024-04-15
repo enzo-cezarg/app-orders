@@ -11,8 +11,9 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, memdslaz, rxnew, zcomponent, uMainFrm, udmconexao, pessoa.router,
-  pessoa.service, viacep.router, ufrmconsulta, uFrmDelete, ufrminsert, 
-ufrmdetalhescliente, ufrmdetalhesfuncionario, ufrmdetalhesfornecedor;
+  pessoa.service, viacep.router, constantes, ufrmconsulta, uFrmDelete,
+  ufrminsert, ufrmdetalhescliente, ufrmdetalhesfuncionario,
+  ufrmdetalhesfornecedor;
 
 {$R *.res}
 

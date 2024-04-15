@@ -125,6 +125,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\Crypto\constantes.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -136,7 +140,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <Libraries Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;C:\Projetos\Lazarus\Componentes\horse-compression\src\;C:\Projetos\Lazarus\Componentes\horse-octet-stream\src\"/>
-      <OtherUnitFiles Value="..\..\Common;..\..\Components\dc4dl\src;..\..\Components\j4dl\src;..\..\Components\rr4dl\src;..\..\Components\horse\src;..\..\Components\horse-basic-auth\src"/>
+      <OtherUnitFiles Value="..\..\Common;..\..\Components\dc4dl\src;..\..\Components\j4dl\src;..\..\Components\rr4dl\src;..\..\Components\horse\src;..\..\Components\horse-basic-auth\src;..\..\Crypto"/>
       <UnitOutputDirectory Value="..\lib\$(TargetCPU)-$(TargetOS)"/>
       <SrcPath Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;C:\Projetos\Lazarus\Componentes\horse-compression\src\;C:\Projetos\Lazarus\Componentes\horse-octet-stream\src\"/>
     </SearchPaths>

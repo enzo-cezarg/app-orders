@@ -25,7 +25,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
+            <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\;..\..\Crypto;C:\Projetos\Lazarus\Componentes\dc4dl\src\"/>
             <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -43,6 +43,7 @@
             </Debugging>
           </Linking>
           <Other>
+            <CustomOptions Value="-dHORSE_CGI"/>
             <OtherDefines Count="1">
               <Define0 Value="HORSE_CGI"/>
             </OtherDefines>
@@ -101,6 +102,10 @@
         <Filename Value="..\..\Common\pessoa.router.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\Crypto\constantes.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -111,7 +116,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\dc4dl\src\;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\"/>
+      <OtherUnitFiles Value="C:\Projetos\Lazarus\Componentes\horse\src\;C:\Projetos\Lazarus\Componentes\horse-basic-auth\src\;..\..\Common;C:\Projetos\Lazarus\Componentes\dc4dl\src\;C:\Projetos\Lazarus\Componentes\j4dl\src\;C:\Projetos\Lazarus\Componentes\rr4dl\src\;..\..\Crypto"/>
       <UnitOutputDirectory Value="..\temp\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

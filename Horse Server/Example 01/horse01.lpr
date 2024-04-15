@@ -9,7 +9,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Horse, {Horse.BasicAuthentication,} SysUtils, BaseRouter,
-  viacep.router, pessoa.router;
+  viacep.router, pessoa.router, constantes;
 
 {function OnAuth(const aUser, aPass: string): Boolean;
 begin
