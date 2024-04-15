@@ -24,6 +24,7 @@ type
     procedure SetTpConexao(AValue: TTpConexao);
   public
     function isExist(aID: Integer): Boolean;
+    function isExistDetail(aID, aTpPessoa: Integer): Boolean;
     function GetPessoa(aID: Integer): string;
     function SavePessoa(aID: Integer; aJson: string): string;
     function SavePessoaDetails(aID: Integer; aJson: string): string;
@@ -103,6 +104,47 @@ begin
     lQuery.Close;
     FreeAndNil(lQuery);
   end;
+end;
+
+function TDM.isExistDetail(aID, aTpPessoa: Integer): Boolean;
+var
+  lQuery: TZQuery;
+begin
+  Result := False;
+
+  lQuery := TZQuery.Create(nil);
+  try
+    lQuery.Connection := ZConnection;
+
+    case aTpPessoa of
+      0:
+      begin
+        lQuery.SQL.Add(' SELECT * FROM cliente WHERE id = :id ');
+      end;
+      1:
+      begin
+        lQuery.SQL.Add(' SELECT * FROM funcionario WHERE id = :id ');
+      end;
+      2:
+      begin
+        lQuery.SQL.Add(' SELECT * FROM fornecedor WHERE id = :id ');
+      end;
+    end;
+
+    lQuery.ParamByName('id').AsInteger := aID;
+    try
+      lQuery.Open;
+      Result := not lQuery.IsEmpty;
+    except
+      on E: exception do
+         Raise Exception.Create(E.Message);
+    end;
+
+  finally
+    lQuery.Close;
+    FreeAndNil(lQuery);
+  end;
+
 end;
 
 function TDM.GetPessoa(aID: Integer): string;
@@ -346,10 +388,20 @@ begin
           case lTpPessoa of
             0:
             begin
-              lQuery.SQL.Add(' UPDATE cliente SET                                                ');
-              lQuery.SQL.Add(' limite_credito = :limite_credito, telefone_fixo = :telefone_fixo, ');
-              lQuery.SQL.Add(' telefone_celular = :telefone_celular, email = :email, obs = :obs  ');
-              lQuery.SQL.Add(' WHERE id = :id                                                    ');
+              if isExistDetail(lID, 0) then
+              begin
+                lQuery.SQL.Add(' UPDATE cliente SET                                                ');
+                lQuery.SQL.Add(' limite_credito = :limite_credito, telefone_fixo = :telefone_fixo, ');
+                lQuery.SQL.Add(' telefone_celular = :telefone_celular, email = :email, obs = :obs  ');
+                lQuery.SQL.Add(' WHERE id = :id                                                    ');
+              end
+              else
+              begin
+                lQuery.SQL.Add(' INSERT INTO cliente                                                     ');
+                lQuery.SQL.Add(' (id, limite_credito, telefone_fixo, telefone_celular, email, obs)       ');
+                lQuery.SQL.Add(' VALUES                                                                  ');
+                lQuery.SQL.Add(' (:id, :limite_credito, :telefone_fixo, :telefone_celular, :email, :obs) ');
+              end;
 
               lQuery.ParamByName('id').AsInteger                 := lID;
               lQuery.ParamByName('limite_credito').AsInteger     := lJsonReq.Values['limite_credito'].AsInteger;
@@ -360,9 +412,19 @@ begin
             end;
             1:
             begin
-              lQuery.SQL.Add(' UPDATE funcionario SET                                                                 ');
-              lQuery.SQL.Add(' comissao = :comissao, email = :email, login = :login, senha = :senha, master = :master ');
-              lQuery.SQL.Add(' WHERE id = :id                                                                         ');
+              if isExistDetail(lID, 1) then
+              begin
+                lQuery.SQL.Add(' UPDATE funcionario SET                                                                 ');
+                lQuery.SQL.Add(' comissao = :comissao, email = :email, login = :login, senha = :senha, master = :master ');
+                lQuery.SQL.Add(' WHERE id = :id                                                                         ');
+              end
+              else
+              begin
+                lQuery.SQL.Add(' INSERT INTO funcionario                           ');
+                lQuery.SQL.Add(' (id, comissao, email, login, senha, master)       ');
+                lQuery.SQL.Add(' VALUES                                            ');
+                lQuery.SQL.Add(' (:id, :comissao, :email, :login, :senha, :master) ');
+              end;
 
               lQuery.ParamByName('id').AsInteger         := lID;
               lQuery.ParamByName('comissao').AsInteger   := lJsonReq.Values['comissao'].AsInteger;
@@ -373,9 +435,20 @@ begin
             end;
             2:
             begin
-              lQuery.SQL.Add(' UPDATE fornecedor SET                                                ');
-              lQuery.SQL.Add(' telefone = :telefone, email = :email, website = :website, obs = :obs ');
-              lQuery.SQL.Add(' WHERE id = :id                                                       ');
+              if isExistDetail(lID, 2) then
+              begin
+                lQuery.SQL.Add(' UPDATE fornecedor SET                                                ');
+                lQuery.SQL.Add(' telefone = :telefone, email = :email, website = :website, obs = :obs ');
+                lQuery.SQL.Add(' WHERE id = :id                                                       ');
+              end
+              else
+              begin
+                lQuery.SQL.Add(' INSERT INTO fornecedor                   ');
+                lQuery.SQL.Add(' (id, telefone, email, website, obs)      ');
+                lQuery.SQL.Add(' VALUES                                   ');
+                lQuery.SQL.Add(' (:id, :telefone, :email, :website, :obs) ');
+              end;
+
 
               lQuery.ParamByName('id').AsInteger         := lID;
               lQuery.ParamByName('telefone').AsString    := lJsonReq.Values['telefone'].AsString;
