@@ -1,0 +1,2 @@
+teste de feature com gitflow 
+versão v1.1.2
