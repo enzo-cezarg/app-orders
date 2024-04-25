@@ -3,6 +3,8 @@
 	// This application is being developed using Lazarus with Horse and it's mainly in Portuguese.
 	// Also, it was created by Alexandre Magno, I'm publishing it only for learning purposes and for version control.
 	
+	// Feel free to download it, modificate it if you want and try the software yourself!!
+	
 	* REQUIRED PACKAGES:
 	- indylaz;
 	- LazUtils;
